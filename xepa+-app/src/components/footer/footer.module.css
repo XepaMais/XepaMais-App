@@ -1,0 +1,173 @@
+.footer {
+  --verde: #17532c;
+  --branco: #fff;
+  width: 100%;
+  padding: 40px clamp(24px, 5vw, 64px) 24px;
+  background: var(--verde);
+  color: var(--branco);
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer,
+.footer * {
+  box-sizing: border-box;
+}
+
+.rodapeTopo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 48px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.marca {
+  flex: 0 1 300px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--branco);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.descricao {
+  margin: 0 0 18px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.redes {
+  display: flex;
+  gap: 10px;
+}
+
+.redes a {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-items: center;
+  border-radius: 50%;
+  background: var(--branco);
+  transition: transform 0.2s;
+}
+
+.redes a:hover {
+  transform: scale(1.12);
+}
+
+.redes svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--verde);
+}
+
+.colunas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.coluna h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.coluna ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coluna li {
+  margin-bottom: 8px;
+}
+
+.coluna a {
+  color: var(--branco);
+  font-size: 0.85rem;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.coluna a:hover,
+.legal a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.espaco {
+  margin-top: 22px;
+}
+
+.base {
+  display: flex;
+  max-width: 1320px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px auto 0;
+  padding-top: 16px;
+  border-top: 2px solid var(--branco);
+  font-size: 0.8rem;
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.legal a {
+  color: var(--branco);
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  .footer {
+    padding: 32px 6% 18px;
+  }
+
+  .rodapeTopo {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .marca {
+    flex-basis: auto;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 600px) {
+  .colunas {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .base {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .legal {
+    gap: 16px;
+  }
+}

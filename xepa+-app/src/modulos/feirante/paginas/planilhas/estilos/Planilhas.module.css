@@ -1,0 +1,88 @@
+.filtros {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: 16px;
+  margin-bottom: var(--espaco-secao);
+  padding: 20px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+}
+
+.indicadores {
+  margin-bottom: var(--espaco-secao);
+}
+
+.campoBusca {
+  grid-column: span 3;
+}
+
+/* Só a tabela rola na horizontal, nunca a página */
+.tabelaBorda {
+  overflow-x: auto;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+}
+
+.tabela {
+  width: 100%;
+  min-width: 720px;
+  border-spacing: 0;
+  font-size: var(--fonte-pequena);
+}
+
+.tabela th {
+  padding: 12px 16px;
+  background: var(--verde-suave);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tabela td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--cinza-claro);
+  vertical-align: middle;
+}
+
+.tabela .valor {
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.lucro,
+.gasto {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}
+
+.lucro {
+  background: #eef5d6;
+  color: #3d5a00;
+}
+
+.gasto {
+  background: #ffeee5;
+  color: #b53807;
+}
+
+@media (max-width: 900px) {
+  .filtros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campoBusca {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtros {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px;
+  }
+}

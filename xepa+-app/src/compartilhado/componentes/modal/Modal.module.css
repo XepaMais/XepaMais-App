@@ -1,0 +1,264 @@
+/* Padrão único de pop-ups: janela, campos e botões */
+.fundo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  display: flex;
+  width: min(100%, 560px);
+  max-height: calc(100vh - 32px);
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  color: var(--verde);
+}
+
+.topo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px 12px 24px;
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.topo h2 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.fechar {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: transparent;
+  color: var(--branco);
+  cursor: pointer;
+}
+
+.fechar:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.fechar:focus-visible {
+  outline: 2px solid var(--branco);
+  outline-offset: -2px;
+}
+
+.corpo {
+  overflow-y: auto;
+  padding: 20px 24px 24px;
+}
+
+.descricao {
+  margin: 0 0 16px;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  line-height: 1.5;
+}
+
+/* Formulários */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.campo {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1.5px solid var(--verde);
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+  color: var(--preto);
+  font-size: var(--fonte-texto);
+}
+
+.campo textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: var(--cinza);
+  opacity: 1;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: 2px solid var(--limao);
+  outline-offset: 1px;
+}
+
+/* Remove as setinhas dos campos numéricos */
+.campo input[type='number'] {
+  appearance: textfield;
+}
+
+.campo input[type='number']::-webkit-outer-spin-button,
+.campo input[type='number']::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.campoSelect {
+  position: relative;
+}
+
+.campoSelect select {
+  padding-right: 38px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.campoSelect select.vazio {
+  color: var(--cinza);
+}
+
+.campoSelect select option {
+  color: var(--preto);
+}
+
+.iconeSelect {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  color: var(--verde);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.subtitulo {
+  margin: 0;
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+}
+
+/* Botões */
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.principal,
+.secundario,
+.perigo {
+  min-height: 44px;
+  padding: 8px 20px;
+  border-radius: var(--raio-botao);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.principal {
+  border: 1.5px solid var(--verde);
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.principal:hover {
+  border-color: #287447;
+  background: #287447;
+}
+
+.secundario {
+  border: 1.5px solid var(--verde);
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.secundario:hover {
+  background: #eaf2ec;
+}
+
+.perigo {
+  border: 1.5px solid var(--laranja);
+  background: var(--laranja);
+  color: var(--branco);
+}
+
+.perigo:hover {
+  border-color: #d9500f;
+  background: #d9500f;
+}
+
+.principal:focus-visible,
+.secundario:focus-visible,
+.perigo:focus-visible {
+  outline: 2px solid var(--limao);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .topo {
+    padding-left: 16px;
+  }
+
+  .corpo {
+    padding: 16px;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+
+  .acoes {
+    flex-direction: column-reverse;
+  }
+
+  .acoes > button {
+    width: 100%;
+  }
+}

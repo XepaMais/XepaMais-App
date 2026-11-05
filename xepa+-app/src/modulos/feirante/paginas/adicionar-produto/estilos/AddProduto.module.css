@@ -1,0 +1,87 @@
+.feiras {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cartaoFeira {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+}
+
+.cartaoFeira h2 {
+  margin: 0 0 4px;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.cartaoFeira p {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  word-break: break-word;
+}
+
+.cartaoFeira p svg {
+  flex-shrink: 0;
+  color: var(--verde);
+}
+
+.cartaoFeira button {
+  margin-top: auto;
+}
+
+.cartaoFeira p + button {
+  margin-top: 12px;
+}
+
+/* Imagem no pop-up */
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border: 1.5px dashed var(--verde);
+  border-radius: var(--raio-botao);
+  text-align: center;
+}
+
+.upload p {
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
+}
+
+.botaoImagem {
+  padding: 10px 20px;
+  border-radius: var(--raio-botao);
+  background: var(--verde);
+  color: var(--branco);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botaoImagem:hover {
+  background: #287447;
+}
+
+.mensagemErro {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--raio-botao);
+  background: #ffeee5;
+  color: #b53807;
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}

@@ -1,0 +1,87 @@
+.pagina {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.conteudo {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-base);
+}
+
+.titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.titulo h1 {
+  margin: 0;
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.titulo p {
+  margin: 4px 0 0;
+  color: var(--cinza);
+  font-size: var(--fonte-texto);
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.botoes button {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--verde);
+  color: var(--branco);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.painel {
+  display: grid;
+  gap: 20px;
+  margin-bottom: var(--espaco-secao);
+  grid-template-columns: 2fr 1fr;
+}
+
+.painel > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .painel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .titulo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .botoes button {
+    width: 100%;
+  }
+}

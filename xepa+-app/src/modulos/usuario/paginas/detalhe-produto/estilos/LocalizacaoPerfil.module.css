@@ -1,0 +1,170 @@
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+  padding: 16px 0;
+  border-radius: 24px;
+  background: var(--fundo-suave);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 16px 20px 20px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: white;
+  color: var(--texto);
+  font-size: var(--fonte-texto);
+}
+.card h2 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+}
+.sub {
+  margin: 2px 0 12px;
+  color: var(--cinza);
+}
+.cinza {
+  color: var(--cinza);
+}
+
+/* MAPA */
+.mapa {
+  position: relative;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* o iframe sobe 60px para esconder a barra de título do Google My Maps */
+.mapa iframe {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 60px);
+  border: 0;
+}
+
+.selo {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  z-index: 1;
+  padding: 6px 14px;
+  border-radius: 0 0 10px 10px;
+  background: white;
+  color: var(--verde);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.infoFeira {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 40px;
+  margin-top: 16px;
+}
+.nomeFeira {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.nomeFeira i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--verde-musgo);
+}
+.endereco {
+  margin: 10px 0 0;
+}
+
+/* PERFIL */
+.perfil {
+  padding: 24px;
+}
+.perfil .sub {
+  margin: 4px 0 20px;
+  color: #888;
+}
+
+.pessoa {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 16px 18px;
+  border-bottom: 1px solid #e3e8e3;
+  font-size: var(--fonte-texto);
+}
+.avatar {
+  width: 42px;
+  height: 38px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  flex-shrink: 0;
+}
+
+.sobre {
+  margin: 16px 0 24px;
+}
+.rotulo {
+  display: block;
+  margin-bottom: 4px;
+  color: #666;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.rotuloSimples {
+  display: block;
+  margin-bottom: 4px;
+  color: #666;
+}
+.sobre h3 {
+  margin: 6px 0 4px;
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+}
+.sobre p {
+  margin: 0;
+  max-width: 240px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.rodape {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.rodape button {
+  padding: 11px 26px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--verde-musgo);
+  color: white;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.rodape button:hover {
+  background: #3d7510;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

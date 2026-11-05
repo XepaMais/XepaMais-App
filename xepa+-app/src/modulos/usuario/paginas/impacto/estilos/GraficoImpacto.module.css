@@ -1,0 +1,182 @@
+.cardGrafico {
+  padding: 22px 26px 20px;
+  border: 1px solid #a8c2ae;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.cabecalhoGrafico {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tituloGrafico {
+  margin: 0;
+  color: #18552f;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.legendaGrafico {
+  display: flex;
+  gap: 16px;
+  color: #716d6d;
+  font-size: 0.7rem;
+}
+
+.itemLegenda {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.marcadorLegenda {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: #18552f;
+}
+
+.marcadorDestaque {
+  background: #f76019;
+}
+
+.areaGrafico {
+  position: relative;
+  height: 230px;
+  margin-top: 18px;
+  padding: 12px 2px 24px 32px;
+}
+
+.eixoY {
+  position: absolute;
+  top: 12px;
+  right: auto;
+  bottom: 24px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #716d6d;
+  font-size: 0.65rem;
+}
+
+.gradeGrafico {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  bottom: 24px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.linhaGrade {
+  border-top: 1px dashed #dce6de;
+}
+
+.barras {
+  position: absolute;
+  top: 12px;
+  right: 4px;
+  bottom: 24px;
+  left: 38px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(24px, 1fr));
+  align-items: end;
+  gap: clamp(10px, 3vw, 38px);
+  border-bottom: 1px solid #7ea18a;
+}
+
+.colunaSemana {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.barra {
+  width: min(100%, 72px);
+  min-height: 8px;
+  border-radius: 9px 9px 0 0;
+  background: #18552f;
+}
+
+.barraDestaque {
+  background: #f76019;
+}
+
+.valorBarra {
+  position: absolute;
+  bottom: calc(var(--altura) + 6px);
+  color: #18552f;
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.valorBarraDestaque {
+  color: #f76019;
+}
+
+.rotulosSemanas {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 38px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(24px, 1fr));
+  gap: clamp(10px, 3vw, 38px);
+  color: #716d6d;
+  font-size: 0.68rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .cardGrafico {
+    padding: 18px 14px 16px;
+  }
+
+  .cabecalhoGrafico {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .areaGrafico {
+    height: 205px;
+    padding-left: 26px;
+  }
+
+  .gradeGrafico {
+    left: 26px;
+  }
+
+  .barras {
+    left: 32px;
+    gap: 8px;
+  }
+
+  .rotulosSemanas {
+    left: 32px;
+    gap: 8px;
+    font-size: 0.6rem;
+  }
+
+  .valorBarra {
+    font-size: 0.58rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .legendaGrafico {
+    gap: 10px;
+    font-size: 0.64rem;
+  }
+}

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Padrão visual do Xepa+: use estas variáveis nas páginas e componentes */
+:root {
+  /* Cores */
+  --preto: #161414;
+  --verde: #18552f;
+  --limao: #9bc000;
+  --amarelo: #ffc927;
+  --laranja: #f76019;
+  --cinza: #716d6d;
+  --cinza-claro: #d6e1d9;
+  --verde-suave: #bfd0c5;
+  --branco: #ffffff;
+
+  /* Tipografia */
+  --fonte-titulo-pagina: clamp(28px, 3vw, 40px);
+  --fonte-titulo-secao: clamp(20px, 2vw, 26px);
+  --fonte-titulo-card: 18px;
+  --fonte-texto: 16px;
+  --fonte-pequena: 14px;
+  --fonte-legenda: 12px;
+
+  /* Largura das páginas internas */
+  --largura-conteudo: 1120px;
+  --margem-lateral: clamp(16px, 4vw, 40px);
+  --largura-pagina: calc(var(--largura-conteudo) + 2 * var(--margem-lateral));
+
+  /* Distância entre o último cabeçalho e o título da página */
+  --espaco-topo: 32px;
+  --espaco-base: 48px;
+  --espaco-secao: 32px;
+
+  /* Componentes */
+  --raio-card: 16px;
+  --raio-botao: 8px;
+  --borda-card: 1.5px solid var(--verde);
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 320px;
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2,
+h3,
+h4,
+strong,
+b {
+  font-weight: 600;
+}
+
+#root {
+  min-height: 100vh;
+}

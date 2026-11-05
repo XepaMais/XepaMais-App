@@ -1,0 +1,269 @@
+.secao-beneficios {
+  display: flex;
+  flex-direction: column;
+  height: clamp(420px, 42vw, 600px);
+  padding: 40px 5% 0;
+  overflow: hidden;
+  background: #fff3ec;
+  color: #111;
+}
+
+.cabecalho-beneficios {
+  flex-shrink: 0;
+  text-align: center;
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.cabecalho-beneficios h2 {
+  margin: 0;
+  color: #18552f;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.cabecalho-beneficios p {
+  width: min(520px, 92%);
+  margin: 12px auto 0;
+  color: #18552f;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-texto);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.botao-beneficios {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 11px 32px;
+  border: 0;
+  border-radius: 8px;
+  background: #f76019;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+  min-height: 44px;
+}
+
+.botao-beneficios:hover {
+  background: #d94b19;
+  transform: translateY(-1px);
+}
+
+.ilustracao-beneficios {
+  position: relative;
+  flex: 1;
+  width: min(800px, 100%);
+  min-height: 0;
+  margin: 10px auto 0;
+}
+
+.cesta-beneficios {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 95%;
+  height: 100%;
+  object-fit: contain;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
+  animation: fadeInScale 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.categoria-beneficio {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #080808;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 600;
+  line-height: 1.1;
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.seta-beneficio {
+  display: block;
+  width: clamp(50px, 6vw, 80px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Lado Esquerdo (Texto + Seta apontando para a esquerda) */
+.categoria-beneficio--legumes,
+.categoria-beneficio--frutas {
+  flex-direction: row;
+}
+
+/* Lado Direito (Seta apontando para a direita + Texto) */
+.categoria-beneficio--verduras,
+.categoria-beneficio--temperos {
+  flex-direction: row-reverse;
+}
+
+.categoria-beneficio--legumes {
+  top: 10%;
+  left: 9%;
+  animation-delay: 0.4s;
+}
+
+.categoria-beneficio--legumes .seta-beneficio {
+  transform: scaleX(-1) rotate(deg);
+}
+
+.categoria-beneficio--verduras {
+  top: 10%;
+  right: 6%;
+  animation-delay: 0.5s;
+}
+
+.categoria-beneficio--verduras .seta-beneficio {
+  transform: rotate(-6deg);
+}
+
+.categoria-beneficio--frutas {
+  bottom: 12%;
+  left: 6%;
+  animation-delay: 0.6s;
+}
+
+.categoria-beneficio--frutas .seta-beneficio {
+  transform: scaleX(-1) rotate(10deg);
+}
+
+.categoria-beneficio--temperos {
+  right: 6%;
+  bottom: 14%;
+  animation-delay: 0.7s;
+}
+
+.categoria-beneficio--temperos .seta-beneficio {
+  transform: rotate(150deg);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .secao-beneficios {
+    height: clamp(400px, 95vw, 550px);
+    padding: 24px 5% 0;
+  }
+
+  .cabecalho-beneficios h2 {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
+  .cabecalho-beneficios p {
+    margin-top: 12px;
+    font-size: clamp(12px, 3vw, 14px);
+  }
+
+  .botao-beneficios {
+    margin-top: 16px;
+    padding: 9px 24px;
+    font-size: 13px;
+  }
+
+  .cesta-beneficios {
+    width: 100%;
+  }
+
+  .categoria-beneficio {
+    font-size: clamp(12px, 3.5vw, 16px);
+    gap: 4px;
+  }
+
+  .seta-beneficio {
+    width: clamp(35px, 9vw, 55px);
+  }
+
+  .categoria-beneficio--legumes {
+    top: 14%;
+    left: 0;
+  }
+
+  .categoria-beneficio--verduras {
+    top: 10%;
+    right: 0;
+  }
+
+  .categoria-beneficio--frutas {
+    bottom: 18%;
+    left: 0;
+  }
+
+  .categoria-beneficio--temperos {
+    right: 0;
+    bottom: 14%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabecalho-beneficios,
+  .cesta-beneficios,
+  .categoria-beneficio {
+    animation: none !important;
+    transform: none !important;
+  }
+  .cesta-beneficios {
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* Celulares: textos e botão legíveis e fáceis de tocar */
+@media (max-width: 600px) {
+  .cabecalho-beneficios p {
+    font-size: 14px;
+  }
+
+  .botao-beneficios {
+    min-height: 44px;
+  }
+}
+
+/* Computadores: a frase de apresentação fica em uma linha só */
+@media (min-width: 1100px) {
+  .cabecalho-beneficios p {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Computadores: todas as seções da Home têm 650px de altura */
+@media (min-width: 1001px) {
+  .secao-beneficios {
+    height: 650px;
+  }
+}

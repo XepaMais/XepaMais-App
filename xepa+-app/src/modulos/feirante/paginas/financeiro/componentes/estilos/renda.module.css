@@ -1,0 +1,52 @@
+.rendas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: var(--espaco-secao);
+}
+
+.card {
+  min-width: 0;
+  padding: 20px;
+  border: 1.5px solid var(--verde);
+  border-radius: 16px;
+  color: var(--verde);
+}
+
+.card h2 {
+  margin: 0;
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+}
+
+.card p {
+  margin: 2px 0 8px;
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
+}
+
+.card strong {
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.destaque {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.destaque h2 {
+  color: var(--branco);
+}
+
+.destaque p {
+  color: var(--branco);
+}
+
+@media (max-width: 700px) {
+  .rendas {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

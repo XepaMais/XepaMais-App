@@ -1,0 +1,227 @@
+.pagina {
+  --verde: #18552f;
+  --verde-escuro: #18552f;
+  --verde-claro: #eaf2ec;
+  --laranja: #f76019;
+  --texto-suave: #716d6d;
+
+  width: 100%;
+  color: var(--verde-escuro);
+  font-family: 'Poppins', sans-serif;
+}
+
+.conteudoPrincipal {
+  width: min(100% - 2 * var(--margem-lateral), var(--largura-conteudo));
+  margin: 0 auto;
+  padding: 38px 0 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.cabecalhoConteudo {
+  width: min(100% - 2 * var(--margem-lateral), var(--largura-conteudo));
+  margin: 0 auto;
+  padding-top: var(--espaco-topo);
+}
+
+.tituloPrincipal {
+  margin: 0;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.12;
+}
+
+.subtitulo {
+  margin: 8px 0 0;
+  color: var(--texto-suave);
+  font-size: var(--fonte-texto);
+}
+
+.linhaSuperior {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(230px, 0.9fr);
+  gap: 18px;
+}
+
+.card {
+  border: 1px solid #a8c2ae;
+  border-radius: 22px;
+  background: #fff;
+}
+
+.cardPeso {
+  min-height: 205px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.textoPeso {
+  position: relative;
+  z-index: 1;
+}
+
+.rotulo {
+  display: block;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.numeroDestaque {
+  margin: 2px 0 0;
+  color: var(--verde);
+  font-size: clamp(2.7rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.unidade {
+  margin-left: 5px;
+  font-size: 1.7rem;
+  letter-spacing: -0.03em;
+}
+
+.legendaCard {
+  display: block;
+  margin-top: 5px;
+  color: #82b900;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.imagemXepa {
+  width: min(52%, 200px);
+  height: 160px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  object-position: center 48%;
+}
+
+.colunaDireita {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+
+.cardInfo {
+  min-height: 94px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.valorDestaqueLaranja {
+  color: var(--laranja);
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.rotuloCard {
+  color: var(--texto-suave);
+  font-size: 0.8rem;
+}
+
+.faixaImpacto {
+  min-height: 82px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 20px;
+  background: rgba(225, 238, 228, 0.78);
+}
+
+.logoImpacto {
+  width: 128px;
+  height: 48px;
+  flex: 0 0 128px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(24%) sepia(24%) saturate(1311%) hue-rotate(91deg)
+    brightness(94%) contrast(91%);
+}
+
+.textoImpacto {
+  margin: 0;
+  color: var(--verde);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.textoImpacto strong {
+  color: var(--laranja);
+}
+
+.estimativa {
+  display: block;
+  margin-top: 4px;
+  color: var(--texto-suave);
+  font-size: 0.68rem;
+  font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .conteudoPrincipal {
+    padding: 28px 0;
+    gap: 16px;
+  }
+
+  .cabecalhoConteudo {
+    padding-top: 28px;
+  }
+
+  .linhaSuperior {
+    grid-template-columns: 1fr;
+  }
+
+  .cardPeso {
+    min-height: 170px;
+    padding: 14px 18px;
+  }
+
+  .imagemXepa {
+    width: 48%;
+    height: 145px;
+  }
+
+  .colunaDireita {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .cardInfo {
+    min-height: 88px;
+    padding: 14px 16px;
+  }
+
+  .faixaImpacto {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .numeroDestaque {
+    font-size: 2.5rem;
+  }
+
+  .unidade {
+    font-size: 1.35rem;
+  }
+
+  .imagemXepa {
+    width: 42%;
+    height: 130px;
+  }
+}

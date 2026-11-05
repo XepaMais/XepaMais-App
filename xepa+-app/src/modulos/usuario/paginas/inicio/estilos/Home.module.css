@@ -1,0 +1,487 @@
+/* Boas-vindas */
+.secaoBoasVindas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: var(--espaco-topo) var(--margem-lateral) 0;
+}
+
+.topoCabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topoCabecalho h1 {
+  margin: 0;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.fotoPerfil {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border: 3px solid var(--limao);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.barraPesquisa {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: var(--borda-card);
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+  font-size: var(--fonte-texto);
+}
+
+.barraPesquisa::placeholder {
+  color: var(--cinza);
+}
+
+.barraPesquisa:focus {
+  outline: 2px solid var(--limao);
+  outline-offset: 1px;
+}
+
+/* Cards de categoria */
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.categoria,
+.categoriaAtiva {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.categoria {
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.categoria:hover {
+  background: #eaf2ec;
+}
+
+.categoriaAtiva {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.categoria strong,
+.categoriaAtiva strong {
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.categoria span,
+.categoriaAtiva span {
+  font-size: var(--fonte-legenda);
+  opacity: 0.85;
+}
+
+.categoria:focus-visible,
+.categoriaAtiva:focus-visible,
+.botaoPrincipal:focus-visible,
+.botaoRemover:focus-visible,
+.botaoSecundario:focus-visible,
+.botaoVer:focus-visible,
+.setaesquerda:focus-visible,
+.setadireita:focus-visible,
+.linkCard:focus-visible {
+  outline: 2px solid var(--limao);
+  outline-offset: 2px;
+}
+
+/* Carrosséis */
+.container {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: 32px var(--margem-lateral) 0;
+}
+
+.tituloSecao {
+  margin: 0 0 16px;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+}
+
+.carrossel {
+  margin-bottom: 32px;
+}
+
+.areaCarrossel {
+  position: relative;
+}
+
+.rolagem {
+  --gap: 20px;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--gap)) / 3);
+  gap: var(--gap);
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.setaesquerda,
+.setadireita {
+  position: absolute;
+  top: 40%;
+  z-index: 2;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+  border: var(--borda-card);
+  border-radius: 50%;
+  background: var(--branco);
+  box-shadow: var(--sombra-suave);
+  color: var(--verde);
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.setaesquerda {
+  left: -14px;
+}
+
+.setadireita {
+  right: -14px;
+}
+
+.setaesquerda:hover,
+.setadireita:hover {
+  background: #eaf2ec;
+}
+
+.semXepas {
+  margin: 0;
+  padding: 24px 16px;
+  border: 1.5px dashed var(--verde-suave);
+  border-radius: var(--raio-card);
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  text-align: center;
+}
+
+/* Card de xepa */
+.cardXepa {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+  background: var(--branco);
+  scroll-snap-align: start;
+}
+
+.linkCard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: var(--raio-botao);
+  color: var(--verde);
+  text-decoration: none;
+}
+
+.linkCard:hover .titulo {
+  text-decoration: underline;
+}
+
+.imagem {
+  width: 100%;
+  height: 180px;
+  margin-bottom: 8px;
+  border-radius: var(--raio-botao);
+  background: var(--cinza-claro);
+  object-fit: cover;
+}
+
+.titulo {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.preco {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}
+
+.local {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  word-break: break-word;
+}
+
+.local svg {
+  flex-shrink: 0;
+}
+
+.botaoPrincipal,
+.botaoRemover,
+.botaoSecundario {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--raio-botao);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.botaoPrincipal {
+  border: 1.5px solid var(--verde);
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.botaoPrincipal:hover {
+  border-color: #287447;
+  background: #287447;
+}
+
+.botaoRemover {
+  border: 1.5px solid var(--laranja);
+  background: var(--branco);
+  color: var(--laranja);
+}
+
+.botaoRemover:hover {
+  background: var(--laranja);
+  color: var(--branco);
+}
+
+.botaoSecundario {
+  border: 1.5px solid var(--verde);
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.botaoSecundario:hover {
+  background: #eaf2ec;
+}
+
+/* Banner */
+.secaoContainer {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: 0 var(--margem-lateral);
+}
+
+.cardBanner {
+  display: flex;
+  overflow: hidden;
+  border-radius: var(--raio-card);
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.conteudoEsquerda {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+}
+
+.tituloBanner {
+  margin: 0;
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.subtitulo {
+  margin: 0;
+  font-size: var(--fonte-texto);
+  line-height: 1.5;
+}
+
+.botaoVer {
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: var(--limao);
+  color: var(--verde);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botaoVer:hover {
+  background: #7f9e00;
+  color: var(--branco);
+}
+
+.conteudoDireita {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.imagemFeira {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  mask-image: linear-gradient(to left, black 70%, transparent 100%);
+}
+
+/* Feiras */
+.secaoXepasPerto {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: 32px var(--margem-lateral) var(--espaco-base);
+}
+
+.containerCardsXepas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cardFeira {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 20px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+  color: var(--verde);
+}
+
+.cardFeira h3 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.cardFeira p {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  word-break: break-word;
+}
+
+.cardFeira p svg {
+  flex-shrink: 0;
+  color: var(--verde);
+}
+
+.selo {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #eef5d6;
+  color: #3d5a00;
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}
+
+.cardFeira button {
+  margin-top: auto;
+}
+
+.cardFeira .selo + button {
+  margin-top: 8px;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .categorias {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .rolagem {
+    grid-auto-columns: calc((100% - var(--gap)) / 2);
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  .rolagem {
+    --gap: 12px;
+
+    grid-auto-columns: 82%;
+  }
+
+  .setaesquerda {
+    left: -8px;
+  }
+
+  .setadireita {
+    right: -8px;
+  }
+
+  .cardBanner {
+    flex-direction: column;
+  }
+
+  .conteudoEsquerda {
+    padding: 24px;
+  }
+
+  .imagemFeira {
+    height: 180px;
+    mask-image: none;
+  }
+
+  .fotoPerfil {
+    width: 56px;
+    height: 56px;
+  }
+}

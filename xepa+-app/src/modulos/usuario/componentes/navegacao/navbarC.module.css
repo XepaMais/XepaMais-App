@@ -1,0 +1,341 @@
+.navbar {
+  position: relative;
+  background-color: #18552f;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 40px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.iconeLogo {
+  width: 130px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.linkNav,
+.linkAtivo {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 6px;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.linkNav:hover,
+.linkAtivo:hover {
+  color: #9bc000;
+}
+
+.linkAtivo {
+  font-weight: 600;
+  border-bottom-color: #9bc000;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.linkCarrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  position: relative;
+}
+
+.linkCarrinho svg {
+  width: 30px;
+  height: 30px;
+}
+
+.linkCarrinho:hover,
+.carrinhoAtivo {
+  color: #9bc000;
+}
+
+.linkCarrinho:hover {
+  transform: scale(1.1);
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #9bc000;
+  flex-shrink: 0;
+}
+
+.perfil:hover .nomeUsuario {
+  color: #9bc000;
+}
+
+.nomeUsuario {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.botaoVoltar {
+  background-color: #9bc000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.botaoVoltar:hover {
+  background-color: #7f9e00;
+}
+
+.botaoMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.botaoMenu span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.perfilMenu,
+.contaMenu,
+.sairMenu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  .iconeLogo {
+    width: 110px;
+  }
+
+  .navLinks {
+    gap: 12px;
+  }
+
+  .linkNav,
+  .linkAtivo {
+    font-size: 14px;
+  }
+
+  .acoes {
+    gap: 10px;
+  }
+
+  .nomeUsuario {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .botaoVoltar {
+    padding: 9px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    min-height: 76px;
+    padding: 0 16px 0 20px;
+    gap: 12px;
+  }
+
+  .iconeLogo {
+    width: 105px;
+  }
+
+  .acoes {
+    margin-left: auto;
+    gap: 14px;
+  }
+
+  .linkCarrinho {
+    padding: 6px;
+  }
+
+  .linkCarrinho svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .botaoMenu {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .acoes > .perfil,
+  .acoes > .botaoVoltar {
+    display: none;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 16px;
+    background-color: #18552f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .menuAberto {
+    display: flex;
+  }
+
+  .linkNav,
+  .linkAtivo {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .linkAtivo {
+    border-bottom-color: #9bc000;
+  }
+
+  .contaMenu {
+    display: block;
+  }
+
+  .perfilMenu {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .perfilMenu .avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .perfilMenu .nomeUsuario {
+    font-size: 16px;
+  }
+
+  .sairMenu {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    min-height: 76px;
+    padding: 0 12px 0 20px;
+  }
+
+  .iconeLogo {
+    width: 105px;
+  }
+
+  .acoes {
+    gap: 14px;
+  }
+
+  .botaoMenu {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkCarrinho,
+  .linkNav,
+  .linkAtivo,
+  .botaoVoltar {
+    transition: none;
+  }
+}
+
+.contadorCarrinho {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  display: grid;
+  min-width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-items: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}

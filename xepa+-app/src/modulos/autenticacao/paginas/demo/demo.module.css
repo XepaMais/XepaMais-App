@@ -1,0 +1,126 @@
+/* Fundo da tela: login desfocado, com uma camada cinza por cima */
+.telaDesfocada {
+  overflow: hidden;
+  filter: blur(6px);
+}
+
+.fundoDemo {
+  background: rgba(30, 35, 50, 0.78);
+}
+
+/* Janela mais larga e mais baixa que a dos outros pop-ups */
+.janelaDemo {
+  width: min(100%, 680px);
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Cada perfil é um card clicável */
+.opcao {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1.5px solid var(--verde);
+  border-radius: var(--raio-card);
+  color: var(--verde);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.opcao:hover {
+  box-shadow: var(--sombra-suave);
+  transform: translateY(-2px);
+}
+
+.opcao:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
+/* Cores de cada perfil */
+.verde {
+  border-color: var(--verde);
+  background: #f1faf5;
+}
+
+.limao {
+  border-color: var(--limao);
+  background: #f8fbe9;
+}
+
+.amarelo {
+  border-color: var(--amarelo);
+  background: #fffaea;
+}
+
+.laranja {
+  border-color: var(--laranja);
+  background: #fff4ee;
+}
+
+.icone {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+  box-shadow: var(--sombra-suave);
+}
+
+.texto {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.topo strong {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+}
+
+.etiqueta {
+  padding: 2px 8px;
+  border-radius: var(--raio-botao);
+  background: var(--verde-suave);
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}
+
+.descricao {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  line-height: 1.5;
+}
+
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 12px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--cinza-claro);
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}

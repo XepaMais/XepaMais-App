@@ -1,0 +1,31 @@
+.pagina,
+.pagina * {
+  box-sizing: border-box;
+}
+
+.pagina {
+  --verde: #18552f;
+  --verde-hover: #287447;
+  --verde-musgo: #2f5d0a;
+  --verde-claro: #3aa76d;
+  --fundo-suave: #f4f8f4;
+  --borda: #dfe6df;
+  --texto: #1f2d24;
+  --cinza: #777;
+  --vermelho: #d9363e;
+
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  color: var(--verde);
+  font:
+    16px 'Poppins',
+    sans-serif;
+  overflow-x: hidden;
+}
+
+.conteudo {
+  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-base);
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+}

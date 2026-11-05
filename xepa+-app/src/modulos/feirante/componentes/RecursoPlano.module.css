@@ -1,0 +1,64 @@
+/* Página bloqueada: mostra só o começo do conteúdo, com o aviso por cima */
+.bloqueio {
+  position: relative;
+  max-height: 760px;
+  overflow: hidden;
+}
+
+/* Card bloqueado da Home */
+.bloqueioCompacto {
+  position: relative;
+  min-width: 0;
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.previa {
+  height: 100%;
+  filter: blur(2px);
+  user-select: none;
+}
+
+.bloqueioCompacto .previa > section {
+  height: 100%;
+}
+
+.aviso {
+  position: absolute;
+  top: 64px;
+  right: 0;
+  left: 0;
+  display: flex;
+  width: min(100% - 32px, 480px);
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  color: var(--verde);
+  text-align: center;
+}
+
+.bloqueioCompacto .aviso {
+  top: 50%;
+  gap: 8px;
+  padding: 16px;
+  transform: translateY(-50%);
+}
+
+.aviso h2 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+}
+
+.aviso p {
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+}

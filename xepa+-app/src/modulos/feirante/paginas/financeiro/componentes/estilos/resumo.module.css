@@ -1,0 +1,51 @@
+.resumo {
+  height: 100%;
+  padding: 20px;
+  border: 1.5px solid var(--verde);
+  border-radius: 16px;
+  color: var(--verde);
+  min-width: 0;
+}
+
+.resumo h2 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cinza-claro);
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}
+
+.linha,
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.linha {
+  margin-bottom: 16px;
+}
+
+.linha span,
+.total span {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}
+
+.linha strong {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.total {
+  padding-top: 16px;
+  border-top: 1px solid var(--cinza-claro);
+}
+
+.total strong {
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+  word-break: break-word;
+}

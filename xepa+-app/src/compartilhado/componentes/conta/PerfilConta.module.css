@@ -1,0 +1,39 @@
+.identificacao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  padding: 20px;
+}
+
+.avatar {
+  display: grid;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-items: center;
+  border-radius: 50%;
+  background: var(--limao);
+  color: var(--branco);
+}
+
+.identificacaoTexto {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.identificacaoTexto strong {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.identificacaoTexto span {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  word-break: break-word;
+}

@@ -1,0 +1,358 @@
+.secao-inicio {
+  /* 1cqw = 1% da largura da seção → tudo escala junto */
+  container-type: inline-size;
+
+  position: relative;
+  z-index: 0;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  width: 100%;
+  overflow: hidden;
+
+  background: #fff;
+  height: clamp(420px, 42vw, 600px);
+}
+
+.frutas-inicio {
+  /* tempo entre uma fileira e a próxima */
+  --passo: 0.3s;
+
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ---------- Frutas ---------- */
+
+.fruta-inicio {
+  position: absolute;
+  /* --w = largura base de cada fruta; --escala encolhe tudo em telas pequenas */
+  width: calc(var(--w) * var(--escala, 1));
+  height: auto;
+
+  /* 1) entra em cena  2) depois fica flutuando */
+  animation:
+    fruta-entra 1s cubic-bezier(0.22, 1.25, 0.36, 1) both,
+    fruta-flutua var(--flutua-dur, 6s) ease-in-out infinite alternate;
+
+  /* atraso = fileira × passo (+ um pequeno extra para o lado direito) */
+  animation-delay:
+    calc(var(--linha, 0) * var(--passo) + var(--extra, 0s)),
+    calc(var(--linha, 0) * var(--passo) + var(--extra, 0s) + 1s);
+  --escala: 0.85;
+}
+
+@keyframes fruta-entra {
+  from {
+    opacity: 0;
+    translate: var(--dx) 0;
+    rotate: var(--giro);
+    scale: 0.7;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+
+@keyframes fruta-flutua {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-1.2cqw) rotate(var(--flutua-giro, 2deg));
+  }
+}
+
+/* Fileira 1 (topo) */
+
+.fruta-inicio--mamao {
+  --w: 25%;
+  --linha: 0;
+  --dx: -12cqw;
+  --giro: -10deg;
+  --flutua-dur: 6s;
+  --flutua-giro: 2deg;
+
+  top: -11%;
+  left: -9%;
+}
+
+.fruta-inicio--kiwi {
+  --w: 23%;
+  --linha: 0;
+  --extra: 0.06s;
+  --dx: 12cqw;
+  --giro: 10deg;
+  --flutua-dur: 7.5s;
+  --flutua-giro: -2deg;
+
+  top: -10%;
+  right: -7%;
+}
+
+/* Fileira 2 (meio) */
+
+.fruta-inicio--abacaxi {
+  --w: 26%;
+  --linha: 1;
+  --dx: -12cqw;
+  --giro: -10deg;
+  --flutua-dur: 7s;
+  --flutua-giro: -2deg;
+
+  top: 22%;
+  left: -10%;
+}
+
+.fruta-inicio--goiaba {
+  --w: 21%;
+  --linha: 1;
+  --extra: 0.06s;
+  --dx: 12cqw;
+  --giro: 10deg;
+  --flutua-dur: 5.8s;
+  --flutua-giro: 2deg;
+
+  top: 29%;
+  right: -7%;
+}
+
+/* Fileira 3 (baixo) */
+
+.fruta-inicio--melancia {
+  --w: 27%;
+  --linha: 2;
+  --dx: -12cqw;
+  --giro: -10deg;
+  --flutua-dur: 6.5s;
+  --flutua-giro: 1.5deg;
+
+  bottom: -21%;
+  left: -8%;
+}
+
+.fruta-inicio--uva {
+  --w: 27%;
+  --linha: 2;
+  --extra: 0.06s;
+  --dx: 12cqw;
+  --giro: 10deg;
+  --flutua-dur: 6.8s;
+  --flutua-giro: -1.5deg;
+
+  bottom: -18%;
+  right: -8%;
+}
+
+/* ---------- Texto central ---------- */
+
+.conteudo-inicio {
+  width: 76cqw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.titulo-inicio,
+.lead-inicio {
+  animation: texto-sobe 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  margin: 12px auto 0;
+  font-size: var(--fonte-texto);
+}
+
+/* entram depois da última fileira de frutas: 2 × passo + 0.3s */
+.titulo-inicio {
+  animation-delay: 0.9s;
+  margin: 0;
+  color: #18552f;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lead-inicio {
+  animation-delay: 1.05s;
+  max-width: 62cqw;
+  margin: 2cqw auto 0;
+  color: #2b4a33;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+@keyframes texto-sobe {
+  from {
+    opacity: 0;
+    translate: 0 2.5cqw;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+/* Frase principal: maior e mais fácil de ler que antes (era 14px no máximo) */
+
+/* ---------- Faixa em carrossel ---------- */
+
+.faixa-xepa {
+  width: 100%;
+  padding: max(6px, 1.4vw) 0;
+  overflow: hidden;
+
+  background: #9bc000;
+  color: #28451c;
+  white-space: nowrap;
+}
+
+/* a trilha tem 2 grupos iguais; andar -50% = andar 1 grupo = loop sem emenda */
+.faixa-xepa__trilha {
+  display: flex;
+  width: max-content;
+  animation: faixa-corre 45s linear infinite;
+}
+
+.faixa-xepa:hover .faixa-xepa__trilha {
+  animation-play-state: paused;
+}
+
+.faixa-xepa__grupo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+
+  /* garante que um grupo sozinho sempre cobre a tela inteira */
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.faixa-xepa__item {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  padding-left: 3vw;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(12px, 1.1vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* bolinha separando as palavras */
+.faixa-xepa__item::after {
+  content: '';
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: #18552f;
+}
+
+@keyframes faixa-corre {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Acessibilidade ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fruta-inicio,
+  .titulo-inicio,
+  .lead-inicio,
+  .faixa-xepa__trilha {
+    animation: none;
+  }
+}
+
+/* Celulares: mantém o layout do computador e só ajusta a leitura */
+@media (max-width: 700px) {
+  .secao-inicio {
+    height: auto;
+    min-height: 360px;
+    padding: 40px 0;
+  }
+
+  .fruta-inicio {
+    --escala: 0.8;
+  }
+
+  .conteudo-inicio {
+    width: 72cqw;
+  }
+
+  .titulo-inicio {
+    font-size: clamp(24px, 7cqw, 34px);
+  }
+
+  .lead-inicio {
+    max-width: 100%;
+    margin-top: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Computadores: todas as seções da Home têm 650px de altura */
+@media (min-width: 1001px) {
+  /* Apresentação + faixa em carrossel = 650px */
+  .secao-inicio {
+    height: 594px;
+  }
+
+  .faixa-xepa {
+    display: flex;
+    height: 56px;
+    align-items: center;
+    padding: 0;
+  }
+
+  /* A altura é fixa, então as frutas também: assim ficam grudadas em qualquer largura */
+  .fruta-inicio--mamao {
+    left: -114px;
+    width: 317px;
+  }
+
+  .fruta-inicio--abacaxi {
+    left: -127px;
+    width: 330px;
+  }
+
+  .fruta-inicio--melancia {
+    left: -102px;
+    width: 343px;
+  }
+
+  .fruta-inicio--kiwi {
+    right: -89px;
+    width: 292px;
+  }
+
+  .fruta-inicio--goiaba {
+    right: -89px;
+    width: 266px;
+  }
+
+  .fruta-inicio--uva {
+    right: -102px;
+    width: 343px;
+  }
+}

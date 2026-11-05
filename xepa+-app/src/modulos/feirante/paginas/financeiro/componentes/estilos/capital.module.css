@@ -1,0 +1,71 @@
+.capital {
+  padding: 20px;
+  border: 1.5px solid var(--limao);
+  border-radius: 16px;
+  color: var(--verde);
+  min-width: 0;
+}
+
+.capital h2 {
+  margin: 0 0 4px;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}
+
+.aviso {
+  margin: 0 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cinza-claro);
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
+  font-weight: 500;
+}
+
+.linha,
+.reserva {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 12px 0;
+}
+
+.linha span,
+.reserva span {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}
+
+.linha strong {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.reserva strong {
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.rodape {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--cinza-claro);
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
+  line-height: 1.5;
+}
+
+.valores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .valores {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

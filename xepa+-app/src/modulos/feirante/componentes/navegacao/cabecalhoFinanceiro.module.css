@@ -1,0 +1,64 @@
+.faixa {
+  width: 100%;
+  border-bottom: 1px solid var(--cinza-claro);
+  background: var(--branco);
+}
+
+.abas {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: 12px var(--margem-lateral);
+}
+
+.aba,
+.abaAtiva {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 1.5px solid var(--verde);
+  border-radius: 8px;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.aba {
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.aba:hover {
+  background: #eaf2ec;
+}
+
+.abaAtiva {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.aba:focus-visible,
+.abaAtiva:focus-visible {
+  outline: 2px solid var(--limao);
+  outline-offset: 2px;
+}
+
+.iconeBloqueio {
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+@media (max-width: 480px) {
+  .aba,
+  .abaAtiva {
+    min-width: 0;
+    flex: 1;
+    padding: 8px;
+  }
+}

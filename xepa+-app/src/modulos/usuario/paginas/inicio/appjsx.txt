@@ -1,0 +1,20 @@
+import React from 'react';
+import { Home } from './pages/homeU/Home';
+import { Impacto } from './pages/impactoU/impactoU';
+import './App.css';
+
+export default function App() {
+  return (
+    <div>
+     
+
+    </div>
+  );
+}
+
+
+
+
+IMPORT DE FONTE NO APP.CSS:
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');

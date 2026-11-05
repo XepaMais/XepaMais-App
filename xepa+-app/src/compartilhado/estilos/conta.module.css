@@ -1,0 +1,323 @@
+/* Estilos das páginas de conta e histórico (usuário e feirante) */
+.pagina {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  min-height: 60vh;
+  margin: 0 auto;
+  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-base);
+  color: var(--verde);
+}
+
+.cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cabecalho p {
+  margin: 4px 0 0;
+  color: var(--cinza);
+  font-size: var(--fonte-texto);
+}
+
+.tituloSecao {
+  margin: 32px 0 12px;
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+}
+
+.card {
+  border: 1.5px solid var(--verde);
+  border-radius: 16px;
+  background: var(--branco);
+  overflow: hidden;
+}
+
+.faixa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 12px 20px;
+  background: var(--verde-suave);
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}
+
+.faixa strong {
+  font-size: var(--fonte-texto);
+  font-weight: 700;
+}
+
+.corpo {
+  padding: 20px;
+}
+
+.lista {
+  display: grid;
+  gap: 16px;
+}
+
+/* Botões */
+.botaoPrincipal,
+.botaoSecundario,
+.botaoPerigoContorno {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.botaoPrincipal {
+  border: 1.5px solid var(--verde);
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.botaoPrincipal:hover {
+  background: #287447;
+  border-color: #287447;
+}
+
+.botaoSecundario {
+  border: 1.5px solid var(--verde);
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.botaoSecundario:hover {
+  background: #eaf2ec;
+}
+
+.botaoPerigoContorno {
+  border: 1.5px solid var(--laranja);
+  background: var(--branco);
+  color: var(--laranja);
+}
+
+.botaoPerigoContorno:hover {
+  border-color: #d9500f;
+  background: #d9500f;
+  color: var(--branco);
+}
+
+.botaoPrincipal:focus-visible,
+.botaoSecundario:focus-visible,
+.botaoPerigoContorno:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Avisos e estados */
+.aviso {
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--limao);
+  border-radius: 8px;
+  background: #f4f8ec;
+  color: var(--verde);
+  font-size: var(--fonte-pequena);
+  line-height: 1.5;
+}
+
+.sucesso {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #eaf2ec;
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 20px;
+  border: 1.5px dashed var(--verde-suave);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.vazio svg {
+  color: var(--limao);
+}
+
+.vazio h2 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}
+
+.vazio p {
+  max-width: 460px;
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  line-height: 1.5;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #eef5d6;
+  color: #3d5a00;
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Indicadores */
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.indicador {
+  padding: 16px 20px;
+  border: 1.5px solid var(--verde);
+  border-radius: 16px;
+}
+
+.indicador span {
+  display: block;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+}
+
+.indicador strong {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+/* Linhas de dados */
+.linhaDado {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 2fr;
+  gap: 4px 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cinza-claro);
+}
+
+.linhaDado:last-child {
+  border-bottom: 0;
+}
+
+.rotuloDado {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  font-weight: 500;
+}
+
+.valorDado {
+  font-size: var(--fonte-texto);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.naoInformado {
+  color: var(--cinza);
+  font-size: var(--fonte-texto);
+  font-weight: 400;
+  word-break: break-word;
+}
+
+/* Formulário */
+.campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.campo label {
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--verde);
+  border-radius: 8px;
+  background: var(--branco);
+  color: var(--preto);
+  font-size: var(--fonte-texto);
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--limao);
+  outline-offset: 1px;
+}
+
+/* Tablets e celulares */
+@media (max-width: 768px) {
+  .indicadores {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .campos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .linhaDado {
+    grid-template-columns: 1fr;
+  }
+
+  .corpo {
+    padding: 16px;
+  }
+
+  .acoes > * {
+    flex: 1 1 100%;
+  }
+}

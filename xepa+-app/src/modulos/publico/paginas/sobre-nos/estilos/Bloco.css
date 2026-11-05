@@ -1,0 +1,63 @@
+.bloco {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+  margin-top: clamp(32px, 5vw, 56px);
+}
+
+.bloco--invertido {
+  grid-template-columns: 45fr 55fr;
+}
+
+.bloco__midia {
+  padding: clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px) 0;
+  background: var(--verde);
+}
+
+.bloco--invertido .bloco__midia {
+  padding: clamp(8px, 2.6vw, 36px) 0 clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px);
+}
+
+.bloco__midia img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.bloco__texto {
+  padding: 0 clamp(16px, 6vw, 90px) 0 clamp(16px, 7vw, 100px);
+  text-align: center;
+}
+
+.bloco--invertido .bloco__texto {
+  padding: 0 clamp(16px, 7vw, 100px) 0 clamp(16px, 6vw, 90px);
+}
+
+.bloco__texto h2 {
+  margin: 0 0 clamp(10px, 3vw, 28px);
+}
+
+section.bloco .bloco__texto p {
+  margin: 0;
+  line-height: 1.4;
+  text-align: left;
+}
+
+/* Celulares: foto em cima e texto embaixo, para o texto não ficar espremido */
+@media (max-width: 700px) {
+  .bloco,
+  .bloco--invertido {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .bloco--invertido .bloco__midia {
+    order: -1;
+  }
+
+  .bloco__texto,
+  .bloco--invertido .bloco__texto {
+    padding: 0 var(--margem-lateral);
+  }
+}

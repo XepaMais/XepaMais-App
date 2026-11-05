@@ -1,0 +1,34 @@
+section.quem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--espaco-topo) var(--margem-lateral) 0;
+  background: #fffaf7;
+}
+
+section.quem h1 {
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin: 0;
+
+  color: #18552f;
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+section.quem p {
+  width: 100%;
+  max-width: var(--largura-conteudo);
+  margin: 0;
+
+  color: #111;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.5;
+  text-align: left;
+}

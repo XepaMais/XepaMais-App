@@ -1,0 +1,254 @@
+.cozyMain {
+  color: #18552f;
+  width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 48px;
+  font-size: var(--fonte-texto);
+  font-family: 'Poppins', sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: var(--largura-pagina);
+  padding: var(--espaco-topo) var(--margem-lateral) 0;
+  box-sizing: border-box;
+}
+.cozyMain h1 {
+  width: 100%;
+  height: auto;
+  font-size: var(--fonte-titulo-pagina);
+  padding-left: 0px;
+  margin: 0 0 8px;
+}
+.cozyMain p {
+  width: 100%;
+  height: auto;
+  font-size: var(--fonte-texto);
+  margin: 0 0 24px;
+}
+/* --------------------------------------------------*/
+.row {
+  width: 100%;
+
+  display: grid;
+  align-items: stretch;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.organiz {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border-radius: var(--raio-card);
+  background-color: #afd8be;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+}
+.cardReceita {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  background-color: #9bc000;
+  border-radius: var(--raio-botao);
+  overflow: hidden;
+}
+.imagemReceita {
+  position: relative;
+  flex: 0 0 42%;
+}
+.imagemReceita img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.txtCard {
+  color: #18552f;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 12px;
+  gap: 8px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: center;
+  align-content: space-around;
+}
+.txtCard .tempo {
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 12px;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.txtCard .tempo div {
+  width: 72px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #eeee;
+  border-radius: 6px;
+}
+
+.txtCard .tempo div p {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  font-size: inherit;
+}
+.textpadrao p {
+  padding: 0;
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+.txtCard .ia:hover {
+  background-color: #eeee;
+  color: #18552f;
+}
+.txtCard .ia {
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #eeee;
+  background-color: #27693e;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 100%;
+}
+/* --------------------------------------------------*/
+.ing {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 7px 0;
+  border: 1px solid #18552f;
+  border-radius: 6px;
+  padding-left: 9px;
+}
+.ing form {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 20px;
+}
+.ing input {
+  margin: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.ing p {
+  padding-left: 0;
+  font-size: var(--fonte-texto);
+}
+
+.ing label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* --------------------------------------------------*/
+.quadro {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 6px;
+}
+.quadro h2 {
+  font-size: 20px;
+}
+/* --------------------------------------------------*/
+.preparo {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 6px;
+  margin: 7px 0;
+  border: 1px solid #18552f;
+  border-radius: 6px;
+}
+.grupEta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.etapas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 30px;
+}
+.etapas p {
+  width: auto;
+  padding-left: 0;
+  font-size: 16px;
+}
+.preparo .circule {
+  background-color: #f76019;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* Tablets e celulares */
+.txtCard h2 {
+  margin: 0;
+  font-size: var(--fonte-titulo-card);
+  line-height: 1.2;
+}
+
+.txtCard .ia h2 {
+  padding: 4px;
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .quadro {
+    flex-wrap: wrap;
+  }
+
+  .quadro > * {
+    flex: 1 1 100%;
+  }
+}

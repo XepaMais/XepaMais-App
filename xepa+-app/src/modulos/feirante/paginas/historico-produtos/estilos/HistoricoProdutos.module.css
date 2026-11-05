@@ -1,0 +1,55 @@
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.imagem {
+  display: block;
+  width: 100%;
+  height: 180px;
+  background: var(--cinza-claro);
+  object-fit: cover;
+}
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px;
+}
+
+.conteudo h2 {
+  margin: 4px 0 0;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.conteudo p {
+  margin: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  word-break: break-word;
+}
+
+.conteudo button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.preco {
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}
+
+.detalhes {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--cinza-claro);
+}

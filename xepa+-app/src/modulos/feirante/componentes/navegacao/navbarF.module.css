@@ -1,0 +1,271 @@
+.navbar {
+  position: relative;
+  background-color: #18552f;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 40px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.iconeLogo {
+  width: 130px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.linkNav,
+.linkAtivo {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 6px;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.linkNav:hover,
+.linkAtivo:hover {
+  color: #9bc000;
+}
+
+.linkAtivo {
+  font-weight: 600;
+  border-bottom-color: #9bc000;
+}
+
+.iconeBloqueio {
+  margin-left: 6px;
+  vertical-align: -1px;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #9bc000;
+  flex-shrink: 0;
+}
+
+.perfil:hover .nomeUsuario {
+  color: #9bc000;
+}
+
+.nomeUsuario {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.botaoVoltar {
+  background-color: #9bc000;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.botaoVoltar:hover {
+  background-color: #7f9e00;
+}
+
+.botaoMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.botaoMenu span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.perfilMenu,
+.contaMenu,
+.sairMenu {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  .iconeLogo {
+    width: 110px;
+  }
+
+  .navLinks {
+    gap: 14px;
+  }
+
+  .linkNav,
+  .linkAtivo {
+    font-size: 14px;
+  }
+
+  .acoes {
+    gap: 12px;
+  }
+
+  .nomeUsuario {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .botaoVoltar {
+    padding: 9px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    min-height: 76px;
+    padding: 0 16px 0 20px;
+    gap: 12px;
+  }
+
+  .iconeLogo {
+    width: 105px;
+  }
+
+  .acoes {
+    margin-left: auto;
+    gap: 0;
+  }
+
+  .acoes > .perfil,
+  .acoes > .botaoVoltar {
+    display: none;
+  }
+
+  .botaoMenu {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 16px;
+    background-color: #18552f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .menuAberto {
+    display: flex;
+  }
+
+  .linkNav,
+  .linkAtivo {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .linkAtivo {
+    border-bottom-color: #9bc000;
+  }
+
+  .contaMenu {
+    display: block;
+  }
+
+  .perfilMenu {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .perfilMenu .avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .perfilMenu .nomeUsuario {
+    font-size: 16px;
+  }
+
+  .sairMenu {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .linkNav,
+  .linkAtivo,
+  .botaoVoltar {
+    transition: none;
+  }
+}

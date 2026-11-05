@@ -1,0 +1,293 @@
+.secao-funcionamento {
+  /* 1cqw = 1% da largura da seção → tudo escala igual à referência */
+  container-type: inline-size;
+
+  /* ajuste fino dos textos (referência: 407px de largura) */
+  --fs-titulo: var(--fonte-titulo-pagina);
+  --fs-numero: 24px;
+  --fs-etapa: var(--fonte-titulo-card);
+  --fs-descricao: var(--fonte-pequena);
+
+  position: relative;
+  z-index: 0;
+
+  width: 100%;
+  overflow: hidden;
+
+  background: #18552f;
+  color: #fff;
+}
+
+.conteudo-funcionamento {
+  position: relative;
+  z-index: 2;
+  padding: 40px 7.4cqw;
+}
+
+.conteudo-funcionamento h2 {
+  margin: 0 0 24px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fs-titulo);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.lista-etapas {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.etapa-funcionamento {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.etapa-funcionamento:nth-child(2) {
+  margin-left: 15cqw;
+}
+
+.etapa-funcionamento:nth-child(3) {
+  margin-left: 30cqw;
+}
+
+.icone-etapa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+  aspect-ratio: 1;
+}
+
+.icone-etapa img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.icone-etapa span {
+  position: relative;
+  z-index: 1;
+
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fs-numero);
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.texto-etapa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.texto-etapa h3 {
+  margin: 0 0 0.25em;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fs-etapa);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.texto-etapa p {
+  max-width: 40cqw;
+  margin: 0;
+
+  color: #f4f4f4;
+  font-size: var(--fs-descricao);
+  line-height: 1.5;
+}
+
+.fruta-funcionamento {
+  position: absolute;
+  z-index: 1;
+  height: auto;
+  pointer-events: none;
+
+  /* estado inicial: escondida e fora da tela */
+  opacity: 0;
+}
+
+.fruta-funcionamento--direita {
+  top: -16px;
+  right: -8cqw;
+  width: 26cqw;
+  transform: translate(45cqw, -12cqw) rotate(25deg);
+}
+
+.fruta-funcionamento--esquerda {
+  top: auto;
+  left: -6cqw;
+  width: 20cqw;
+  transform: translate(-45cqw, 20cqw) rotate(-25deg);
+  bottom: -24px;
+}
+
+/* quando a seção aparece na tela */
+.secao-funcionamento--visivel .fruta-funcionamento {
+  opacity: 1;
+  transform: none;
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1.25, 0.36, 1),
+    opacity 0.6s ease-out;
+}
+
+.secao-funcionamento--visivel .fruta-funcionamento--esquerda {
+  transition-delay: 0.15s;
+}
+
+/* respeita quem desativou animações no sistema */
+@media (prefers-reduced-motion: reduce) {
+  .fruta-funcionamento {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Tablets e celulares: a escala proporcional deixaria os textos ilegíveis */
+@media (max-width: 768px) {
+  .secao-funcionamento {
+    aspect-ratio: auto;
+  }
+
+  .conteudo-funcionamento {
+    padding: 40px 20px;
+  }
+
+  .conteudo-funcionamento h2 {
+    max-width: 75%;
+    margin-bottom: 24px;
+    font-size: clamp(24px, 6.5cqw, 32px);
+  }
+
+  .lista-etapas {
+    gap: 20px;
+  }
+
+  .etapa-funcionamento {
+    gap: 14px;
+  }
+
+  .etapa-funcionamento:nth-child(2),
+  .etapa-funcionamento:nth-child(3) {
+    margin-left: 0;
+  }
+
+  .icone-etapa {
+    flex-basis: 64px;
+  }
+
+  .icone-etapa span {
+    font-size: 24px;
+  }
+
+  .texto-etapa h3 {
+    font-size: 17px;
+    white-space: normal;
+  }
+
+  .texto-etapa p {
+    max-width: none;
+    font-size: 14px;
+  }
+
+  .fruta-funcionamento--direita {
+    top: -24px;
+    right: -32px;
+    width: 130px;
+  }
+
+  .fruta-funcionamento--esquerda {
+    display: none;
+  }
+}
+
+/* Computadores: todas as seções da Home têm 650px de altura */
+@media (min-width: 1001px) {
+  .secao-funcionamento {
+    display: flex;
+    min-height: 650px;
+    align-items: center;
+  }
+
+  .conteudo-funcionamento {
+    width: 100%;
+  }
+
+  .conteudo-funcionamento h2 {
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  /* A escada continua, agora centralizada na seção */
+  .lista-etapas {
+    width: fit-content;
+    margin: 0 auto;
+    gap: 32px;
+  }
+
+  .etapa-funcionamento {
+    gap: 20px;
+  }
+
+  .etapa-funcionamento:nth-child(2) {
+    margin-left: 8cqw;
+  }
+
+  .etapa-funcionamento:nth-child(3) {
+    margin-left: 16cqw;
+  }
+
+  .icone-etapa {
+    flex-basis: 96px;
+  }
+
+  .icone-etapa span {
+    font-size: 30px;
+  }
+
+  .texto-etapa h3 {
+    font-size: 24px;
+  }
+
+  .texto-etapa p {
+    max-width: 480px;
+    font-size: 18px;
+  }
+}
+/* Cada passo aparece conforme a página desce */
+
+.etapa-funcionamento--visivel {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .etapa-funcionamento {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

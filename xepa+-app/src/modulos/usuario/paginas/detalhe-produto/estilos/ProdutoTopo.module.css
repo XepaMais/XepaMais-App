@@ -1,0 +1,151 @@
+.topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* GALERIA */
+.galeria {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.principal {
+  width: 100%;
+  aspect-ratio: 1 / 0.92;
+  object-fit: cover;
+  border-radius: var(--raio-card);
+  display: block;
+}
+
+/* DETALHES */
+.detalhes {
+  min-width: 0;
+  color: #111;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 8px;
+  background: var(--verde-musgo);
+  color: white;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+}
+
+.detalhes h1 {
+  margin: 14px 0 8px;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.preco {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.preco strong {
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 600;
+}
+
+.descricao {
+  margin: 0 0 22px;
+  font-size: var(--fonte-texto);
+  line-height: 1.55;
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 12px 8px;
+  margin: 0 0 22px;
+  font-size: var(--fonte-pequena);
+}
+
+.rotuloResumo {
+  color: #666;
+}
+
+.valorResumo {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* AÇÕES */
+.acoes {
+  display: flex;
+  gap: 14px;
+}
+
+.carrinho {
+  flex: 1;
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: var(--verde);
+  color: white;
+  font: inherit;
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.carrinho:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.remover {
+  flex: 1;
+  min-height: 48px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--laranja);
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+  color: var(--laranja);
+  font-size: var(--fonte-texto);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.remover:hover {
+  background: var(--laranja);
+  color: var(--branco);
+}
+
+.carrinho:hover {
+  background: var(--verde-hover);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .topo {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 600px) {
+  .resumo {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .valorResumo {
+    margin-bottom: 8px;
+  }
+}

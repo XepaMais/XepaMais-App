@@ -1,0 +1,12 @@
+.cartao {
+  padding: 20px;
+  border: 1.5px solid var(--verde);
+  border-radius: 16px;
+  color: var(--verde);
+}
+
+.cartao h2 {
+  margin: 0 0 16px;
+  font-size: var(--fonte-titulo-card);
+  font-weight: 700;
+}

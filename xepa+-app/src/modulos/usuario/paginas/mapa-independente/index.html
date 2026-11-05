@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; img-src 'self' data: https://*.openstreetmap.fr; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2b8a3e" />
+  <title>Feiras Livres de São Paulo — Mapa</title>
+  <meta name="description" content="Mapa interativo com as 975 feiras livres de São Paulo: filtre por dia da semana e categoria, busque por bairro e veja as feiras mais perto de você." />
+  <link rel="canonical" href="https://feiraslivresp.com.br/" />
+
+  <!-- adianta DNS+TLS com o servidor dos tiles do mapa (melhora o LCP na 1ª visita) -->
+  <link rel="preconnect" href="https://tile-a.openstreetmap.fr" crossorigin />
+  <link rel="preconnect" href="https://tile-b.openstreetmap.fr" crossorigin />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Telegram...) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Feiras Livres SP" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://feiraslivresp.com.br/" />
+  <meta property="og:title" content="Feiras Livres de São Paulo — Mapa" />
+  <meta property="og:description" content="Encontre as 975 feiras livres de São Paulo no mapa: dia da semana, endereço, categoria e as mais perto de você." />
+  <meta property="og:image" content="https://feiraslivresp.com.br/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Feiras Livres SP — todas as feiras livres da cidade em um mapa" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Feiras Livres de São Paulo — Mapa" />
+  <meta name="twitter:description" content="Encontre as 975 feiras livres de São Paulo no mapa: dia, endereço, categoria e as mais perto de você." />
+  <meta name="twitter:image" content="https://feiraslivresp.com.br/og-image.png" />
+
+  <!-- Dados estruturados (schema.org) — nivel do app, sem despejar as feiras -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Feiras Livres de São Paulo","url":"https://feiraslivresp.com.br/","description":"Mapa interativo com as 975 feiras livres de São Paulo: dia, endereço, categoria e as mais perto de você.","applicationCategory":"TravelApplication","operatingSystem":"Web","inLanguage":"pt-BR","isAccessibleForFree":true,"about":{"@type":"Thing","name":"Feiras livres de São Paulo"},"areaServed":{"@type":"City","name":"São Paulo"}}</script>
+
+  <link rel="stylesheet" href="fonts/fonts.css?v=61" />
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css?v=61" />
+  <link rel="stylesheet" href="style.css?v=61" />
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <header>
+        <div class="marca">
+          <span class="marca-badge">🧺</span>
+          <div class="marca-txt">
+            <h1>Feiras Livres <span>SP</span></h1>
+            <p class="sub">toda a cidade em um mapa</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="acoes">
+        <button id="hoje" type="button">
+          <span class="acao-icone">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+              <path d="M3 10h18"></path>
+              <path d="M8 3v4M16 3v4"></path>
+            </svg>
+          </span>
+          <span class="acao-label">Feiras hoje</span>
+        </button>
+        <button id="perto" type="button">
+          <span class="acao-icone">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+          </span>
+          <span class="acao-label">Perto de mim</span>
+        </button>
+      </div>
+
+      <div class="field">
+        <label for="busca">Buscar</label>
+        <div class="busca-wrap">
+          <input type="search" id="busca" placeholder="bairro, rua, zona, distrito…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="busca-sugestoes" aria-autocomplete="list" />
+          <ul id="busca-sugestoes" class="busca-sugestoes" role="listbox" hidden></ul>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>🗓️ Dia da semana</label>
+        <div id="filtro-dias" class="chips"></div>
+      </div>
+
+      <div class="field">
+        <label>🧺 Categoria</label>
+        <div id="filtro-categorias" class="chips"></div>
+      </div>
+
+      <footer>
+        <p><a class="link-lista" href="lista.html">📋 Ver a lista completa por bairro</a></p>
+        <p>Dados: <a href="https://prefeitura.sp.gov.br/web/sesana/w/feiras-livres-sp" target="_blank" rel="noopener">Prefeitura de São Paulo</a> — podem ter imprecisão.</p>
+        <p class="legais"><a href="termos.html">Termos de uso</a> · <a href="privacidade.html">Privacidade</a></p>
+        <p class="credito">Feito por <span>OpenX</span></p>
+      </footer>
+    </aside>
+
+    <main id="map"></main>
+
+    <div id="vazio" hidden>
+      <div class="vazio-card">
+        <span class="vazio-emoji">🧺💨</span>
+        <p>Nenhuma feira encontrada com esses filtros.</p>
+        <button id="vazio-limpar" type="button">Limpar filtros</button>
+      </div>
+    </div>
+
+    <aside id="lista-perto" hidden aria-label="Feiras perto de você">
+      <header>
+        <span id="lp-titulo"></span>
+        <button id="lp-min" type="button" aria-label="Minimizar lista">–</button>
+      </header>
+      <ul id="lp-itens"></ul>
+    </aside>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <div id="aviso-dados" role="status" aria-live="polite" hidden>
+      <span class="aviso-icone">🧺</span>
+      <p>Os pinos são aproximados e podem conter imprecisão. Confirme antes de se deslocar.</p>
+      <button id="aviso-ok" type="button">Entendi</button>
+    </div>
+
+    <div id="dica-localizacao" role="note" hidden>
+      <span>Toque aqui para ver as feiras perto de você</span>
+      <button id="dica-fechar" type="button" aria-label="Fechar dica">
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M5 5l14 14M19 5L5 19"></path>
+        </svg>
+      </button>
+    </div>
+
+    <button id="voltar-localizacao" type="button" aria-label="Ver as feiras perto de mim">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+        <circle cx="12" cy="12" r="3.2" fill="currentColor" stroke="none"></circle>
+        <circle cx="12" cy="12" r="7.2"></circle>
+        <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"></path>
+      </svg>
+    </button>
+
+    <button id="colapsar-sidebar" type="button" aria-label="Colapsar filtros">‹</button>
+    <button id="toggle-sidebar" type="button" aria-label="Mostrar/ocultar filtros">☰ Filtros</button>
+  </div>
+
+  <script src="vendor/leaflet/leaflet.js?v=61"></script>
+  <script src="feiras-data.js?v=61"></script>
+  <script src="app.js?v=61"></script>
+
+  <!-- Cloudflare Web Analytics (medição sem cookies; token é público por design) -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "2eb060762d524d85ad7d70e2b67fa203"}'></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4d852c9f9aaf1f5',t:'MTc5MjUwMjQ2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

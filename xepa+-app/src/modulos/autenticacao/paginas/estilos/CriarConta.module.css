@@ -1,0 +1,235 @@
+/* ================= CONTAINER ================= */
+.container {
+  --azul: #18552f;
+  --verde-link: #9bc000;
+  --fundo-input: #fffaf9;
+
+  width: 100%;
+  height: 100dvh;
+  min-height: 0;
+
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  overflow: hidden;
+}
+
+.container * {
+  box-sizing: border-box;
+}
+
+/* ================= LADO IMAGEM ================= */
+.ladoImagem {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
+  padding: clamp(20px, 3vw, 48px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: #fff;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.3) 100%),
+    url('../../../../assets/imagens/marca/feira.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ================= LADO FORMULÁRIO ================= */
+.ladoForm {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+
+  padding: clamp(16px, 3vh, 36px) clamp(20px, 3vw, 40px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;
+  overflow: hidden;
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form h1 {
+  margin: 0 0 clamp(14px, 2.5vh, 28px);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+/* ---------- Campos ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-bottom: clamp(8px, 1.6vh, 16px);
+}
+
+.linha {
+  display: flex;
+  gap: 14px;
+}
+
+.linha .campo {
+  flex: 1;
+}
+
+.form label {
+  margin-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.form input {
+  width: 100%;
+  min-width: 0;
+  padding: clamp(9px, 1.4vh, 12px) 12px;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--azul);
+  background: var(--fundo-input);
+  border: 1.5px solid var(--azul);
+  border-radius: 4px;
+  transition: box-shadow 0.2s;
+}
+
+.form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(24, 82, 44, 0.15);
+}
+
+/* ---------- Botão próxima etapa ---------- */
+.btnEntrar {
+  margin-top: 6px;
+  padding: clamp(10px, 1.6vh, 14px);
+  width: 100%;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--azul);
+  border: 1.5px solid var(--azul);
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    filter 0.2s,
+    transform 0.1s;
+}
+
+.btnEntrar:hover {
+  filter: brightness(1.15);
+}
+
+.btnEntrar:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Link de login ---------- */
+.cadastro {
+  margin: clamp(10px, 1.8vh, 18px) 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #111;
+}
+
+.cadastro a {
+  font-weight: 600;
+  color: var(--verde-link);
+  text-decoration: none;
+}
+
+.cadastro a:hover {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVO ================= */
+
+/* Tablet e celular: imagem vira banner no topo e a página rola */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .ladoImagem {
+    flex: none;
+    width: 100%;
+    height: 28dvh;
+    min-height: 180px;
+    padding: 20px;
+  }
+
+  .ladoForm {
+    flex: 1 0 auto;
+    width: 100%;
+    overflow: visible;
+    padding: 28px 20px 40px;
+  }
+
+  .form {
+    max-width: 480px;
+    max-height: none;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .ladoImagem {
+    height: 22dvh;
+    min-height: 150px;
+  }
+
+  .linha {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form input {
+    font-size: 1rem; /* evita o zoom automático do iPhone ao focar */
+  }
+}
+
+/* Desktop com altura baixa: o form rola dentro do próprio lado
+   (limite maior porque o form do feirante tem 7 campos) */
+@media (min-width: 901px) and (max-height: 800px) {
+  .ladoForm {
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .form {
+    margin: auto;
+  }
+}
