@@ -7,6 +7,8 @@ import fotoIgor from '@/assets/imagens/sobre-nos/igor.jpeg';
 import fotoJamilly from '@/assets/imagens/sobre-nos/jamilly.jpeg';
 import fotoGabriel from '@/assets/imagens/sobre-nos/gabriel.jpeg';
 import fotoHadson from '@/assets/imagens/sobre-nos/hadson.jpeg';
+import fotoMurilo from '@/assets/imagens/sobre-nos/murilo.jpg';
+
 
 const CORES = ['verde', 'laranja', 'amarelo'];
 
@@ -64,7 +66,7 @@ const TIME = [
   {
     nome: 'Murilo Verissimo',
     tags: ['Desenvolvedor', 'Marketing'],
-    foto: null,
+    foto: fotoMurilo,
     linkedin: 'https://www.linkedin.com/in/murilo-verissimo-44a958372/',
     github: 'https://github.com/verissimoMuh',
   },
