@@ -2,15 +2,19 @@ import usePerfil from '@/compartilhado/hooks/usePerfil';
 import { CATEGORIAS_XEPA } from '@/compartilhado/servicos/xepas';
 import styles from '@/modulos/usuario/paginas/inicio/estilos/Home.module.css';
 
-export function SecaoUm({ xepas, categoria, aoEscolherCategoria, busca, aoBuscar }) {
+export function Saudacao() {
   const { perfil } = usePerfil('usuario');
 
   return (
-    <section className={styles.secaoBoasVindas}>
-      <div className={styles.topoCabecalho}>
-        <h1>Seja bem vindo, {perfil.nome}</h1>
-      </div>
+    <section className={styles.saudacao}>
+      <h1>Seja bem vindo, {perfil.nome}</h1>
+    </section>
+  );
+}
 
+export function SecaoUm({ xepas, categoria, aoEscolherCategoria, busca, aoBuscar }) {
+  return (
+    <section className={styles.secaoBoasVindas}>
       <input
         type="search"
         placeholder="O que você procura hoje?"

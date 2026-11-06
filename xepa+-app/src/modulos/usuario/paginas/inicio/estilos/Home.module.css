@@ -1,4 +1,21 @@
-/* Boas-vindas */
+/* Saudação */
+.saudacao {
+  width: 100%;
+  max-width: var(--largura-pagina);
+  margin: 0 auto;
+  padding: var(--espaco-topo) var(--margem-lateral) 24px;
+}
+
+.saudacao h1 {
+  margin: 0;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Busca e categorias */
 .secaoBoasVindas {
   display: flex;
   flex-direction: column;
@@ -6,23 +23,7 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: var(--espaco-topo) var(--margem-lateral) 0;
-}
-
-.topoCabecalho {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.topoCabecalho h1 {
-  margin: 0;
-  color: var(--verde);
-  font-size: var(--fonte-titulo-pagina);
-  font-weight: 700;
-  line-height: 1.2;
-  word-break: break-word;
+  padding: 0 var(--margem-lateral) 32px;
 }
 
 .barraPesquisa {
@@ -113,7 +114,7 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 32px var(--margem-lateral) 0;
+  padding: 0 var(--margem-lateral) 16px;
 }
 
 .tituloSecao {
@@ -301,7 +302,7 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 0 var(--margem-lateral) var(--espaco-base);
+  padding: 0 var(--margem-lateral) 32px;
 }
 
 .cardBanner {
@@ -370,64 +371,90 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 0 var(--margem-lateral) var(--espaco-base);
+  padding: 0 var(--margem-lateral) 32px;
 }
 
-.containerCardsXepas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+.rolagemFeiras {
+  grid-auto-columns: calc((100% - var(--gap)) / 2);
 }
 
 .cardFeira {
   display: flex;
   min-width: 0;
+  overflow: hidden;
+  border-radius: var(--raio-card);
+  background: var(--laranja);
+  color: var(--branco);
+  scroll-snap-align: start;
+}
+
+.imagemCardFeira {
+  width: 45%;
+  min-height: 200px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.infoFeira {
+  display: flex;
+  min-width: 0;
+  flex: 1;
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   padding: 20px;
-  border: var(--borda-card);
-  border-radius: var(--raio-card);
-  color: var(--verde);
 }
 
-.cardFeira h3 {
+.infoFeira h3 {
   margin: 0;
   font-size: var(--fonte-titulo-card);
-  font-weight: 600;
+  font-weight: 700;
   word-break: break-word;
 }
 
-.cardFeira p {
+.infoFeira p {
   display: flex;
   align-items: flex-start;
   gap: 8px;
   margin: 0;
-  color: var(--cinza);
   font-size: var(--fonte-pequena);
   word-break: break-word;
 }
 
-.cardFeira p svg {
+.infoFeira p svg {
   flex-shrink: 0;
-  color: var(--verde);
 }
 
 .selo {
   padding: 4px 12px;
   border-radius: 999px;
-  background: #eef5d6;
-  color: #3d5a00;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--branco);
   font-size: var(--fonte-legenda);
   font-weight: 600;
 }
 
-.cardFeira button {
+.botaoFeira {
+  width: 100%;
+  min-height: 44px;
   margin-top: auto;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: #8a3a0e;
+  color: var(--branco);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.cardFeira .selo + button {
-  margin-top: 8px;
+.botaoFeira:hover {
+  background: #6e2e0b;
+}
+
+.botaoFeira:focus-visible {
+  outline: 2px solid var(--branco);
+  outline-offset: 2px;
 }
 
 /* Tablets */
@@ -458,8 +485,19 @@
     right: -8px;
   }
 
-  .cardBanner {
+  .cardBanner,
+  .cardFeira {
     flex-direction: column;
+  }
+
+  .rolagemFeiras {
+    grid-auto-columns: 88%;
+  }
+
+  .imagemCardFeira {
+    width: 100%;
+    min-height: 0;
+    height: 140px;
   }
 
   .conteudoEsquerda {
