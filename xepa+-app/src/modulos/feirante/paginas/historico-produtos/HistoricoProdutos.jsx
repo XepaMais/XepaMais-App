@@ -39,9 +39,7 @@ function HistoricoProdutos() {
         </section>
       ) : (
         <>
-          <p className={base.aviso}>
-            Os produtos ficam salvos apenas neste navegador até a integração com o banco de dados.
-          </p>
+          
 
           <div className={styles.grade}>
             {produtos.map((produto) => {

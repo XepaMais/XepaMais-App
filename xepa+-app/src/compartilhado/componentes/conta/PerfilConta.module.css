@@ -6,18 +6,6 @@
   padding: 20px;
 }
 
-.avatar {
-  display: grid;
-  width: 80px;
-  height: 80px;
-  flex-shrink: 0;
-  align-items: center;
-  justify-items: center;
-  border-radius: 50%;
-  background: var(--limao);
-  color: var(--branco);
-}
-
 .identificacaoTexto {
   display: flex;
   min-width: 0;
@@ -36,4 +24,45 @@
   color: var(--cinza);
   font-size: var(--fonte-pequena);
   word-break: break-word;
+}
+
+.acoesFoto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 8px;
+}
+
+.botaoFoto,
+.botaoRemoverFoto {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.botaoFoto {
+  color: var(--verde);
+}
+
+.botaoRemoverFoto {
+  color: var(--laranja);
+}
+
+/* O input fica escondido: a pessoa clica no texto "Adicionar foto". */
+.inputFoto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.botaoFoto:focus-within,
+.botaoRemoverFoto:focus-visible {
+  outline: 2px solid var(--limao);
+  outline-offset: 2px;
 }
