@@ -25,15 +25,6 @@
   word-break: break-word;
 }
 
-.fotoPerfil {
-  width: 72px;
-  height: 72px;
-  flex-shrink: 0;
-  border: 3px solid var(--limao);
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .barraPesquisa {
   width: 100%;
   height: 48px;
@@ -310,7 +301,7 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 0 var(--margem-lateral);
+  padding: 0 var(--margem-lateral) var(--espaco-base);
 }
 
 .cardBanner {
@@ -379,7 +370,7 @@
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 32px var(--margem-lateral) var(--espaco-base);
+  padding: 0 var(--margem-lateral) var(--espaco-base);
 }
 
 .containerCardsXepas {
@@ -478,10 +469,5 @@
   .imagemFeira {
     height: 180px;
     mask-image: none;
-  }
-
-  .fotoPerfil {
-    width: 56px;
-    height: 56px;
   }
 }
