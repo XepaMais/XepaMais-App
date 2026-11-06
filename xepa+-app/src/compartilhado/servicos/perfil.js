@@ -5,9 +5,22 @@ const CHAVES = {
 };
 
 // Nomes que o projeto já usava nas áreas de demonstração.
+// Os campos seguem o cadastro. A foto fica vazia até a pessoa escolher uma.
+const DADOS_PESSOAIS = { cpf: '', telefone: '', nascimento: '', email: '', foto: '' };
+
 const PERFIS_INICIAIS = {
-  usuario: { nome: 'Henrique Mazza', email: '', telefone: '' },
-  feirante: { nome: 'Fabiane', barraca: '', email: '', telefone: '' },
+  usuario: { nome: 'Henrique Mazza', ...DADOS_PESSOAIS },
+  feirante: {
+    nome: 'Fabiane',
+    ...DADOS_PESSOAIS,
+    matricula: '',
+    validade: '',
+    cnpj: '',
+    ccm: '',
+    titular: '',
+    barraca: '',
+    grupo: '',
+  },
 };
 
 export const EVENTO_PERFIL = 'perfil-atualizado';

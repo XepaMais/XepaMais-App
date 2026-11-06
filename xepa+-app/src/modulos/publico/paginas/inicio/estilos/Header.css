@@ -13,8 +13,8 @@
   justify-content: space-between;
   gap: 24px;
 
-  height: clamp(60px, 5vw, 76px);
-  padding: 0 clamp(16px, 4vw, 64px);
+  height: 70px;
+  padding: 0 40px;
 
   background: var(--cab-fundo);
   color: var(--cab-texto);
@@ -34,7 +34,7 @@
 .logo-xepa {
   display: block;
   width: auto;
-  height: clamp(30px, 3.4vw, 42px);
+  height: 36px;
 }
 
 .menu-principal {
@@ -91,7 +91,17 @@
   display: none;
 }
 
+@media (max-width: 1024px) {
+  .cabecalho-xepa {
+    padding: 0 24px;
+  }
+}
+
 @media (max-width: 768px) {
+  .cabecalho-xepa {
+    padding: 0 16px 0 20px;
+  }
+
   .botao-menu {
     display: flex;
     flex-direction: column;

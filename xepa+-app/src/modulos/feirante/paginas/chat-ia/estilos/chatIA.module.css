@@ -6,7 +6,7 @@
   padding: var(--espaco-topo) var(--margem-lateral) 24px;
   box-sizing: border-box;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 70px);
   min-height: 520px;
 }
 
@@ -129,7 +129,7 @@
 
 @media (max-width: 600px) {
   .chatContainer {
-    height: calc(100vh - 76px);
+    height: calc(100vh - 70px);
   }
 
   .messageReceived,
@@ -140,6 +140,6 @@
 
 .chatTopo {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   margin-bottom: 8px;
 }
