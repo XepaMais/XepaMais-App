@@ -4,6 +4,8 @@ import pinIcon from '@/assets/imagens/gerais/PinIcon.png';
 import Modal from '@/compartilhado/componentes/modal/Modal';
 import base from '@/compartilhado/componentes/modal/Modal.module.css';
 import styles from '../estilos/PopUpAdicionarFeira.module.css';
+import { buscarCep, geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
+
 
 const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
@@ -36,6 +38,7 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
   const [cep, setCep] = useState(dadosIniciais.cep || '');
   const [dias, setDias] = useState(dadosIniciais.dias || []);
   const [horarioInicio, setHorarioInicio] = useState(dadosIniciais.horarioInicio || '');
+  const [erro, setErro] = useState('');
   const [horarioFim, setHorarioFim] = useState(dadosIniciais.horarioFim || '');
   const [funcionarios, setFuncionarios] = useState(funcionariosIniciais(feira));
   const estaEditando = modo === 'editar';
@@ -44,6 +47,27 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
   let horario = '';
   if (horarioInicio && horarioFim) {
     horario = `${horarioInicio} às ${horarioFim}`;
+  }
+    // Formata o CEP e, quando ele fica completo, preenche o endereço pelo ViaCEP.
+  async function alterarCep(valor) {
+    const cepFormatado = formatarCep(valor);
+    setCep(cepFormatado);
+    setErro('');
+
+    if (cepFormatado.length !== 9) return;
+
+    try {
+      const dados = await buscarCep(cepFormatado);
+
+      if (!dados) {
+        setErro('CEP não encontrado. Confira os números ou preencha o endereço manualmente.');
+        return;
+      }
+
+      setEndereco(dados.logradouro);
+    } catch {
+      setErro('Não foi possível consultar o CEP agora. Preencha o endereço manualmente.');
+    }
   }
 
   function salvar(evento) {
@@ -118,7 +142,7 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
             pattern="[0-9]{5}-[0-9]{3}"
             title="Digite os 8 números do CEP"
             value={cep}
-            onChange={(evento) => setCep(formatarCep(evento.target.value))}
+            onChange={(evento) => alterarCep(evento.target.value)}
             placeholder="00000-000"
           />
         </div>
@@ -204,6 +228,11 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
         >
           Cadastrar outro funcionário
         </button>
+        {erro && (
+          <p role="alert" style={{ color: '#c0392b', margin: 0 }}>
+            {erro}
+          </p>
+        )}
 
         <div className={base.acoes}>
           <button type="button" className={base.secundario} onClick={onFechar}>

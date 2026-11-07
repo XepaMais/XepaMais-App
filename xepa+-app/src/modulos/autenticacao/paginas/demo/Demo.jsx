@@ -8,15 +8,13 @@ import Styles from '@/modulos/autenticacao/paginas/demo/demo.module.css';
 const PERFIS = [
   {
     nome: 'Consumidor',
-    etiqueta: 'Compra de xepas',
-    descricao: 'Encontre xepas perto de você, monte seu carrinho e acompanhe o seu impacto.',
+    descricao: 'Encontre xepas perto de você, monte seu carrinho e veja o seu impacto.',
     Icone: ShoppingBasket,
     cor: Styles.verde,
     destino: '/demo/consumidor',
   },
   {
-    nome: 'Feirante',
-    etiqueta: 'Plano Grátis',
+    nome: 'Feirante - Plano Grátis',
     descricao: 'Cadastre suas feiras e xepas e converse com os clientes.',
     Icone: Store,
     cor: Styles.limao,
@@ -24,8 +22,7 @@ const PERFIS = [
     plano: 'gratis',
   },
   {
-    nome: 'Feirante',
-    etiqueta: 'Plano Crescer',
+    nome: 'Feirante - Plano Crescer',
     descricao: 'Tudo do Grátis, com gestão financeira básica e Xep.AI.',
     Icone: Sprout,
     cor: Styles.amarelo,
@@ -33,8 +30,7 @@ const PERFIS = [
     plano: 'crescer',
   },
   {
-    nome: 'Feirante',
-    etiqueta: 'Plano Pro',
+    nome: 'Feirante - Plano Pro',
     descricao: 'Acesso a tudo: gestão financeira completa, planilhas e Xep.AI.',
     Icone: Crown,
     cor: Styles.laranja,
@@ -47,7 +43,6 @@ function Demo() {
   const navigate = useNavigate();
 
   function entrar(perfil) {
-    // O consumidor não tem plano: só o feirante guarda a escolha.
     if (perfil.plano) {
       salvarPlanoSelecionado(perfil.plano);
     }

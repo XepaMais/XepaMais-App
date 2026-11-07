@@ -71,10 +71,6 @@ function Planilhas() {
         </button>
       </header>
 
-      <p className={base.aviso}>
-        Os registros ficam salvos apenas neste navegador até a integração com o banco de dados.
-      </p>
-
       <form className={styles.filtros} onSubmit={(evento) => evento.preventDefault()}>
         <div className={base.campo}>
           <label htmlFor="inicio">Período inicial</label>
