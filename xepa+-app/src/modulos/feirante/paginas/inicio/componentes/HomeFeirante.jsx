@@ -1,9 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowUpRight, Headset, Leaf, Lock, Store, UserRound } from 'lucide-react';
+import { ArrowUpRight, BellOff, Lock } from 'lucide-react';
 import Styles from '@/modulos/feirante/paginas/inicio/componentes/estilos/HomeFeirante.module.css';
+import Notif from '@/modulos/feirante/paginas/inicio/componentes/notificacoes.module.css';
+import Grafico from '@/modulos/feirante/paginas/inicio/componentes/graficoGastos.module.css';
 import CestaXepa from '@/assets/imagens/gerais/xepaCompleta.jpg';
 import Xepinha from '@/assets/imagens/marca/ia.png';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
+import useConversas from '@/compartilhado/hooks/useConversas';
+import { mensagensNaoLidas, STATUS_CONVERSA } from '@/compartilhado/servicos/conversas';
+import ItemConversa from '@/modulos/feirante/paginas/historico-chat/componentes/ItemConversa';
 import { dataDeHoje } from '@/compartilhado/servicos/datas';
 import { formatarMoeda } from '@/compartilhado/servicos/pedidos';
 import useFinanceiro from '@/modulos/feirante/hooks/useFinanceiro';
@@ -16,37 +21,6 @@ import {
   calcularTotaisDeGastos,
   gastosDoMesPorCategoria,
 } from '@/modulos/feirante/servicos/gastosFeirante';
-
-const conversas = [
-  {
-    nome: 'Seu Zé - Feira Livre Centro',
-    mensagem: 'Opa, Lucas! Já separei sua xepa. Pode passar na banca 24.',
-    horario: 'Hoje, 10:24',
-    Icone: UserRound,
-    estilo: 'avatar_feirante',
-  },
-  {
-    nome: 'Equipe Xepa+',
-    mensagem: 'Sua compra foi confirmada! ✅',
-    horario: 'Hoje, 09:48',
-    Icone: Leaf,
-    estilo: 'avatar_equipe',
-  },
-  {
-    nome: 'Banca do Seu Zé',
-    mensagem: 'Temos novas xepas disponíveis hoje!',
-    horario: 'Hoje, 08:32',
-    Icone: Store,
-    estilo: 'avatar_banca',
-  },
-  {
-    nome: 'Suporte Xepa+',
-    mensagem: 'Qualquer dúvida, estamos por aqui! 🙂',
-    horario: 'Ontem, 17:21',
-    Icone: Headset,
-    estilo: 'avatar_suporte',
-  },
-];
 
 // Soma as rendas do dia mais recente, sem contar datas futuras.
 function rendaDaUltimaFeira(lancamentos) {
@@ -98,6 +72,18 @@ function HomeFeirante() {
   const dadosDoPlano = PLANOS.find((item) => item.id === plano);
   const ultimaXepa = carregarProdutos()[0];
   const { lancamentos, doMes, total } = useFinanceiro();
+  // Só conversas recentes (pedidos ainda não retirados), as mais novas primeiro.
+  // As que têm pedido novo ou mensagem não lida aparecem no topo.
+  const conversasRecentes = useConversas()
+    .filter((conversa) => conversa.status === STATUS_CONVERSA.recente)
+    .sort((a, b) => (
+      Number(mensagensNaoLidas(b, 'feirante').length > 0)
+      - Number(mensagensNaoLidas(a, 'feirante').length > 0)
+    ));
+  let totalNovas = 0;
+  for (const conversa of conversasRecentes) {
+    totalNovas += mensagensNaoLidas(conversa, 'feirante').length;
+  }
   const todosOsGastos = carregarGastos();
   const gastos = calcularTotaisDeGastos(todosOsGastos);
   const ganhoMensal = total(doMes, 'renda');
@@ -108,7 +94,7 @@ function HomeFeirante() {
   const fatiasGastos = gastosDoMesPorCategoria(todosOsGastos);
 
   if (comprasAntigas > 0) {
-    fatiasGastos.push({ rotulo: 'Compras', cor: '#5c2409', valor: comprasAntigas });
+    fatiasGastos.push({ rotulo: 'Compras', cor: '#287447', valor: comprasAntigas });
   }
 
   const fundoPizza = montarPizza(fatiasGastos);
@@ -289,12 +275,14 @@ function HomeFeirante() {
                       Total: {formatarMoeda(gastoMensal)}
                     </strong>
 
-                    <ul className={Styles.legenda}>
+                    {/* Legenda em etiquetas lado a lado: com mais categorias, elas
+                        se encaixam na mesma linha em vez de aumentar o card. */}
+                    <ul className={Grafico.legenda}>
                       {fatiasGastos.map((fatia) => (
-                        <li key={fatia.rotulo}>
-                          <i style={{ background: fatia.cor }} />
-                          <span>{fatia.rotulo}</span>
-                          <strong>{formatarMoeda(fatia.valor)}</strong>
+                        <li key={fatia.rotulo} className={Grafico.item}>
+                          <i className={Grafico.cor} style={{ background: fatia.cor }} />
+                          <span className={Grafico.nome}>{fatia.rotulo}</span>
+                          <strong className={Grafico.valor}>{formatarMoeda(fatia.valor)}</strong>
                         </li>
                       ))}
                     </ul>
@@ -304,36 +292,46 @@ function HomeFeirante() {
             </section>
           </RecursoPlano>
 
-          <section className={Styles.card_conversas}>
+          <section className={`${Styles.card_conversas} ${Notif.quadro}`} aria-live="polite">
             <div className={Styles.card_header}>
-              <h2>Últimas conversas</h2>
+              <h2 className={Notif.titulo}>
+                Notificações
+                {totalNovas > 0 && (
+                  <span
+                    className={Notif.contador}
+                    aria-label={`${totalNovas} ${totalNovas === 1 ? 'nova' : 'novas'}`}
+                  >
+                    {totalNovas}
+                  </span>
+                )}
+              </h2>
+              <button
+                type="button"
+                className={Notif.verTodas}
+                onClick={() => navigate('/HistoricoChat')}
+              >
+                Ver conversas
+              </button>
             </div>
 
-            <div className={Styles.lista_conversas}>
-              {conversas.map((conversa) => (
-                <button
-                  className={Styles.conversa}
-                  key={conversa.nome}
-                  type="button"
-                  onClick={() => navigate('/chat-feirante')}
-                  aria-label={`Abrir conversa com ${conversa.nome}`}
-                >
-                  <span
-                    className={`${Styles.conversa_avatar} ${Styles[conversa.estilo]}`}
-                    aria-hidden="true"
-                  >
-                    <conversa.Icone size={20} strokeWidth={2.2} />
-                  </span>
-                  <span className={Styles.conversa_texto}>
-                    <strong>{conversa.nome}</strong>
-                    <span>{conversa.mensagem}</span>
-                  </span>
-                  <small className={Styles.conversa_horario}>{conversa.horario}</small>
-                  <span className={Styles.conversa_seta} aria-hidden="true">
-                    ›
-                  </span>
-                </button>
+            <div className={Notif.lista}>
+              {conversasRecentes.slice(0, 4).map((conversa) => (
+                <ItemConversa
+                  key={conversa.id}
+                  conversa={conversa}
+                  perfil="feirante"
+                  nome={conversa.consumidor}
+                  onClick={() => navigate('/HistoricoChat', { state: { conversa: conversa.id } })}
+                />
               ))}
+
+              {conversasRecentes.length === 0 && (
+                <div className={Notif.vazio}>
+                  <BellOff size={32} aria-hidden="true" />
+                  <strong>Nenhuma conversa recente</strong>
+                  <span>Novos pedidos e mensagens de clientes aparecem aqui.</span>
+                </div>
+              )}
             </div>
           </section>
         </div>

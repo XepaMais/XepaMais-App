@@ -104,6 +104,9 @@
 
 /* QR Code */
 .qrCodeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
@@ -122,12 +125,21 @@
 }
 
 .qrCodeBox {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1rem;
-  display: inline-block;
+  display: block;
+  width: min(100%, 300px);
   margin-bottom: 1.5rem;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* QR Code maior, ocupando a caixa (até 268px) */
+.qrCodeBox img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
 }
 
 .btnCopyPix {
@@ -140,7 +152,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
-  max-width: 320px;
+  max-width: 300px;
 }
 
 .btnCopyPix:hover {

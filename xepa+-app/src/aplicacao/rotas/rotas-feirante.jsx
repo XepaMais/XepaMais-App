@@ -50,7 +50,7 @@ export const rotasFeirante = [
   />,
 
   <Route key="historico-chat" path="/HistoricoChat" element={<HistoricoChat />} />,
-  <Route key="historico-chat-usuario" path="/HistoricoChatUsuario" element={<HistoricoChat />} />,
+  <Route key="historico-chat-usuario" path="/HistoricoChatUsuario" element={<HistoricoChat perfil="consumidor" />} />,
 
   <Route key="perfil-feirante" path="/perfil-feirante" element={<PerfilFeirante />} />,
   <Route key="historico-vendas" path="/historico-vendas" element={<HistoricoVendas />} />,

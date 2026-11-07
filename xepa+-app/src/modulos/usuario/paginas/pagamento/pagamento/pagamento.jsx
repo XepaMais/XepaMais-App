@@ -8,6 +8,8 @@ import imagemPadrao from '@/assets/imagens/gerais/xepaCompleta.jpg';
 import base from '@/compartilhado/estilos/conta.module.css';
 import { formatarMoeda, registrarPedido } from '@/compartilhado/servicos/pedidos';
 import { baixarEstoque } from '@/compartilhado/servicos/xepas';
+import { abrirConversaDoPedido } from '@/compartilhado/servicos/conversas';
+import { registrarVendaNoFinanceiro } from '@/modulos/feirante/servicos/lancamentosFinanceiros';
 import useCarrinho from '@/modulos/usuario/hooks/useCarrinho';
 import { calcularTotal, limparCarrinho } from '@/modulos/usuario/servicos/carrinho';
 
@@ -20,7 +22,7 @@ export default function Pagamento() {
   const codigoPix = '00020101021226850014BR.GOV.BCB.PIX';
 
   function confirmarPagamento() {
-    registrarPedido({
+    const pedido = registrarPedido({
       itens: itens.map((item) => ({
         id: item.id,
         nome: item.nome,
@@ -33,6 +35,9 @@ export default function Pagamento() {
       })),
       total: totalPedido,
     });
+    // O feirante fica sabendo do pedido na hora: chat (Recentes + notificação) e financeiro.
+    abrirConversaDoPedido(pedido);
+    registrarVendaNoFinanceiro(pedido);
     baixarEstoque(itens);
     limparCarrinho();
     navegar('/historico-pedidos');
@@ -95,7 +100,7 @@ export default function Pagamento() {
 
                 <div className={Styles.qrCodeBox}>
                   <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126580014br.gov.bcb.pix0136xepa-plus-pagamento-exemplo-12345"
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=00020126580014br.gov.bcb.pix0136xepa-plus-pagamento-exemplo-12345"
                     alt="QR Code PIX"
                   />
                 </div>
