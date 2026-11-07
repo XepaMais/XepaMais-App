@@ -477,14 +477,9 @@
 
 @media (max-width: 650px) {
   .morangos {
-    width: 120px;
-    left: auto;
-    right: 5px;
-    top: 55%;
-    transform: translateY(-50%);
+    display: none;
   }
 }
-
 @media (max-width: 900px) {
     .hero {
         padding-inline: 30px;
