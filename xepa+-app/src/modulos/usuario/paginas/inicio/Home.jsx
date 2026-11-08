@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { carregarXepasDisponiveis } from '@/compartilhado/servicos/xepas';
-import { SecaoUm } from '@/modulos/usuario/paginas/inicio/componentes/SecaoUm.jsx';
+import { Saudacao, SecaoUm } from '@/modulos/usuario/paginas/inicio/componentes/SecaoUm.jsx';
 import { SecaoDois } from '@/modulos/usuario/paginas/inicio/componentes/SecaoDois.jsx';
 import { SecaoTres } from '@/modulos/usuario/paginas/inicio/componentes/SecaoTres.jsx';
 import { SecaoQuatro } from '@/modulos/usuario/paginas/inicio/componentes/SecaoQuatro.jsx';
@@ -12,6 +12,8 @@ function HomeUsuario() {
 
   return (
     <div>
+      <Saudacao />
+      <SecaoDois />
       <SecaoUm
         xepas={xepas}
         categoria={categoria}
@@ -19,9 +21,8 @@ function HomeUsuario() {
         busca={busca}
         aoBuscar={setBusca}
       />
-      <SecaoQuatro xepas={xepas} categoria={categoria} busca={busca} />
-      <SecaoDois />
       <SecaoTres xepas={xepas} />
+      <SecaoQuatro xepas={xepas} categoria={categoria} busca={busca} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { ClipboardList, ShieldCheck, ShoppingCart, UserRound } from 'lucide-react';
 import MenuConta from '@/compartilhado/componentes/conta/MenuConta';
+import FotoPerfil from '@/compartilhado/componentes/conta/FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import useCarrinho from '@/modulos/usuario/hooks/useCarrinho';
 import styles from './navbarC.module.css';
@@ -31,7 +32,7 @@ function classeDoCarrinho({ isActive }) {
 
 function NavbarC() {
   const [menuAberto, setMenuAberto] = useState(false);
-  const { primeiroNome } = usePerfil('usuario');
+  const { perfil, primeiroNome } = usePerfil('usuario');
   const { totalItens } = useCarrinho();
 
   function fecharMenu() {
@@ -61,7 +62,7 @@ function NavbarC() {
         ))}
 
         <Link to="/perfil" className={`${styles.perfil} ${styles.perfilMenu}`} onClick={fecharMenu}>
-          <div className={styles.avatar}></div>
+          <FotoPerfil nome={perfil.nome} foto={perfil.foto} />
           <span className={styles.nomeUsuario}>{primeiroNome}</span>
         </Link>
 
@@ -89,18 +90,14 @@ function NavbarC() {
           title="Carrinho"
           className={classeDoCarrinho}
         >
-          <ShoppingCart size={30} strokeWidth={2} />
+          <ShoppingCart size={26} strokeWidth={2} />
           {totalItens > 0 && <span className={styles.contadorCarrinho}>{totalItens}</span>}
         </NavLink>
 
         <MenuConta nome={primeiroNome} itens={itensConta} className={styles.perfil}>
-          <div className={styles.avatar}></div>
+          <FotoPerfil nome={perfil.nome} foto={perfil.foto} />
           <span className={styles.nomeUsuario}>{primeiroNome}</span>
         </MenuConta>
-
-        <Link to="/" className={styles.botaoVoltar}>
-          Sair
-        </Link>
 
         <button
           type="button"

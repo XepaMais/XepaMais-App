@@ -1,8 +1,41 @@
 import { useState } from 'react';
-import { UserRound } from 'lucide-react';
+import FotoPerfil from './FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './PerfilConta.module.css';
+
+// Diminui a foto antes de salvar, para caber no armazenamento do navegador.
+function reduzirFoto(arquivo, aoTerminar) {
+  const imagem = new Image();
+
+  imagem.onload = () => {
+    const tamanho = 200;
+    const canvas = document.createElement('canvas');
+    const lado = Math.min(imagem.width, imagem.height);
+
+    canvas.width = tamanho;
+    canvas.height = tamanho;
+    // Corta um quadrado do centro da imagem.
+    canvas
+      .getContext('2d')
+      .drawImage(
+        imagem,
+        (imagem.width - lado) / 2,
+        (imagem.height - lado) / 2,
+        lado,
+        lado,
+        0,
+        0,
+        tamanho,
+        tamanho,
+      );
+
+    URL.revokeObjectURL(imagem.src);
+    aoTerminar(canvas.toDataURL('image/jpeg', 0.85));
+  };
+
+  imagem.src = URL.createObjectURL(arquivo);
+}
 
 // Mesmo visual para usuário e feirante: cada área informa seus próprios campos.
 function PerfilConta({ tipo, campos, informacoesConta }) {
@@ -21,12 +54,30 @@ function PerfilConta({ tipo, campos, informacoesConta }) {
     setRascunho({ ...rascunho, [evento.target.name]: evento.target.value });
   }
 
+  // A foto é salva na hora, sem precisar clicar em "Editar perfil".
+  function escolherFoto(evento) {
+    const arquivo = evento.target.files[0];
+    evento.target.value = '';
+
+    if (!arquivo) return;
+
+    reduzirFoto(arquivo, (foto) => {
+      salvar({ ...perfil, foto });
+      setSalvo(true);
+    });
+  }
+
+  function removerFoto() {
+    salvar({ ...perfil, foto: '' });
+    setSalvo(true);
+  }
+
   function salvarAlteracoes(evento) {
     evento.preventDefault();
 
-    const dados = {};
-    for (const campo in rascunho) {
-      dados[campo] = rascunho[campo].trim();
+    const dados = { ...rascunho };
+    for (const campo of campos) {
+      dados[campo.id] = rascunho[campo.id].trim();
     }
 
     salvar(dados);
@@ -54,13 +105,29 @@ function PerfilConta({ tipo, campos, informacoesConta }) {
       )}
 
       <section className={`${base.card} ${styles.identificacao}`}>
-        <span className={styles.avatar} aria-hidden="true">
-          <UserRound size={44} />
-        </span>
+        <FotoPerfil nome={perfil.nome} foto={perfil.foto} tamanho={80} />
 
         <div className={styles.identificacaoTexto}>
           <strong>{perfil.nome}</strong>
           <span>{perfil.email || 'E-mail não informado'}</span>
+
+          <div className={styles.acoesFoto}>
+            <label className={styles.botaoFoto}>
+              {perfil.foto ? 'Trocar foto' : 'Adicionar foto'}
+              <input
+                type="file"
+                accept="image/*"
+                className={styles.inputFoto}
+                onChange={escolherFoto}
+              />
+            </label>
+
+            {perfil.foto && (
+              <button type="button" className={styles.botaoRemoverFoto} onClick={removerFoto}>
+                Remover foto
+              </button>
+            )}
+          </div>
         </div>
 
         {!editando && (

@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-google-maps/api": "^2.20.8",
     "@vis.gl/react-google-maps": "^1.10.1",
+    "jquery": "^4.0.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.9",
     "leaflet": "^1.9.4",
@@ -19,7 +20,8 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.18.5"
+    "react-router-dom": "^7.18.5",
+    "scrollreveal": "^4.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

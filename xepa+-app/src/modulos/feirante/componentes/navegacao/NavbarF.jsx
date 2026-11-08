@@ -3,6 +3,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom';
 import { CAMINHOS_FINANCEIRO } from './caminhosFinanceiro';
 import { BadgeCheck, Lock, Package, Receipt, ShieldCheck, UserRound } from 'lucide-react';
 import MenuConta from '@/compartilhado/componentes/conta/MenuConta';
+import FotoPerfil from '@/compartilhado/componentes/conta/FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import usePlano from '@/modulos/feirante/hooks/usePlano';
 import styles from './navbarF.module.css';
@@ -27,7 +28,7 @@ const itensConta = [
 
 export function NavbarF() {
   const [menuAberto, setMenuAberto] = useState(false);
-  const { primeiroNome } = usePerfil('feirante');
+  const { perfil, primeiroNome } = usePerfil('feirante');
   const { temAcesso } = usePlano();
   const { pathname } = useLocation();
   const naAreaFinanceira = CAMINHOS_FINANCEIRO.includes(pathname);
@@ -84,7 +85,7 @@ export function NavbarF() {
           className={`${styles.perfil} ${styles.perfilMenu}`}
           onClick={fecharMenu}
         >
-          <div className={styles.avatar}></div>
+          <FotoPerfil nome={perfil.nome} foto={perfil.foto} />
           <span className={styles.nomeUsuario}>{primeiroNome}</span>
         </Link>
 
@@ -106,13 +107,9 @@ export function NavbarF() {
 
       <div className={styles.acoes}>
         <MenuConta nome={primeiroNome} itens={itensConta} className={styles.perfil}>
-          <div className={styles.avatar}></div>
+          <FotoPerfil nome={perfil.nome} foto={perfil.foto} />
           <span className={styles.nomeUsuario}>{primeiroNome}</span>
         </MenuConta>
-
-        <Link to="/" className={styles.botaoVoltar}>
-          Sair
-        </Link>
 
         <button
           type="button"

@@ -3,7 +3,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CardXepa } from '@/modulos/usuario/paginas/inicio/componentes/CardXepa.jsx';
 import style from '@/modulos/usuario/paginas/inicio/estilos/Home.module.css';
 
-export function CarrosselXepas({ xepas, mensagemVazia }) {
+// Sem children, mostra os cards de xepa. Com children, mostra os cards recebidos (ex.: feiras).
+export function CarrosselXepas({ xepas, mensagemVazia, children, classeRolagem = '' }) {
   const trilho = useRef(null);
   const [podeVoltar, setPodeVoltar] = useState(false);
   const [podeAvancar, setPodeAvancar] = useState(false);
@@ -53,10 +54,12 @@ export function CarrosselXepas({ xepas, mensagemVazia }) {
         </button>
       )}
 
-      <div className={style.rolagem} ref={trilho} onScroll={atualizarSetas}>
-        {xepas.map((xepa) => (
-          <CardXepa key={xepa.id} xepa={xepa} />
-        ))}
+      <div
+        className={`${style.rolagem} ${classeRolagem}`}
+        ref={trilho}
+        onScroll={atualizarSetas}
+      >
+        {children || xepas.map((xepa) => <CardXepa key={xepa.id} xepa={xepa} />)}
       </div>
 
       {podeAvancar && (
