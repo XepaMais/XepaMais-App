@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ClipboardList } from 'lucide-react';
 import { carregarPedidos, formatarDataHora, formatarMoeda } from '@/compartilhado/servicos/pedidos';
+import { abrirConversaDoPedido } from '@/compartilhado/servicos/conversas';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './estilos/HistoricoPedidos.module.css';
 
 function HistoricoPedidos() {
   const [pedidos] = useState(carregarPedidos);
   const [pedidoAberto, setPedidoAberto] = useState(null);
+  const navegar = useNavigate();
+
+  function falarComVendedor(pedido) {
+    const conversa = abrirConversaDoPedido(pedido);
+    navegar('/HistoricoChatUsuario', { state: { conversa } });
+  }
 
   return (
     <main className={base.pagina}>
@@ -82,9 +89,13 @@ function HistoricoPedidos() {
                         >
                           {aberto ? 'Ocultar detalhes' : 'Ver detalhes'}
                         </button>
-                        <Link to="/HistoricoChatUsuario" className={base.botaoPrincipal}>
+                        <button
+                          type="button"
+                          className={base.botaoPrincipal}
+                          onClick={() => falarComVendedor(pedido)}
+                        >
                           Falar com vendedor
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -20,6 +20,15 @@ export function registrarPedido({ itens, total }) {
   return novoPedido;
 }
 
+// Usado quando o feirante marca o pedido como retirado no chat.
+export function atualizarStatusPedido(numero, status) {
+  const pedidos = carregarPedidos().map((pedido) => (
+    pedido.numero === numero ? { ...pedido, status } : pedido
+  ));
+
+  localStorage.setItem(CHAVE_PEDIDOS, JSON.stringify(pedidos));
+}
+
 export function formatarMoeda(valor) {
   return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }

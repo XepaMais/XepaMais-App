@@ -1,9 +1,10 @@
 import ChatHist from '@/modulos/feirante/paginas/historico-chat/componentes/ChatHist';
 
-function ChatFeirante() {
+// perfil: 'feirante' (padrão) ou 'consumidor'.
+function ChatFeirante({ perfil = 'feirante' }) {
   return (
     <div>
-      <ChatHist />
+      <ChatHist perfil={perfil} />
     </div>
   );
 }
