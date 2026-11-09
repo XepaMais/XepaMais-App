@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CakeSlice, Clock3, GlassWater, Grid2X2, Leaf, Salad, Soup } from 'lucide-react';
 import ScrollReveal from 'scrollreveal';
 import videoCozinha from '@/assets/videos/cozinha-hero.mp4';
-import Style from '@/modulos/usuario/paginas/cozinha/estilos/Cozy.module.css'; // 
+import Style from '@/modulos/usuario/paginas/cozinha/estilos/Cozy.module.css';
 import imagemTalos from '@/assets/imagens/gerais/imagem-talos.jpg';
 import imagemRefogados from '@/assets/imagens/gerais/imagem-refogados.jpg';
 import imagemVitamina from '@/assets/imagens/gerais/imagem-vitamina.jpg';
@@ -13,9 +13,6 @@ import imagemSopaV from '@/assets/imagens/gerais/imagem-sopaV.jpg';
 import imagemSopaC from '@/assets/imagens/gerais/imagem-sopaC.jpg';
 import imagemSaladaC from '@/assets/imagens/gerais/imagem-saladaC.jpg';
 import imagemMorangos from '@/assets/imagens/gerais/morangos.png';
-
-
-
 
 const categorias = ['Todas', 'Saladas', 'Sopas', 'Doces', 'Sucos', 'Aproveitamento integral', 'Rápidas'];
 
@@ -41,7 +38,6 @@ const receitas = [
   { nome: 'Vitamina de banana e mamão', categoria: 'Sucos', tempo: '5 min', dificuldade: 'Fácil', ingredientes: ['banana', 'mamão', 'leite'], imagem: imagemVitamina },
 ];
 
-
 // Deixa o texto minúsculo para comparar sem se preocupar com maiúsculas
 const normalizar = (texto) => texto.trim().toLocaleLowerCase('pt-BR');
 
@@ -58,10 +54,7 @@ function bateComIngredientes(receita, ingredientesEscolhidos) {
     receita.ingredientes.some((ingrediente) => normalizar(ingrediente).includes(escolhido) || escolhido.includes(normalizar(ingrediente)))
   );
 }
-/* =========================================================
-   3. COMPONENTES
-   Cada um é um bloco da página.
-   ========================================================= */
+// Cada componente abaixo é um bloco da página.
 
 function Hero() {
   const heroImageRef = useRef(null);
@@ -90,7 +83,6 @@ function Hero() {
 
     return () => targets.forEach((target) => reveal.clean(target));
   }, []);
-  
 
   return (
     <section className={Style.hero} id="inicio">
@@ -98,7 +90,6 @@ function Hero() {
         <img className={Style.morangos} src={imagemMorangos} alt="" />
       </div>
       <div ref={heroCopy} className={Style.heroCopy}>
-       
         <h1>Receitas com o que você levou da <span className={Style.spanhero}>feira</span></h1>
         <p>Uma sacola cheia de possibilidades. Encontre um jeito gostoso de aproveitar cada ingrediente.</p>
         <a href="#receitas" className={Style.heroLink}>
@@ -123,17 +114,15 @@ function Hero() {
   );
 }
 
-
-
 function CategoryFilters({ categoriaAtual, setCategoria }) {
   return (
-    <div className={Style.filters} aria-label="Filtrar por categoria">
+    <div className={Style.filters} role="group" aria-label="Filtrar por categoria">
       {categorias.map((nome) => {
         const Icone = iconesCategoria[nome];
         const classe = nome === categoriaAtual ? `${Style.filter} ${Style.selected}` : Style.filter;
 
         return (
-          <button key={nome} className={classe} onClick={() => setCategoria(nome)}>
+          <button key={nome} type="button" className={classe} onClick={() => setCategoria(nome)}>
             <Icone className={Style.filterIcon} size={21} strokeWidth={1.7} aria-hidden="true" />
             {nome}
           </button>
@@ -164,8 +153,6 @@ function IngredientPicker({ ingredientes, setIngredientes }) {
   }
 
   return (
-
-    
     <section className={Style.pantry}>
       <div>
         <span className={Style.eyebrow}>ENCONTRE SUA PRÓXIMA IDEIA</span>
@@ -196,6 +183,7 @@ function IngredientPicker({ ingredientes, setIngredientes }) {
     </section>
   );
 }
+
 function RecipeCard({ receita }) {
   return (
     <article className={Style.card}>
@@ -208,7 +196,6 @@ function RecipeCard({ receita }) {
         ) : (
           <span aria-hidden="true">{receita.emoji}</span>
         )}
-       
       </div>
 
       <div className={Style.cardBody}>
@@ -248,10 +235,7 @@ function RecipeGrid({ lista }) {
   );
 }
 
-/* =========================================================
-   4. PÁGINA PRINCIPAL
-   Guarda o estado e junta todos os blocos.
-   ========================================================= */
+// Página principal: guarda o estado e junta todos os blocos.
 
 export default function Cozy() {
   const [categoria, setCategoria] = useState('Todas');
