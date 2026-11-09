@@ -39,6 +39,8 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
   const [dias, setDias] = useState(dadosIniciais.dias || []);
   const [horarioInicio, setHorarioInicio] = useState(dadosIniciais.horarioInicio || '');
   const [erro, setErro] = useState('');
+    const [cidade, setCidade] = useState(dadosIniciais.cidade || '');
+    const [salvando, setSalvando] = useState(false);
   const [horarioFim, setHorarioFim] = useState(dadosIniciais.horarioFim || '');
   const [funcionarios, setFuncionarios] = useState(funcionariosIniciais(feira));
   const estaEditando = modo === 'editar';
@@ -64,26 +66,50 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
         return;
       }
 
-      setEndereco(dados.logradouro);
+      setEndereco(dados.logradouro);  
+      
+        setCidade(`${dados.cidade} - ${dados.uf}`);
     } catch {
       setErro('Não foi possível consultar o CEP agora. Preencha o endereço manualmente.');
     }
   }
 
-  function salvar(evento) {
+    async function salvar(evento) {
     evento.preventDefault();
-    onSalvar({
-      nome: nome.trim(),
-      endereco: endereco.trim(),
-      cep,
-      dias,
-      horarioInicio,
-      horarioFim,
-      horario,
-      funcionarios: funcionarios
-        .map((funcionario) => funcionario.trim())
-        .filter((funcionario) => funcionario !== ''),
-    });
+    setErro('');
+    setSalvando(true);
+
+    // Junta rua, cidade e país num texto só, para o geocodificador achar o lugar certo.
+    const enderecoCompleto = [endereco.trim(), cidade, 'Brasil'].filter(Boolean).join(', ');
+
+    try {
+      const localizacao = await geocodificarEndereco(enderecoCompleto);
+
+      if (!localizacao) {
+        setErro('Não encontramos esse endereço no mapa. Confira a rua e o CEP.');
+        return;
+      }
+
+      onSalvar({
+        nome: nome.trim(),
+        endereco: endereco.trim(),
+        cep,
+        cidade,
+        latitude: localizacao.latitude,
+        longitude: localizacao.longitude,
+        dias,
+        horarioInicio,
+        horarioFim,
+        horario,
+        funcionarios: funcionarios
+          .map((funcionario) => funcionario.trim())
+          .filter((funcionario) => funcionario !== ''),
+      });
+    } catch {
+      setErro('Não foi possível localizar o endereço agora. Tente novamente.');
+    } finally {
+      setSalvando(false);
+    }
   }
 
   function alternarDia(dia) {
@@ -238,8 +264,8 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
           <button type="button" className={base.secundario} onClick={onFechar}>
             Cancelar
           </button>
-          <button type="submit" className={base.principal}>
-            {estaEditando ? 'Salvar' : 'Registrar Feira'}
+          <button type="submit" className={base.principal} disabled={salvando}>
+            {salvando ? 'Localizando...' : estaEditando ? 'Salvar' : 'Registrar Feira'}
           </button>
         </div>
       </form>
