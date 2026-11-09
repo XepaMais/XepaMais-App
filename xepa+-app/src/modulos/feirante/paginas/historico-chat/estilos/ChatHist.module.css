@@ -1,13 +1,14 @@
 .paginaChat {
   display: flex;
   width: 100%;
+  max-width: var(--largura-pagina);
   height: calc(100vh - 70px);
   height: calc(100dvh - 70px);
   min-height: 560px;
   flex-direction: column;
-  padding: 18px clamp(12px, 2vw, 28px) 20px;
+  margin: 0 auto;
+  padding: var(--espaco-topo) var(--margem-lateral) 24px;
   color: var(--verde);
-  font-family: 'Poppins', sans-serif;
 }
 
 /* Mesmo cabeçalho das outras páginas (Meus pedidos, Histórico de vendas...) */
@@ -296,7 +297,7 @@
   gap: 5px;
   padding: 12px 16px 9px;
   border-radius: 12px 12px 12px 0;
-  background: #18552f;
+  background: var(--verde);
   color: var(--branco);
   font-size: var(--fonte-texto);
   line-height: 1.4;
@@ -312,7 +313,7 @@
 
 .mensagemMinha .balao {
   border-radius: 12px 12px 0 12px;
-  background: #f76019;
+  background: var(--laranja);
 }
 
 .areaInput {
@@ -354,7 +355,7 @@
   place-items: center;
   border: 0;
   border-radius: 50%;
-  background: #f76019;
+  background: var(--laranja);
   color: var(--branco);
   font-size: 20px;
   font-weight: 700;
