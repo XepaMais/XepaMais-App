@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ClipboardList } from 'lucide-react';
-import { carregarPedidos, formatarDataHora, formatarMoeda } from '@/compartilhado/servicos/pedidos';
+import { ClipboardList, QrCode } from 'lucide-react';
+import {
+  carregarPedidos,
+  formatarDataHora,
+  formatarMoeda,
+  RETIRADO,
+} from '@/compartilhado/servicos/pedidos';
 import { abrirConversaDoPedido } from '@/compartilhado/servicos/conversas';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './estilos/HistoricoPedidos.module.css';
@@ -36,9 +41,6 @@ function HistoricoPedidos() {
         </section>
       ) : (
         <>
-          <p className={base.aviso}>
-            Os pedidos ficam salvos apenas neste navegador até a integração com o banco de dados.
-          </p>
 
           <div className={base.lista}>
             {pedidos.map((pedido) => {
@@ -73,6 +75,18 @@ function HistoricoPedidos() {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Código para mostrar ao feirante na hora de retirar */}
+                    {pedido.codigo && pedido.status !== RETIRADO && (
+                      <div className={styles.retirada}>
+                        <QrCode size={88} aria-hidden="true" className={styles.qrCode} />
+                        <div>
+                          <span>Código de retirada</span>
+                          <strong className={styles.codigo}>{pedido.codigo}</strong>
+                          <p>Mostre este código ou o QR Code ao feirante para retirar o pedido.</p>
+                        </div>
+                      </div>
+                    )}
 
                     <div className={styles.rodape}>
                       <div className={styles.resumo}>

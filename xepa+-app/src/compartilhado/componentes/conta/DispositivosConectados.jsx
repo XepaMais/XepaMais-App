@@ -64,11 +64,7 @@ function DispositivosConectados() {
         </div>
       </header>
 
-      <p className={base.aviso}>
-        O Xepa+ ainda não controla sessões de login. Por enquanto, esta página mostra somente o
-        dispositivo que você está usando. Outros aparelhos e a desconexão remota dependem da
-        integração com a autenticação.
-      </p>
+     
 
       <ul className={styles.lista}>
         {dispositivos.map((dispositivo) => {
