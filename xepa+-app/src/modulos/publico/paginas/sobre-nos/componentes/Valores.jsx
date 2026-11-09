@@ -1,21 +1,31 @@
-import '@/modulos/publico/paginas/sobre-nos/estilos/Bloco.css';
-import fotoValores from '@/assets/imagens/sobre-nos/feira-rio-de-janeiro.jpg';
+import Painel from '@/modulos/publico/paginas/sobre-nos/componentes/Painel.jsx';
+import { VIDEOS } from '@/modulos/publico/paginas/sobre-nos/componentes/videosSobreNos.js';
+
+const VALORES = [
+  { nome: 'Sustentabilidade', texto: 'Alimento bom não vira lixo.' },
+  { nome: 'Acessibilidade', texto: 'Comida de qualidade a preço justo.' },
+  { nome: 'Compromisso social', texto: 'Cuidado com quem vive da feira e com quem depende dela.' },
+];
 
 function Valores() {
   return (
-    <section className="bloco bloco--invertido">
-      <div className="bloco__texto">
-        <h2>Valores</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum. Excepteur sint occaecat cupidatat non proident.
-        </p>
-      </div>
-      <div className="bloco__midia">
-        <img src={fotoValores} alt="Feira do Rio de Janeiro" />
-      </div>
-    </section>
+    <Painel
+      id="sn-valores"
+      rotulo="Valores"
+      titulo="O que guia cada decisão"
+      cor="amarelo"
+      video={VIDEOS.valores.video}
+      poster={VIDEOS.valores.poster}
+      descricaoVideo="Pessoas escolhendo frutas e verduras em uma feira ao ar livre"
+    >
+      <ul className="sn-valores">
+        {VALORES.map((valor) => (
+          <li key={valor.nome} className="sn-texto">
+            <strong>{valor.nome}:</strong> {valor.texto}
+          </li>
+        ))}
+      </ul>
+    </Painel>
   );
 }
 

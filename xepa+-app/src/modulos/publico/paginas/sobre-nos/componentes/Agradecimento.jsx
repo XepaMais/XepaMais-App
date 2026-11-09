@@ -3,14 +3,18 @@ import fotoPais from '@/assets/imagens/sobre-nos/pais.jpg';
 
 function Agradecimentos() {
   return (
-    <section className="secao">
-      <h2>Agradecimentos</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit
-        esse cillum. Excepteur sint occaecat cupidatat non proident.
-      </p>
-      <img className="agradecimentos" src={fotoPais} alt="Foto dos pais" />
+    <section className="secao" aria-labelledby="sn-agradecimentos">
+      <div className="sn-cabecalho">
+        <p className="sn-eyebrow">Obrigado</p>
+        <h2 id="sn-agradecimentos" className="sn-titulo">
+          Agradecimentos
+        </h2>
+        <p className="sn-texto">
+          Às nossas famílias, aos professores e orientadores e aos feirantes que abriram suas bancas
+          para a gente. Este projeto também é de vocês.
+        </p>
+      </div>
+      <img className="agradecimentos" src={fotoPais} alt="Foto dos pais de integrantes do time" />
     </section>
   );
 }

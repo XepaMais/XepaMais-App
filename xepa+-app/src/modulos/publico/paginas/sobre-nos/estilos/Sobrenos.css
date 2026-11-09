@@ -1,107 +1,142 @@
+/*
+ * Página Sobre nós
+ * Escala de texto única para a página inteira (usar sempre estas classes/variáveis):
+ *   .sn-eyebrow   rótulo pequeno acima do título      14px, maiúsculas
+ *   .sn-titulo    título de seção (h2)                 28px → 40px
+ *   .sn-texto     texto corrido                        16px → 18px
+ *   .sn-nota      fontes e legendas                    14px
+ */
 .sobre {
-  --verde: #18552f;
-  --pad: var(--margem-lateral);
-  background: #fffaf7;
-  color: #111;
-  font-family: 'Poppins', sans-serif;
-  padding-bottom: var(--espaco-base);
+  --sn-eyebrow: var(--fonte-pequena, 14px);
+  --sn-titulo: var(--fonte-titulo-pagina, clamp(28px, 3vw, 40px));
+  --sn-texto: clamp(16px, 1.1vw, 18px);
+  --sn-nota: var(--fonte-pequena, 14px);
+
+  --sn-creme: #fffaf7;
+  --sn-lima-claro: #eef4d9;
+  --sn-laranja-claro: #fff0e6;
+  --sn-amarelo-claro: #fff6d9;
+  --sn-espaco: clamp(48px, 7vw, 96px);
+  --sn-largura-texto: 62ch;
+
   overflow-x: hidden;
-}
-.sobre h1,
-.sobre h2 {
-  margin: 0;
-  color: var(--verde);
+  background: var(--sn-creme);
+  color: var(--preto, #161414);
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  line-height: 1.2;
-  font-size: var(--fonte-titulo-pagina);
 }
+
+.sobre h1,
+.sobre h2,
+.sobre h3,
 .sobre p {
   margin: 0;
-  line-height: 1.5;
-  text-align: left;
-  font-size: var(--fonte-texto);
 }
+
+.sobre img {
+  max-width: 100%;
+}
+
+/* ---------- Tipografia ---------- */
+
+.sn-eyebrow {
+  color: var(--laranja, #f76019);
+  font-size: var(--sn-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.sn-titulo {
+  color: var(--verde, #18552f);
+  font-size: var(--sn-titulo);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.sn-texto {
+  max-width: var(--sn-largura-texto);
+  color: #3b3838;
+  font-size: var(--sn-texto);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.sn-texto strong {
+  color: var(--verde, #18552f);
+  font-weight: 600;
+}
+
+.sn-nota {
+  color: var(--cinza, #716d6d);
+  font-size: var(--sn-nota);
+  line-height: 1.5;
+}
+
+/* ---------- Seções centralizadas (vídeo, time, agradecimentos) ---------- */
 
 .secao {
-  padding: 0 var(--pad);
-  text-align: center;
   width: 100%;
-  max-width: var(--largura-pagina);
-  margin: clamp(32px, 5vw, 56px) auto 0;
-}
-.secao > p {
-  max-width: 960px;
-  margin: 12px auto 24px;
+  max-width: var(--largura-pagina, 1200px);
+  margin: 0 auto;
+  padding: var(--sn-espaco) var(--margem-lateral, 24px) 0;
   text-align: center;
 }
 
-/* Computadores: mesma estrutura, com cada seção em 650px de altura */
-@media (min-width: 1001px) {
-  .sobre {
-    padding-bottom: 0;
-  }
+.secao:last-child {
+  padding-bottom: var(--sn-espaco);
+}
 
-  /* Fica colado no cabeçalho, com a altura do próprio conteúdo */
-  section.quem {
-    padding: var(--espaco-topo) var(--margem-lateral) 16px;
-  }
+.sn-cabecalho {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto clamp(28px, 4vw, 40px);
+  text-align: center;
+}
 
-  section.quem p {
-    font-size: var(--fonte-texto);
-  }
+.sn-cabecalho .sn-texto {
+  margin-top: 4px;
+}
 
-  .bloco {
-    min-height: 650px;
-    margin-top: 0;
-  }
+/* ---------- Botão ---------- */
 
-  .bloco__midia,
-  .bloco--invertido .bloco__midia {
-    padding-top: 36px;
-    padding-bottom: 36px;
-  }
+.sn-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--limao, #9bc000);
+  color: var(--verde, #18552f);
+  font-family: inherit;
+  font-size: var(--fonte-pequena, 14px);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
 
-  .bloco__midia img {
-    height: 540px;
-    aspect-ratio: auto;
-  }
+.sn-botao:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
 
-  .secao {
-    display: flex;
-    min-height: 650px;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 24px var(--margem-lateral);
-  }
+.sn-botao:focus-visible {
+  outline: 3px solid var(--verde, #18552f);
+  outline-offset: 3px;
+}
 
-  .secao > p {
-    margin: 8px auto 16px;
-  }
-
-  .video {
-    width: 100%;
-    height: 430px;
-    aspect-ratio: auto;
-  }
-
-  /* A foto é vertical: mais estreita, para os rostos não serem cortados */
-  .agradecimentos {
-    width: min(100%, 760px);
-    height: 430px;
-    aspect-ratio: auto;
-    object-position: center 62%;
-  }
-
-  /* Foto quadrada, com tamanho que cabe nos 650px */
-  .card-time__foto {
-    width: 300px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .card-time h3 {
-    font-size: var(--fonte-titulo-secao);
+@media (prefers-reduced-motion: reduce) {
+  .sn-botao {
+    transition: none;
   }
 }

@@ -1,21 +1,22 @@
-import '@/modulos/publico/paginas/sobre-nos/estilos/Bloco.css';
-import fotoMissao from '@/assets/imagens/sobre-nos/feira-1.jpg';
+import Painel from '@/modulos/publico/paginas/sobre-nos/componentes/Painel.jsx';
+import { VIDEOS } from '@/modulos/publico/paginas/sobre-nos/componentes/videosSobreNos.js';
 
 function Missao() {
   return (
-    <section className="bloco">
-      <div className="bloco__midia">
-        <img src={fotoMissao} alt="Feira livre" />
-      </div>
-      <div className="bloco__texto">
-        <h2>Missão</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum. Excepteur sint occaecat cupidatat non proident.
-        </p>
-      </div>
-    </section>
+    <Painel
+      id="sn-missao"
+      rotulo="Missão"
+      titulo="Dar um novo destino ao que sobra da feira"
+      cor="lima"
+      video={VIDEOS.missao.video}
+      poster={VIDEOS.missao.poster}
+      descricaoVideo="Banca de feira com frutas e verduras"
+    >
+      <p className="sn-texto">
+        Reduzir o desperdício de frutas, verduras e legumes das <strong>feiras livres</strong>,
+        conectando feirantes a consumidores e tornando esses alimentos mais acessíveis.
+      </p>
+    </Painel>
   );
 }
 
