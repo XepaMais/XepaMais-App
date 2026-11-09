@@ -26,6 +26,7 @@ export default function Pagamento() {
       itens: itens.map((item) => ({
         id: item.id,
         nome: item.nome,
+        categoria: item.categoria,
         descricao: item.itens || item.descricao,
         barraca: item.barraca || item.feira,
         retirada: item.local,
