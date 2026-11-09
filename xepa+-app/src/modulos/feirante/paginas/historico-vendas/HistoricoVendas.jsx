@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { Receipt } from 'lucide-react';
-import { carregarPedidos, formatarDataHora, formatarMoeda } from '@/compartilhado/servicos/pedidos';
+import {
+  atualizarStatusPedido,
+  carregarPedidos,
+  formatarDataHora,
+  formatarMoeda,
+  PENDENTE_RETIRADA,
+  RETIRADO,
+} from '@/compartilhado/servicos/pedidos';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './estilos/HistoricoVendas.module.css';
 
@@ -15,7 +22,13 @@ function contarItens(venda) {
 }
 
 function HistoricoVendas() {
-  const [vendas] = useState(carregarPedidos);
+  const [vendas, setVendas] = useState(carregarPedidos);
+
+  // O feirante confirma que o cliente retirou o pedido.
+  function confirmarEntrega(numero) {
+    atualizarStatusPedido(numero, RETIRADO);
+    setVendas(carregarPedidos());
+  }
 
   let totalItens = 0;
   let totalVendido = 0;
@@ -73,6 +86,8 @@ function HistoricoVendas() {
                   <th scope="col">Total</th>
                   <th scope="col">Status</th>
                   <th scope="col">Retirada</th>
+                  <th scope="col">Código</th>
+                  <th scope="col">Entrega</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,6 +112,22 @@ function HistoricoVendas() {
                       <span className={base.status}>{venda.status}</span>
                     </td>
                     <td data-rotulo="Retirada">{venda.itens[0].retirada}</td>
+                    <td data-rotulo="Código">
+                      <strong>{venda.codigo || '-'}</strong>
+                    </td>
+                    <td data-rotulo="Entrega">
+                      {venda.status === PENDENTE_RETIRADA ? (
+                        <button
+                          type="button"
+                          className={base.botaoPrincipal}
+                          onClick={() => confirmarEntrega(venda.numero)}
+                        >
+                          Confirmar entrega
+                        </button>
+                      ) : (
+                        '-'
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
