@@ -94,9 +94,7 @@ function PerfilConta({ tipo, campos, informacoesConta }) {
         </div>
       </header>
 
-      <p className={base.aviso}>
-        As alterações ficam salvas apenas neste navegador até a integração com o banco de dados.
-      </p>
+     
 
       {salvo && (
         <p className={base.sucesso} role="status">

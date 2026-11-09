@@ -55,10 +55,6 @@ function HistoricoVendas() {
         </section>
       ) : (
         <>
-          <p className={base.aviso}>
-            Sem banco de dados, esta lista mostra todos os pedidos confirmados neste navegador, sem
-            separar por feirante.
-          </p>
 
           <section className={base.indicadores} aria-label="Resumo das vendas">
             <div className={base.indicador}>

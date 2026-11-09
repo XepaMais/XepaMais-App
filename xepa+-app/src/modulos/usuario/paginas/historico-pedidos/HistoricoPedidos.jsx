@@ -41,9 +41,6 @@ function HistoricoPedidos() {
         </section>
       ) : (
         <>
-          <p className={base.aviso}>
-            Os pedidos ficam salvos apenas neste navegador até a integração com o banco de dados.
-          </p>
 
           <div className={base.lista}>
             {pedidos.map((pedido) => {
