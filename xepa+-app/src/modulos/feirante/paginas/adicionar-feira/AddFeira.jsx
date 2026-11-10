@@ -6,6 +6,15 @@ import base from '@/compartilhado/estilos/conta.module.css';
 import PopUpAdicionarFeira from '@/modulos/feirante/paginas/adicionar-feira/componentes/PopUpAdicionarFeira.jsx';
 import PopUpEditarFeira from '@/modulos/feirante/paginas/adicionar-feira/componentes/PopUpEditarFeira.jsx';
 import styles from '@/modulos/feirante/paginas/adicionar-feira/estilos/AddFeira.module.css';
+import { buscarCep } from '@/compartilhado/servicos/localizacao';
+import { geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
+import MiniMapaFeiras from '@/modulos/feirante/paginas/adicionar-feira/componentes/MiniMapaFeiras.jsx'
+geocodificarEndereco('Avenida Paulista, 1000, São Paulo - SP').then(console.log);
+geocodificarEndereco('xyzxyz rua que nao existe 999').then(console.log);
+
+buscarCep('01310-100').then(console.log);
+buscarCep('99999-999').then(console.log);
+buscarCep('123').then(console.log);
 
 // Junta os dias e o horário em um único texto para o cartão.
 function descreverDias(feira) {
@@ -145,6 +154,7 @@ function AddFeira() {
               </p>
             )}
           </div>
+          <MiniMapaFeiras feiras={feiras} />
         </section>
       </main>
 
