@@ -1,14 +1,11 @@
 <div align="center">
 
-<img src="xepa+-app/src/assets/imagens/marca/logo.png" alt="Xepa+" width="180" />
+<img src="xepa+-app/src/assets/imagens/marca/logo-texto-colorida.png" alt="Xepa+" width="320" />
 
-# Xepa+
+<br /><br />
 
 **Conectamos feirantes e consumidores para que o alimento da feira chegue à mesa, e não ao lixo.**
 
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-7-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
 ![Status](https://img.shields.io/badge/status-em_desenvolvimento-FF5200?style=for-the-badge)
 
 [Sobre](#quem-somos) · [O problema](#o-desperdício-na-feira-é-maior-do-que-parece) · [Funcionalidades](#funcionalidades) · [Time](#conheça-nosso-time)
@@ -23,17 +20,21 @@ O **Xepa+** é um projeto acadêmico contra o desperdício de alimentos nas feir
 
 Somos estudantes que se uniram para dar um novo destino à **xepa**: os alimentos que sobram no fim da feira e que ainda estão ótimos para o consumo. O nome vem da prática em que os feirantes baixam os preços no fim do dia para vender o que sobrou.
 
+<!-- A imagem "espaco.png" (transparente, 1 px de altura) faz todas as tabelas ocuparem a largura inteira no GitHub -->
+
 <table>
   <tr>
     <td width="33%" valign="top">
       <h3>Missão</h3>
       <b>Dar um novo destino ao que sobra da feira.</b><br /><br />
       Reduzir o desperdício de frutas, verduras e legumes das feiras livres, conectando feirantes a consumidores e tornando esses alimentos mais acessíveis.
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
     </td>
     <td width="33%" valign="top">
       <h3>Visão</h3>
       <b>Ser referência no aproveitamento pós-feira.</b><br /><br />
       Construir um modelo sustentável, acessível e eficiente, que gere valor para consumidores, feirantes e parceiros.
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
     </td>
     <td width="33%" valign="top">
       <h3>Valores</h3>
@@ -41,6 +42,7 @@ Somos estudantes que se uniram para dar um novo destino à **xepa**: os alimento
       <b>Sustentabilidade:</b> alimento bom não vira lixo.<br />
       <b>Acessibilidade:</b> comida de qualidade a preço justo.<br />
       <b>Compromisso social:</b> cuidado com quem vive da feira e com quem depende dela.
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
     </td>
   </tr>
 </table>
@@ -49,14 +51,28 @@ Somos estudantes que se uniram para dar um novo destino à **xepa**: os alimento
 
 ## O desperdício na feira é maior do que parece
 
+<table>
+  <tr>
+    <td width="33%" align="center" valign="top">
+      <h3>33 mil toneladas</h3>
+      de alimentos vão para o lixo por ano nas feiras da capital paulista
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>19 milhões de brasileiros</h3>
+      poderiam fazer 3 refeições ao dia com esse volume
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
+    </td>
+    <td width="33%" align="center" valign="top">
+      <h3>95% dos feirantes</h3>
+      relatam desperdício no fim da feira
+      <br /><img src=".github/readme/espaco.png" width="400" height="1" alt="" />
+    </td>
+  </tr>
+</table>
+
 <div align="center">
-
-| **33 mil toneladas** | **19 milhões de brasileiros** | **95% dos feirantes** |
-| :---: | :---: | :---: |
-| de alimentos vão para o lixo por ano nas feiras da capital paulista | poderiam fazer 3 refeições ao dia com esse volume | relatam desperdício no fim da feira |
-
-<sub>Fonte: estudo da Unesp sobre o desperdício de alimentos nas feiras livres de São Paulo.</sub>
-
+  <sub>Fonte: estudo da Unesp sobre o desperdício de alimentos nas feiras livres de São Paulo.</sub>
 </div>
 
 ---
@@ -75,6 +91,7 @@ Somos estudantes que se uniram para dar um novo destino à **xepa**: os alimento
         <li>Painel de impacto: quanto alimento você salvou</li>
         <li>Receitas para aproveitar cada alimento</li>
       </ul>
+      <img src=".github/readme/espaco.png" width="600" height="1" alt="" />
     </td>
     <td width="50%" valign="top">
       <h3>Para o feirante</h3>
@@ -85,15 +102,10 @@ Somos estudantes que se uniram para dar um novo destino à **xepa**: os alimento
         <li>Assistente com inteligência artificial para o dia a dia da banca</li>
         <li>Planos de assinatura</li>
       </ul>
+      <img src=".github/readme/espaco.png" width="600" height="1" alt="" />
     </td>
   </tr>
 </table>
-
----
-
-## Tecnologias
-
-React · Vite · React Router · Google Maps (`@react-google-maps/api`) · Leaflet · jsPDF · Lucide · NumberFlow · ScrollReveal
 
 ---
 
@@ -104,61 +116,65 @@ Estudantes de diferentes áreas com um mesmo objetivo: levar o alimento da feira
 <table>
   <tr>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/gabriel.jpeg" width="110" alt="Gabriel Carneiro" /><br />
-      <b>Gabriel Carneiro</b><br />
-      <sub>Product Owner</sub><br />
-      <sub>Marketing</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/gabriel.jpeg" width="180" alt="Gabriel Carneiro" /><br />
+      <h3>Gabriel Carneiro</h3>
+      Product Owner<br />
+      Marketing<br /><br />
       <a href="https://www.linkedin.com/in/gabriel-carneiro-5459b6303/">LinkedIn</a> · <a href="https://github.com/carneirogabri">GitHub</a>
+      <br /><img src=".github/readme/espaco.png" width="300" height="1" alt="" />
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/jamilly.jpeg" width="110" alt="Jamilly Moreira" /><br />
-      <b>Jamilly Moreira</b><br />
-      <sub>Scrum Master</sub><br />
-      <sub>Vendas</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/jamilly.jpeg" width="180" alt="Jamilly Moreira" /><br />
+      <h3>Jamilly Moreira</h3>
+      Scrum Master<br />
+      Vendas<br /><br />
       <a href="https://www.linkedin.com/in/jamillymoreira/">LinkedIn</a> · <a href="https://github.com/milly-m-dev">GitHub</a>
+      <br /><img src=".github/readme/espaco.png" width="300" height="1" alt="" />
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/fernanda.jpeg" width="110" alt="Fernanda Ribeiro" /><br />
-      <b>Fernanda Ribeiro</b><br />
-      <sub>Documentarista</sub><br />
-      <sub>Financeiro</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/fernanda.jpeg" width="180" alt="Fernanda Ribeiro" /><br />
+      <h3>Fernanda Ribeiro</h3>
+      Documentarista<br />
+      Financeiro<br /><br />
       <a href="https://www.linkedin.com/in/f3f3h/">LinkedIn</a> · <a href="https://github.com/f3f3h">GitHub</a>
+      <br /><img src=".github/readme/espaco.png" width="300" height="1" alt="" />
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/hadson.jpeg" width="110" alt="Hadson de Jesus" /><br />
-      <b>Hadson de Jesus</b><br />
-      <sub>Desenvolvedor</sub><br />
-      <sub>Vendas</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/hadson.jpeg" width="180" alt="Hadson de Jesus" /><br />
+      <h3>Hadson de Jesus</h3>
+      Desenvolvedor<br />
+      Vendas<br /><br />
       <a href="https://www.linkedin.com/in/hadson-ferreira-068088271/">LinkedIn</a> · <a href="https://github.com/fhadson">GitHub</a>
+      <br /><img src=".github/readme/espaco.png" width="300" height="1" alt="" />
     </td>
   </tr>
   <tr>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/henrique.jpeg" width="110" alt="Henrique Mazza" /><br />
-      <b>Henrique Mazza</b><br />
-      <sub>Desenvolvedor</sub><br />
-      <sub>IA</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/henrique.jpeg" width="180" alt="Henrique Mazza" /><br />
+      <h3>Henrique Mazza</h3>
+      Desenvolvedor<br />
+      IA<br /><br />
       <a href="https://www.linkedin.com/in/henriquemazzavalle/">LinkedIn</a> · <a href="https://github.com/HenriqueMazza">GitHub</a>
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/igor.jpeg" width="110" alt="Igor Aguiar" /><br />
-      <b>Igor Aguiar</b><br />
-      <sub>Desenvolvedor</sub><br />
-      <sub>Dados</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/igor.jpeg" width="180" alt="Igor Aguiar" /><br />
+      <h3>Igor Aguiar</h3>
+      Desenvolvedor<br />
+      Dados<br /><br />
       <a href="https://www.linkedin.com/in/igor-aguiar-ab193132b/">LinkedIn</a> · <a href="https://github.com/Igordevice">GitHub</a>
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/matheus.jpeg" width="110" alt="Matheus Barros" /><br />
-      <b>Matheus Barros</b><br />
-      <sub>Desenvolvedor</sub><br />
-      <sub>Dados</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/matheus.jpeg" width="180" alt="Matheus Barros" /><br />
+      <h3>Matheus Barros</h3>
+      Desenvolvedor<br />
+      Dados<br /><br />
       <a href="https://www.linkedin.com/in/matheus-barros-13b652330/">LinkedIn</a> · <a href="https://github.com/MatheusSouzaBarros">GitHub</a>
     </td>
     <td align="center" width="25%">
-      <img src="xepa+-app/src/assets/imagens/sobre-nos/murilo.jpg" width="110" alt="Murilo Verissimo" /><br />
-      <b>Murilo Verissimo</b><br />
-      <sub>Desenvolvedor</sub><br />
-      <sub>Marketing</sub><br />
+      <img src="xepa+-app/src/assets/imagens/sobre-nos/murilo.jpg" width="180" alt="Murilo Verissimo" /><br />
+      <h3>Murilo Verissimo</h3>
+      Desenvolvedor<br />
+      Marketing<br /><br />
       <a href="https://www.linkedin.com/in/murilo-verissimo-44a958372/">LinkedIn</a> · <a href="https://github.com/verissimoMuh">GitHub</a>
     </td>
   </tr>
