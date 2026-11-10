@@ -3,15 +3,11 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Styles from '../estilos/MapPage.module.css';
 import logoXepa from '@/assets/imagens/gerais/logo-colorida.png';
 
-const libraries = ['places'];
+import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps';
 
 function MapPage() {
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const { isLoaded, loadError } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: apiKey || '',
-    libraries,
-  });
+  const apiKey = GOOGLE_MAPS_LOADER.googleMapsApiKey;
+  const { isLoaded, loadError } = useJsApiLoader(GOOGLE_MAPS_LOADER);
 
   // Posição inicial padrão (suas coordenadas originais)
   const [position, setPosition] = useState({
