@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Check, ChefHat, MessageCircle, Sparkles, TrendingUp, Wallet } from 'lucide-react';
 import imagemIA from '@/assets/imagens/marca/ia.png';
 import LayoutFooter from './LayoutFooter';
-import Styles from './paginas.module.css';
+import Styles from './estilos/XepAI.module.css';
 
 const RECURSOS = [
   {
@@ -31,6 +31,7 @@ const RECURSOS = [
 function XepAI() {
   return (
     <LayoutFooter
+      estilos={Styles}
       etiqueta="Tecnologia e IA"
       titulo="Conheça a Xep.AI"
       descricao="A assistente virtual do Xepa+ que ajuda o feirante a cuidar da barraca, das finanças e a reduzir o desperdício de alimentos."

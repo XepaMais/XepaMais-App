@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, Mail, Sparkles } from 'lucide-react';
 import LayoutFooter from './LayoutFooter';
-import Styles from './paginas.module.css';
+import Styles from './estilos/Suporte.module.css';
 
 const CANAIS = [
   {
@@ -57,6 +57,7 @@ function Suporte() {
 
   return (
     <LayoutFooter
+      estilos={Styles}
       etiqueta="Contato e suporte"
       titulo="Como podemos ajudar?"
       descricao="Encontre respostas rápidas ou fale com a equipe do Xepa+. Estamos aqui para feirantes e consumidores."

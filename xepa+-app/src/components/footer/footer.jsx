@@ -150,8 +150,8 @@ function Footer() {
       <div className={Styles.base}>
         <span>© 2026 Xepa+ Todos os direitos reservados.</span>
         <div className={Styles.legal}>
-          <a href="#">Termos de uso</a>
-          <a href="#">Diretrizes de Privacidade</a>
+          <LinkRodape to="/termos-de-uso">Termos de uso</LinkRodape>
+          <LinkRodape to="/privacidade">Diretrizes de Privacidade</LinkRodape>
         </div>
       </div>
     </footer>
