@@ -1,4 +1,4 @@
-import fotoFeirante from '@/assets/imagens/pagina-inicial/feirante.png';
+import fotoBanca from '@/assets/imagens/marca/feira.jpg';
 import '@/modulos/publico/paginas/inicio/estilos/Propaganda.css';
 
 function IconeCesta() {
@@ -54,7 +54,11 @@ export default function Propaganda({ onDivulgar }) {
       <div className="propaganda-container">
         <div className="propaganda-fundo">
           <figure className="propaganda-foto">
-            <img src={fotoFeirante} alt="Feirante sorrindo segurando uma cesta de morangos" />
+            <img
+              src={fotoBanca}
+              alt="Banca de feira cheia de frutas: peras, laranjas, uvas, tomates e morangos"
+              loading="lazy"
+            />
           </figure>
 
           <div className="propaganda-card">
