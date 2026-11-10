@@ -28,6 +28,7 @@ export const rotasFeirante = [
       </RecursoPlano>
     }
   />,
+
   <Route
     key="gastos"
     path="/adicionar-gasto"
@@ -37,6 +38,7 @@ export const rotasFeirante = [
       </RecursoPlano>
     }
   />,
+
   <Route key="adicionar-produto" path="/adicionar-produto" element={<AdicionarProduto />} />,
   <Route key="adicionar-feira" path="/adicionar-feira" element={<AdicionarFeira />} />,
   <Route
@@ -60,6 +62,7 @@ export const rotasFeirante = [
     path="/dispositivos-feirante"
     element={<DispositivosFeirante />}
   />,
+  
   <Route key="planos" path="/planos" element={<Planos />} />,
   <Route
     key="planilhas"

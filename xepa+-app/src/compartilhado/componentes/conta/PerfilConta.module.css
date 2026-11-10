@@ -53,7 +53,6 @@
   color: var(--laranja);
 }
 
-/* O input fica escondido: a pessoa clica no texto "Adicionar foto". */
 .inputFoto {
   position: absolute;
   width: 1px;

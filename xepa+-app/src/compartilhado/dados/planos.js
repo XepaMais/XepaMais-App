@@ -1,4 +1,5 @@
 // Planos do Xepa+, usados na Home pública e na área do feirante.
+
 export const PLANOS = [
   {
     id: 'gratis',

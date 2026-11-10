@@ -1,4 +1,4 @@
-// Pedidos registrados ao confirmar o pagamento. Sem backend, ficam neste navegador.
+// Pedidos registrados ao confirmar o pagamento. 
 const CHAVE_PEDIDOS = 'pedidosXepa';
 
 export function carregarPedidos() {

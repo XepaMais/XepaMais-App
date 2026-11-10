@@ -1,6 +1,5 @@
 import styles from './FotoPerfil.module.css';
 
-// Mostra a foto do perfil ou, sem foto, a inicial do nome.
 function FotoPerfil({ nome, foto, tamanho = 36 }) {
   const inicial = nome.trim().charAt(0).toUpperCase();
 

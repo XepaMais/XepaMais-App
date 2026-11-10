@@ -1,5 +1,6 @@
 // Impacto do consumidor, calculado a partir dos pedidos que ele já fez.
 // As xepas não têm peso nem preço "cheio" cadastrados, então usamos estimativas.
+
 import { carregarPedidos } from '@/compartilhado/servicos/pedidos';
 import { buscarXepa } from '@/compartilhado/servicos/xepas';
 
@@ -37,6 +38,7 @@ function quantidadeDoPedido(pedido) {
 }
 
 // Kg salvos em cada uma das últimas 6 semanas (a última é a semana atual).
+
 function calcularSemanas(pedidos) {
   const fimDeHoje = new Date();
   fimDeHoje.setHours(23, 59, 59, 999);
