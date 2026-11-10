@@ -8,6 +8,7 @@ import PopUpEditarFeira from '@/modulos/feirante/paginas/adicionar-feira/compone
 import styles from '@/modulos/feirante/paginas/adicionar-feira/estilos/AddFeira.module.css';
 import { buscarCep } from '@/compartilhado/servicos/localizacao';
 import { geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
+import MiniMapaFeiras from '@/modulos/feirante/paginas/adicionar-feira/componentes/MiniMapaFeiras.jsx'
 geocodificarEndereco('Avenida Paulista, 1000, São Paulo - SP').then(console.log);
 geocodificarEndereco('xyzxyz rua que nao existe 999').then(console.log);
 
@@ -153,6 +154,7 @@ function AddFeira() {
               </p>
             )}
           </div>
+          <MiniMapaFeiras feiras={feiras} />
         </section>
       </main>
 

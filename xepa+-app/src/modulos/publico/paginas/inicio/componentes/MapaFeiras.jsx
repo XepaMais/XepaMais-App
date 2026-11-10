@@ -1,16 +1,47 @@
 import { useState } from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import logoXepa from '@/assets/imagens/gerais/logo-colorida.png';
+import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
+import { geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
 import '@/modulos/publico/paginas/inicio/estilos/MapaFeiras.css';
 
+const libraries = ['places'];
+const CENTRO_PADRAO = { lat: -23.4669, lng: -46.6869 }; // Brasilândia, São Paulo
+
+
+
+
 function MapaFeiras() {
+
+    const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
+
   const [busca, setBusca] = useState('Brasilândia, São Paulo');
+  const [centro, setCentro] = useState(CENTRO_PADRAO);
+  const [mensagem, setMensagem] = useState('Pesquise um endereço para visualizar a região no mapa.');
+  const [feiras] = useState(() =>
+    carregarFeiras().filter((feira) => feira.latitude != null)
+  );
 
-  const [localizacao, setLocalizacao] = useState('Brasilândia, São Paulo');
-
-  function pesquisarFeiras(evento) {
+    async function pesquisarFeiras(evento) {
     evento.preventDefault();
+    if (!busca.trim()) return;
 
-    if (busca.trim()) {
-      setLocalizacao(busca.trim());
+    try {
+      const local = await geocodificarEndereco(busca.trim());
+
+      if (!local) {
+        setMensagem('Não encontramos esse endereço. Tente outro bairro ou rua.');
+        return;
+      }
+
+      setCentro({ lat: local.latitude, lng: local.longitude });
+      setMensagem('Os logos da Xepa no mapa são as feiras cadastradas.');
+    } catch {
+      setMensagem('Não foi possível buscar agora. Tente novamente.');
     }
   }
 
@@ -38,16 +69,30 @@ function MapaFeiras() {
         </form>
 
         <div className="mapa-visual">
-          <iframe
-            title={`Mapa de ${localizacao}`}
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(localizacao)}&output=embed`}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
+                   {isLoaded ? (
+            <GoogleMap
+              mapContainerStyle={{ width: '100%', height: '100%' }}
+              center={centro}
+              zoom={14}
+            >
+              {feiras.map((feira) => (
+                <Marker
+                  key={feira.id}
+                  position={{ lat: feira.latitude, lng: feira.longitude }}
+                  title={feira.nome}
+                  icon={{
+                    url: logoXepa,
+                    scaledSize: new window.google.maps.Size(40, 40),
+                  }}
+                />
+              ))}
+            </GoogleMap>
+          ) : (
+            <p>Carregando mapa...</p>
+          )}
         </div>
 
-        <p className="mapa-observacao">Pesquise um endereço para visualizar a região no mapa.</p>
+        <p className="mapa-observacao">{mensagem}</p>
       </div>
     </section>
   );
