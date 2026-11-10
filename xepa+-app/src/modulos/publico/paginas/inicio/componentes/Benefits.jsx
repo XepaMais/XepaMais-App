@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Apple, Carrot, LeafyGreen, Sprout } from 'lucide-react';
 import '@/modulos/publico/paginas/inicio/estilos/Benefits.css';
 
@@ -58,9 +59,9 @@ export default function Benefits() {
           desperdício nas feiras.
         </p>
 
-        <a href="#sobre" className="botao-beneficios">
-          Saiba mais
-        </a>
+        <Link to="/CriarConta" className="botao-beneficios">
+          Criar minha conta
+        </Link>
       </header>
 
       <div className="ilustracao-beneficios">

@@ -34,7 +34,7 @@ const perguntas = [
 ];
 
 function PerguntasFrequentes() {
-  const [perguntaAberta, setPerguntaAberta] = useState(1);
+  const [perguntaAberta, setPerguntaAberta] = useState(-1);
 
   return (
     <section className="perguntas-frequentes" id="perguntas">
