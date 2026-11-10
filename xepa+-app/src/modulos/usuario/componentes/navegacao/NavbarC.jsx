@@ -6,7 +6,7 @@ import FotoPerfil from '@/compartilhado/componentes/conta/FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import useCarrinho from '@/modulos/usuario/hooks/useCarrinho';
 import styles from './navbarC.module.css';
-import logo from '@/assets/imagens/gerais/logo-2.png';
+import logo from '@/assets/imagens/marca/logo.png';
 
 const links = [
   { texto: 'Home', destino: '/homeU' },
