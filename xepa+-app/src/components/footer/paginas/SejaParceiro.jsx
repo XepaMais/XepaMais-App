@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Check, Leaf, MapPin, Store, TrendingUp, Users } from 'lucide-react';
 import imagemFeirante from '@/assets/imagens/sobre-nos/Feirante.jpg';
 import LayoutFooter from './LayoutFooter';
-import Styles from './paginas.module.css';
+import Styles from './estilos/SejaParceiro.module.css';
 
 const VANTAGENS = [
   {
@@ -49,6 +49,7 @@ const PASSOS = [
 function SejaParceiro() {
   return (
     <LayoutFooter
+      estilos={Styles}
       etiqueta="Para vender"
       titulo="Seja um feirante parceiro do Xepa+"
       descricao="Leve sua barraca para o digital, conquiste novos clientes e transforme o fim da feira em lucro, não em desperdício."

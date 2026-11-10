@@ -4,6 +4,8 @@ import SobreNos from '@/modulos/publico/paginas/sobre-nos/SobreNos';
 import XepAI from '@/components/footer/paginas/XepAI';
 import Suporte from '@/components/footer/paginas/Suporte';
 import SejaParceiro from '@/components/footer/paginas/SejaParceiro';
+import TermosDeUso from '@/components/footer/paginas/TermosDeUso';
+import DiretrizesPrivacidade from '@/components/footer/paginas/DiretrizesPrivacidade';
 
 export const rotasPublicas = [
   <Route key="inicio" path="/" element={<HomePrincipal />} />,
@@ -11,5 +13,7 @@ export const rotasPublicas = [
   <Route key="xep-ai" path="/xep-ai" element={<XepAI />} />,
   <Route key="suporte" path="/suporte" element={<Suporte />} />,
   <Route key="seja-parceiro" path="/seja-parceiro" element={<SejaParceiro />} />,
+  <Route key="termos-de-uso" path="/termos-de-uso" element={<TermosDeUso />} />,
+  <Route key="privacidade" path="/privacidade" element={<DiretrizesPrivacidade />} />,
   <Route key="nao-encontrada" path="*" element={<HomePrincipal />} />,
 ];

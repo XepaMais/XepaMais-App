@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import Styles from '@/modulos/autenticacao/paginas/estilos/CriarConta.module.css';
+import Styles from '@/modulos/autenticacao/paginas/estilos/CriarUsuarioF.module.css';
 
 function CriarConta() {
   const navigate = useNavigate();

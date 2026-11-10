@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import Header from '@/modulos/publico/paginas/inicio/componentes/Header.jsx';
-import Styles from './paginas.module.css';
 
 // Estrutura comum das páginas abertas pelo rodapé: cabeçalho público + faixa de título.
-function LayoutFooter({ etiqueta, titulo, descricao, children }) {
+// "estilos" é o CSS da página (estilos/<Pagina>.module.css), que inclui a faixa de título.
+function LayoutFooter({ etiqueta, titulo, descricao, estilos: Styles, children }) {
   // Sempre começa do topo (html e body têm overflow-x: hidden, então zeramos os três).
   useEffect(() => {
     window.scrollTo(0, 0);
