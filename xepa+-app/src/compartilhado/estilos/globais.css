@@ -13,3 +13,15 @@ body {
   padding: 0;
   text-align: left;
 }
+
+/* Seções da Home acessadas por âncora (#): não ficam escondidas sob o cabeçalho fixo */
+#inicio,
+#sobre,
+#como-funciona,
+#beneficios,
+#divulgacao,
+#planos-titulo,
+#mapa,
+#perguntas {
+  scroll-margin-top: 80px;
+}

@@ -50,7 +50,7 @@ const BENEFICIOS = [
 
 export default function Propaganda({ onDivulgar }) {
   return (
-    <section className="propaganda" aria-labelledby="propaganda-titulo">
+    <section className="propaganda" id="divulgacao" aria-labelledby="propaganda-titulo">
       <div className="propaganda-container">
         <div className="propaganda-fundo">
           <figure className="propaganda-foto">
