@@ -7,6 +7,7 @@ import { rotasUsuario } from './aplicacao/rotas/rotas-usuario';
 
 import Footer from './components/footer/footer';
 import UserWay from './components/UserWay';
+import RolarParaTopo from './compartilhado/componentes/RolarParaTopo';
 
 import HeaderHomeGlobal from './modulos/publico/componentes/navegacao/HeaderHomeGlobal';
 import NavbarFeiranteGlobal from './modulos/feirante/componentes/navegacao/NavbarFeiranteGlobal';
@@ -15,6 +16,7 @@ import NavbarUsuarioGlobal from './modulos/usuario/componentes/navegacao/NavbarU
 function App() {
   return (
     <BrowserRouter>
+      <RolarParaTopo />
       <div className="app">
         <UserWay />
 
