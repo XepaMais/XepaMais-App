@@ -2,17 +2,13 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { useNavigate } from 'react-router-dom'
 import logoXepa from '@/assets/imagens/gerais/logo-colorida.png'
 import styles from '@/modulos/feirante/paginas/adicionar-feira/estilos/MiniMapas.module.css'
+import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps'
 
-const libraries = ['places'];
 const CENTRO_PADRAO = { lat: -23.5505, lng: -46.6333 }; // São Paulo
 
 function MiniMapaFeiras({ feiras }) {
   const navigate = useNavigate();
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+  const { isLoaded } = useJsApiLoader(GOOGLE_MAPS_LOADER);
 
   // TODO 1: só as feiras que têm coordenada
   const feirasNoMapa = feiras

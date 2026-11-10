@@ -3,8 +3,7 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import Styles from '../estilos/MapU.module.css'
 import Modal from '@/compartilhado/componentes/modal/Modal'
 import logoXepa from '@/assets/imagens/gerais/logo-colorida.png'
-
-const libraries = ['places'];
+import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps'
 
 // Simulação das feiras cadastradas no sistema
 const FEIRAS_CADASTRADAS = [
@@ -32,11 +31,7 @@ const FEIRAS_CADASTRADAS = [
 ];
 
 function MapPage() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyBXOjzHfR4E1F2aVvoVwsfFPX33BZto2H8',
-    libraries,
-  });
+  const { isLoaded } = useJsApiLoader(GOOGLE_MAPS_LOADER);
 
   const [cep, setCep] = useState('');
   const [aviso, setAviso] = useState('');
@@ -83,8 +78,8 @@ function MapPage() {
         componentRestrictions: { country: 'BR' } 
       }, 
       (results, status) => {
-        if (status === 'OK' && results) {
-          const coords = results.geometry.location;
+        if (status === 'OK' && results?.[0]) {
+          const coords = results[0].geometry.location;
           setMapCenter({
             lat: coords.lat(),
             lng: coords.lng(),
@@ -127,9 +122,13 @@ function MapPage() {
                 position={userPosition}
                 title="Você está aqui"
                 icon={{
-                  // URL de uma bolinha azul padrão estilo GPS do Google Maps
-                  url: "https://google.com",
-                  scaledSize: new window.google.maps.Size(40, 40),
+                  // Bolinha azul estilo GPS do Google Maps
+                  path: window.google.maps.SymbolPath.CIRCLE,
+                  scale: 9,
+                  fillColor: '#4285F4',
+                  fillOpacity: 1,
+                  strokeColor: '#ffffff',
+                  strokeWeight: 3,
                 }}
               />
             )}

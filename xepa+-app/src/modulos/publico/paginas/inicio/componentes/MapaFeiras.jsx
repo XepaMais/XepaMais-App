@@ -3,9 +3,9 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import logoXepa from '@/assets/imagens/gerais/logo-colorida.png';
 import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
 import { geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
+import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps';
 import '@/modulos/publico/paginas/inicio/estilos/MapaFeiras.css';
 
-const libraries = ['places'];
 const CENTRO_PADRAO = { lat: -23.4669, lng: -46.6869 }; // Brasilândia, São Paulo
 
 
@@ -13,11 +13,7 @@ const CENTRO_PADRAO = { lat: -23.4669, lng: -46.6869 }; // Brasilândia, São Pa
 
 function MapaFeiras() {
 
-    const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
+  const { isLoaded } = useJsApiLoader(GOOGLE_MAPS_LOADER);
 
   const [busca, setBusca] = useState('Brasilândia, São Paulo');
   const [centro, setCentro] = useState(CENTRO_PADRAO);
