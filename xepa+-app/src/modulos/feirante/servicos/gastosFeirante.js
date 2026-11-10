@@ -4,16 +4,16 @@ import { estaNaSemanaAtual, estaNoMesAtual } from '@/compartilhado/servicos/data
 const CHAVE_GASTOS = 'gastosFeirante';
 
 export const CATEGORIAS_GASTO = [
-  { valor: 'mercadoria', rotulo: 'Mercadoria', cor: '#18552f' },
-  { valor: 'ajudantes', rotulo: 'Ajudantes/funcionários', cor: '#9bc000' },
-  { valor: 'transporte', rotulo: 'Transporte', cor: '#ffc927' },
-  { valor: 'combustivel', rotulo: 'Combustível', cor: '#f76019' },
-  { valor: 'embalagens', rotulo: 'Embalagens e sacolas', cor: '#5c8f6b' },
-  { valor: 'barraca', rotulo: 'Barraca e equipamentos', cor: '#d1ea71' },
-  { valor: 'manutencao', rotulo: 'Manutenção', cor: '#b53807' },
-  { valor: 'taxas', rotulo: 'Taxas e licenças', cor: '#ffe08a' },
-  { valor: 'alimentacao', rotulo: 'Alimentação', cor: '#ffb48a' },
-  { valor: 'outros', rotulo: 'Outros gastos', cor: '#716d6d' },
+  { valor: 'mercadoria', rotulo: 'Mercadoria', cor: '#104B2D' },
+  { valor: 'ajudantes', rotulo: 'Ajudantes/funcionários', cor: '#27693A' },
+  { valor: 'transporte', rotulo: 'Transporte', cor: '#3A8855' },
+  { valor: 'combustivel', rotulo: 'Combustível', cor: '#9CBB06' },
+  { valor: 'embalagens', rotulo: 'Embalagens e sacolas', cor: '#F5B400' },
+  { valor: 'barraca', rotulo: 'Barraca e equipamentos', cor: '#FF8C00' },
+  { valor: 'manutencao', rotulo: 'Manutenção', cor: '#FF5200' },
+  { valor: 'taxas', rotulo: 'Taxas e licenças', cor: '#733000' },
+  { valor: 'alimentacao', rotulo: 'Alimentação', cor: '#B84A00' },
+  { valor: 'outros', rotulo: 'Outros gastos', cor: '#161414' },
 ];
 
 // Dados de exemplo (Depois vou trocar pelos dados da API, so pra n esquecer)

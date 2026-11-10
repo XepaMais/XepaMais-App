@@ -12,13 +12,17 @@ function FeiraDePerto() {
   }
 
   return (
-    <section className="secao">
-      <h2>Conheça a feira de perto</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit
-        esse cillum. Excepteur sint occaecat cupidatat non proident.
-      </p>
+    <section className="secao" aria-labelledby="sn-feira">
+      <div className="sn-cabecalho">
+        <p className="sn-eyebrow">Na prática</p>
+        <h2 id="sn-feira" className="sn-titulo">
+          Conheça a feira de perto
+        </h2>
+        <p className="sn-texto">
+          É no fim da feira que a xepa acontece. Dê o play e veja de perto o dia a dia que inspira o
+          Xepa+.
+        </p>
+      </div>
 
       <div className="video">
         <video

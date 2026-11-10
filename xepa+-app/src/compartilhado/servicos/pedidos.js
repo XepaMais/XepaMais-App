@@ -5,6 +5,15 @@ export function carregarPedidos() {
   return JSON.parse(localStorage.getItem(CHAVE_PEDIDOS)) || [];
 }
 
+// Status usados na retirada do pedido.
+export const PENDENTE_RETIRADA = 'Pendente de retirada';
+export const RETIRADO = 'Retirado';
+
+// Gera um número aleatório de 4 dígitos (de 1000 a 9999).
+function gerarCodigoRetirada() {
+  return String(Math.floor(Math.random() * 9000) + 1000);
+}
+
 export function registrarPedido({ itens, total }) {
   const pedidos = carregarPedidos();
 
@@ -13,11 +22,21 @@ export function registrarPedido({ itens, total }) {
     data: new Date().toISOString(),
     itens,
     total,
-    status: 'Pagamento informado',
+    status: PENDENTE_RETIRADA,
+    codigo: gerarCodigoRetirada(),
   };
 
   localStorage.setItem(CHAVE_PEDIDOS, JSON.stringify([novoPedido, ...pedidos]));
   return novoPedido;
+}
+
+// Usado quando o feirante marca o pedido como retirado no chat.
+export function atualizarStatusPedido(numero, status) {
+  const pedidos = carregarPedidos().map((pedido) => (
+    pedido.numero === numero ? { ...pedido, status } : pedido
+  ));
+
+  localStorage.setItem(CHAVE_PEDIDOS, JSON.stringify(pedidos));
 }
 
 export function formatarMoeda(valor) {

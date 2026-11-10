@@ -25,10 +25,7 @@ function Planos() {
         </div>
       </header>
 
-      <p className={base.aviso}>
-        A contratação ainda não está integrada a um meio de pagamento: selecionar um plano guarda
-        sua escolha neste navegador e libera os recursos dele, sem nenhuma cobrança.
-      </p>
+    
 
       <div className={styles.grade}>
         {PLANOS.map((plano) => {

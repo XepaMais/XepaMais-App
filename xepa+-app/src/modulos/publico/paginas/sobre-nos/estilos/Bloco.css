@@ -1,63 +1,121 @@
-.bloco {
+/* Missão, Visão e Valores: painel colorido + foto até a borda, sem espaço entre eles */
+.sn-painel {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  /* cada bloco ocupa boa parte da tela, proporcional à altura da janela */
+  min-height: clamp(440px, 80svh, 760px);
+}
+
+.sn-painel--lima .sn-painel__texto {
+  background: var(--sn-lima-claro, #eef4d9);
+}
+
+.sn-painel--laranja .sn-painel__texto {
+  background: var(--sn-laranja-claro, #fff0e6);
+}
+
+.sn-painel--amarelo .sn-painel__texto {
+  background: var(--sn-amarelo-claro, #fff6d9);
+}
+
+.sn-painel__texto {
+  display: flex;
   align-items: center;
-  margin-top: clamp(32px, 5vw, 56px);
+  justify-content: center;
+  padding: clamp(40px, 5vw, 72px) clamp(24px, 5vw, 72px);
 }
 
-.bloco--invertido {
-  grid-template-columns: 45fr 55fr;
+.sn-painel--invertido .sn-painel__texto {
+  order: 2;
 }
 
-.bloco__midia {
-  padding: clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px) 0;
-  background: var(--verde);
+/* Caixa de texto larga, centralizada na metade colorida */
+.sn-painel__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 560px;
 }
 
-.bloco--invertido .bloco__midia {
-  padding: clamp(8px, 2.6vw, 36px) 0 clamp(8px, 2.6vw, 36px) clamp(8px, 2.6vw, 36px);
+.sn-painel__conteudo .sn-texto {
+  max-width: none;
 }
 
-.bloco__midia img {
+/* Palavras principais maiores nos blocos de Missão, Visão e Valores */
+.sobre .sn-painel .sn-titulo {
+  font-size: clamp(32px, 3.6vw, 52px);
+}
+
+.sn-painel__midia {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.sn-painel__midia > video {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  max-width: none;
   object-fit: cover;
+  background: var(--verde, #18552f);
 }
 
-.bloco__texto {
-  padding: 0 clamp(16px, 6vw, 90px) 0 clamp(16px, 7vw, 100px);
-  text-align: center;
-}
+/* ---------- Valores: texto simples ---------- */
 
-.bloco--invertido .bloco__texto {
-  padding: 0 clamp(16px, 7vw, 100px) 0 clamp(16px, 6vw, 90px);
-}
-
-.bloco__texto h2 {
-  margin: 0 0 clamp(10px, 3vw, 28px);
-}
-
-section.bloco .bloco__texto p {
+.sn-valores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin: 0;
-  line-height: 1.4;
-  text-align: left;
+  padding: 0;
+  list-style: none;
 }
 
-/* Celulares: foto em cima e texto embaixo, para o texto não ficar espremido */
-@media (max-width: 700px) {
-  .bloco,
-  .bloco--invertido {
+.sn-valores li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.sn-valores li::before {
+  content: '';
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--laranja, #f76019);
+}
+
+/* Tablets e celulares: foto em cima, texto embaixo */
+@media (max-width: 800px) {
+  .sn-painel {
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
+    min-height: 0;
   }
 
-  .bloco--invertido .bloco__midia {
+  .sn-painel__midia {
     order: -1;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
   }
 
-  .bloco__texto,
-  .bloco--invertido .bloco__texto {
-    padding: 0 var(--margem-lateral);
+  .sn-painel--invertido .sn-painel__texto {
+    order: 0;
+  }
+
+  .sn-painel__texto {
+    justify-content: flex-start;
+    padding: 40px var(--margem-lateral, 20px) 48px;
+  }
+
+  .sn-painel__conteudo {
+    max-width: 640px;
   }
 }

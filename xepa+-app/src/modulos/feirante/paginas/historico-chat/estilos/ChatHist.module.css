@@ -1,296 +1,809 @@
 .paginaChat {
-  padding: var(--espaco-topo) var(--margem-lateral) var(--espaco-base);
+  display: flex;
+  width: 100%;
   max-width: var(--largura-pagina);
+  height: calc(100vh - 70px);
+  height: calc(100dvh - 70px);
+  min-height: 560px;
+  flex-direction: column;
   margin: 0 auto;
-  font-family: 'Poppins', sans-serif;
+  padding: var(--espaco-topo) var(--margem-lateral) 24px;
+  color: var(--verde);
+}
+
+/* Mesmo cabeçalho das outras páginas (Meus pedidos, Histórico de vendas...) */
+.cabecalhoPagina {
+  flex-shrink: 0;
+  margin-bottom: 16px;
+}
+
+.cabecalhoPagina h1 {
+  margin: 0;
+  color: var(--verde);
+  font-size: var(--fonte-titulo-pagina);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cabecalhoPagina p {
+  margin: 4px 0 0;
+  color: var(--cinza);
   font-size: var(--fonte-texto);
 }
 
-.tituloHist {
-  color: #18552f;
-  font-size: var(--fonte-titulo-pagina);
-  font-weight: 700;
-  margin-top: 0;
-  margin-bottom: 12px;
+.quadroChat {
+  display: grid;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: minmax(300px, 36%) minmax(0, 1fr);
+  overflow: hidden;
+  border: var(--borda-card);
+  border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: var(--sombra-suave);
+}
+
+.barraLateral {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  padding-top: 16px;
+  border-right: 1.5px solid var(--cinza-claro);
+  background: var(--branco);
 }
 
 .containerBusca {
   display: flex;
+  min-height: 44px;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 9px;
+  margin: 0 14px 12px;
+  padding: 0 12px;
+  border: 1.5px solid var(--cinza-claro);
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+  color: var(--cinza);
 }
 
-.labelBusca {
-  color: #18552f;
-  font-size: var(--fonte-texto);
-  font-weight: 700;
+.containerBusca:focus-within {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 3px rgba(24, 85, 47, .1);
 }
 
-.inputBusca {
-  width: 100%;
-  max-width: 450px;
-  padding: 10px 16px;
-  border: 1px solid #c0c0c0;
-  border-radius: 8px;
-  font-size: var(--fonte-texto);
-  font-family: 'Poppins', sans-serif;
-  outline: none;
-}
-
-.btnBusca {
-  background-color: transparent;
-  border: 1.5px solid #18552f;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btnBusca:hover {
-  background-color: #e8f0eb;
-}
-
-.quadroChat {
-  display: flex;
-  background-color: #d1e29c;
-  border-radius: 16px;
-  overflow: hidden;
-  height: calc(100vh - 240px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  min-height: 520px;
-}
-
-.barraLateral {
-  width: 280px;
-  background-color: #9bc000;
-  display: flex;
-  flex-direction: column;
+.containerBusca svg {
+  width: 17px;
+  height: 17px;
   flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
 }
 
-.tituloLateral {
-  background-color: #18552f;
-  color: #9bc000;
-  padding: 16px 20px;
-  margin: 0;
-}
-
-.tituloLateral h2 {
-  margin: 0;
-  font-size: var(--fonte-titulo-card);
-  font-weight: 700;
+.containerBusca input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--preto);
+  font: inherit;
+  font-size: var(--fonte-pequena);
 }
 
 .listaContatos {
-  overflow-y: auto;
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding: 2px 14px 14px;
 }
 
+/* Cada conversa é um card, como os cards do resto do site */
 .itemContato {
   display: flex;
+  width: 100%;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 2px solid #9bc000;
+  gap: 12px;
+  padding: 12px;
+  border: 1.5px solid var(--cinza-claro);
+  border-radius: 12px;
+  background: var(--branco);
+  color: inherit;
+  text-align: left;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: border-color .15s, background-color .15s, box-shadow .15s;
 }
 
 .itemContato:hover {
-  background-color: #a8c627;
+  border-color: var(--verde-suave);
+  background: #f5faf6;
+}
+
+.contatoAtivo,
+.contatoAtivo:hover {
+  border-color: var(--verde);
+  background: #e9f5ec;
+  box-shadow: 0 2px 8px rgba(24, 85, 47, .12);
+}
+
+.itemContato:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
 }
 
 .avatarContato {
-  width: 44px;
-  height: 44px;
-  background-color: #f76019;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
   border-radius: 50%;
-  margin-right: 12px;
-  flex-shrink: 0;
+  background: var(--verde);
+  color: var(--branco);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Cor fixa por pessoa (ver corDoAvatar em ItemConversa.jsx) */
+.avatarVerde {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.avatarLaranja {
+  background: var(--laranja);
+  color: var(--branco);
+}
+
+.avatarAmarelo {
+  background: var(--amarelo);
+  color: var(--preto);
 }
 
 .infoContato {
+  display: block;
+  min-width: 0;
+  flex: 1;
+}
+
+.linhaContato {
   display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .nomeContato {
-  color: white;
-  font-weight: 700;
+  overflow: hidden;
+  color: var(--preto);
   font-size: var(--fonte-texto);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.horarioContato {
+  flex-shrink: 0;
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
 }
 
 .msgContato {
-  color: white;
-  font-size: var(--fonte-legenda);
-  white-space: nowrap;
+  display: block;
   overflow: hidden;
+  margin-top: 2px;
+  color: #3f4943;
+  font-size: var(--fonte-pequena);
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.semContatos {
+  padding: 18px 12px;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  text-align: center;
 }
 
 .areaConversa {
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  padding: 16px 24px;
   min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  padding: 0 0 20px;
+  background: #fbfcfb;
 }
 
 .cabecalhoConversa {
   display: flex;
-  flex-direction: row;
+  flex-shrink: 0;
+  min-height: 72px;
   align-items: center;
-  margin-bottom: 16px;
   gap: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(27, 77, 46, 0.25);
+  margin-bottom: 16px;
+  padding: 12px var(--margem-lateral);
+  border-bottom: 1px solid var(--cinza-claro);
+  background: #eaf6ec;
 }
 
-.fotoAtiva {
-  width: 48px;
-  height: 48px;
-  background-color: #ccc;
-  border-radius: 50%;
-  margin-bottom: 0;
-  flex-shrink: 0;
+/* Mesmo tamanho de foto e nome da página da Xepinha (chat-ia) */
+.avatarAtivo {
+  width: 56px;
+  height: 56px;
+  flex-basis: 56px;
+  font-size: 22px;
 }
 
 .nomeAtivo {
-  color: #18552f;
   margin: 0;
+  color: var(--verde);
   font-size: var(--fonte-titulo-card);
   font-weight: 700;
 }
 
+.botaoVoltar {
+  display: none;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--verde);
+  cursor: pointer;
+}
+
+.botaoVoltar:hover {
+  background: rgba(24, 85, 47, .08);
+}
+
+.botaoVoltar svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
 .areaMensagens {
-  flex: 1;
   display: flex;
+  min-height: 0;
+  flex: 1;
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  padding-right: 8px;
-  min-height: 0;
+  padding: 0 var(--margem-lateral) 16px;
 }
 
-.balaoRecebido {
-  background-color: #18552f;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 16px 16px 16px 0;
-  align-self: flex-start;
-  max-width: 75%;
+.linhaMensagem {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mensagemMinha {
+  justify-content: flex-end;
+}
+
+.balao {
+  display: flex;
+  max-width: 80%;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 16px 9px;
+  border-radius: 12px 12px 12px 0;
+  background: var(--verde);
+  color: var(--branco);
   font-size: var(--fonte-texto);
-  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 
-.balaoEnviado {
-  background-color: #f76019;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 16px 16px 0 16px;
+.balao time {
   align-self: flex-end;
-  max-width: 75%;
-  font-size: var(--fonte-texto);
-  font-weight: 500;
+  color: rgba(255, 255, 255, .88);
+  font-size: var(--fonte-legenda);
+  font-weight: 600;
+}
+
+.mensagemMinha .balao {
+  border-radius: 12px 12px 0 12px;
+  background: var(--laranja);
 }
 
 .areaInput {
   position: relative;
-  margin-top: 16px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: auto;
+  margin: 0 clamp(16px, 4vw, 40px);
 }
 
-.inputMensagem {
+.areaInput input {
   width: 100%;
-  padding: 14px 56px 14px 20px;
-  border: 1px solid #18552f;
-  border-radius: 40px;
-  background-color: white;
-  font-size: var(--fonte-texto);
-  font-family: 'Poppins', sans-serif;
+  min-width: 0;
+  padding: 14px 58px 14px 16px;
+  border: 1.5px solid var(--verde);
+  border-radius: var(--raio-botao);
   outline: none;
+  background: var(--branco);
+  color: var(--preto);
+  font: inherit;
+  font-size: var(--fonte-texto);
+}
+
+.areaInput input:focus {
+  box-shadow: 0 0 0 3px rgba(24, 85, 47, .1);
+}
+
+.areaInput input::placeholder {
+  color: var(--cinza);
 }
 
 .btnEnviar {
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #f76019;
-  color: white;
-  border: none;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: 20px;
+  font-weight: 700;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Tablets e celulares: contatos em faixa rolável acima da conversa */
-@media (max-width: 768px) {
+.btnEnviar:hover:not(:disabled) {
+  background: #dc4e10;
+}
+
+.btnEnviar:disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+
+.conversaVazia {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--cinza);
+  text-align: center;
+}
+
+
+/* Abas Recentes / Finalizadas */
+.abas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 0 14px 12px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #e9f5ec;
+}
+
+.aba {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 8px;
+  border: 0;
+  border-radius: var(--raio-botao);
+  background: transparent;
+  color: var(--verde);
+  font: inherit;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .15s, color .15s;
+}
+
+.aba:hover {
+  background: rgba(24, 85, 47, .08);
+}
+
+.abaAtiva,
+.abaAtiva:hover {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.aba:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+
+.contadorAba {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--branco);
+  color: var(--verde);
+  font-size: var(--fonte-legenda);
+  font-weight: 700;
+  text-align: center;
+}
+
+.pedidoContato {
+  display: block;
+  margin-top: 2px;
+  color: var(--verde);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.listaVazia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 40px 16px;
+  text-align: center;
+}
+
+.iconeVazio {
+  display: grid;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 8px;
+  place-items: center;
+  border-radius: 50%;
+  background: #d3ecd9;
+  color: var(--verde);
+}
+
+.iconeVazio svg {
+  width: 40px;
+  height: 40px;
+}
+
+.listaVazia strong {
+  color: var(--preto);
+  font-size: 16px;
+}
+
+.listaVazia p {
+  max-width: 260px;
+  margin: 0;
+  color: var(--cinza);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Cabeçalho da conversa */
+.tituloConversa {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tituloConversa span,
+.tituloConversa h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tituloConversa span {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+}
+
+.acaoRetirada {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  color: var(--verde);
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+}
+
+.botaoRetirado,
+.botaoConfirmar,
+.botaoCancelar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--verde);
+  border-radius: var(--raio-botao);
+  font: inherit;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Mesmo botão verde da página da Xepinha */
+.botaoRetirado,
+.botaoConfirmar {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.botaoRetirado:hover,
+.botaoConfirmar:hover {
+  border-color: #287447;
+  background: #287447;
+}
+
+.botaoCancelar {
+  background: var(--branco);
+  color: var(--verde);
+}
+
+.botaoCancelar:hover {
+  background: #eaf6ec;
+}
+
+.botaoRetirado svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Conversas com mensagens novas */
+.contatoNaoLido .nomeContato,
+.contatoNaoLido .msgContato {
+  color: var(--preto);
+  font-weight: 700;
+}
+
+.contadorNaoLidas {
+  display: grid;
+  min-width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: var(--fonte-legenda);
+  font-weight: 700;
+}
+
+/* Resumo do pedido no topo da conversa */
+.resumoPedido {
+  align-self: center;
+  width: min(100%, 460px);
+  margin-bottom: 8px;
+  padding: 14px 16px;
+  border: 1px solid #cfe6d5;
+  border-radius: 12px;
+  background: #eaf6ec;
+  font-size: 14px;
+}
+
+.resumoPedido header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--verde);
+  font-size: 15px;
+}
+
+.statusAguardando,
+.statusRetirado {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.statusAguardando {
+  background: #fff0e7;
+  color: #ba4b19;
+}
+
+.statusRetirado {
+  background: var(--verde);
+  color: var(--branco);
+}
+
+.resumoPedido dl {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+
+.resumoPedido dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.resumoPedido dt {
+  color: var(--cinza);
+}
+
+.resumoPedido dd {
+  margin: 0;
+  color: var(--preto);
+  font-weight: 600;
+  text-align: right;
+}
+
+.resumoPedido ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 0 0;
+  border-top: 1px dashed #b9d8c1;
+  list-style: none;
+}
+
+.resumoPedido li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--preto);
+}
+
+.avisoSistema {
+  align-self: center;
+  margin: 4px 0 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #e8ece9;
+  color: var(--cinza);
+  font-size: 13px;
+  text-align: center;
+}
+
+.conversaEncerrada {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 clamp(16px, 4vw, 40px);
+  padding: 14px 16px;
+  border: 1.5px dashed #b9d8c1;
+  border-radius: var(--raio-botao);
+  background: #f3f7f4;
+  color: var(--cinza);
+  font-size: 14px;
+  text-align: center;
+}
+
+.conversaEncerrada svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--verde);
+}
+
+@media (max-width: 760px) {
+  .paginaChat {
+    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
+    min-height: 480px;
+    padding: 10px;
+  }
+
+  .cabecalhoPagina {
+    margin-bottom: 10px;
+  }
+
+  .cabecalhoPagina p {
+    display: none;
+  }
+
   .quadroChat {
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
 
   .barraLateral {
-    width: 100%;
+    padding-top: 12px;
+    border-right: 0;
   }
 
-  .tituloLateral {
-    display: none;
+  .abas,
+  .containerBusca {
+    margin-right: 12px;
+    margin-left: 12px;
   }
 
   .listaContatos {
-    display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
+    padding: 2px 12px 12px;
   }
 
   .itemContato {
-    flex: 0 0 auto;
-    flex-direction: column;
-    gap: 4px;
-    padding: 10px 14px;
-    border-bottom: 0;
-    border-right: 2px solid #9bc000;
+    min-width: 0;
+    padding: 10px;
   }
 
   .avatarContato {
-    margin-right: 0;
-  }
-
-  .msgContato {
-    display: none;
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
   }
 
   .areaConversa {
-    height: 62vh;
-    min-height: 420px;
-    padding: 12px 14px;
+    padding: 0 0 12px;
   }
 
-  .balaoRecebido,
-  .balaoEnviado {
+  .areaMensagens {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .areaInput,
+  .conversaEncerrada {
+    margin: 0 12px;
+  }
+
+  .areaConversa,
+  .conversaVazia,
+  .conversaMobileAtiva .barraLateral {
+    display: none;
+  }
+
+  .botaoRetirado {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .conversaMobileAtiva .areaConversa {
+    display: flex;
+  }
+
+  .botaoVoltar {
+    display: grid;
+  }
+
+  .cabecalhoConversa {
+    min-height: 58px;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+  }
+
+  .areaMensagens {
+    padding-bottom: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .itemContato {
+    gap: 8px;
+  }
+
+  .acaoRetirada > span {
+    display: none;
+  }
+
+  .cabecalhoConversa .avatarAtivo {
+    display: none;
+  }
+
+  .avatarContato {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .balao {
     max-width: 90%;
   }
+}
 
-  .containerBusca {
-    flex-wrap: wrap;
-  }
-
-  .labelBusca {
-    width: 100%;
-  }
-
-  .inputBusca {
-    flex: 1;
-    min-width: 0;
-  }
+.linhaContato .msgContato {
+  flex: 1;
+  min-width: 0;
 }

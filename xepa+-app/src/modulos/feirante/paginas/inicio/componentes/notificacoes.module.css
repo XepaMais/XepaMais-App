@@ -1,0 +1,81 @@
+/* Card "Notificações" da Home do feirante (complementa HomeFeirante.module.css) */
+.titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contador {
+  display: inline-grid;
+  min-width: 24px;
+  height: 24px;
+  place-items: center;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: var(--fonte-legenda);
+  font-weight: 700;
+}
+
+.verTodas {
+  border: 0;
+  background: transparent;
+  color: var(--verde);
+  font: inherit;
+  font-size: var(--fonte-pequena);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.verTodas:hover {
+  color: #287447;
+}
+
+.novas {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  place-items: center;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--laranja);
+  color: var(--branco);
+  font-size: var(--fonte-legenda);
+  font-weight: 700;
+}
+
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 24px 12px;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+  text-align: center;
+}
+
+.vazio svg {
+  color: var(--verde);
+}
+
+.vazio strong {
+  color: var(--verde);
+  font-size: var(--fonte-texto);
+}
+
+/* Mesmos cards da lista de conversas do chat (ItemConversa) */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Fundo branco como a lista do chat (section.quadro vence o fundo do card da Home) */
+section.quadro {
+  background: var(--branco);
+}

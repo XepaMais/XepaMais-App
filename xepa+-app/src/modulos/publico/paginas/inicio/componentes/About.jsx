@@ -9,20 +9,17 @@ export default function About() {
   return (
     <section className="secao-sobre" id="sobre">
       <div className="conteudo-sobre">
-        <h2>
-          Conheça quem
-          <br />
-          nos inspirou
-        </h2>
 
-        <p>
-          Sunti in culpa qui officia deserunt mollit anim id est laborum. Nemo enim ipsam voluptatem
-          quia voluptas sit aspernatur aut odit aut fugit. Neque porro quisquam est, qui dolorem
-          ipsum quia dolor sit amet.
+        <h2>Um projeto contra o desperdício nas feiras</h2>
+
+        <p className="sobre-texto">
+          Somos estudantes que se uniram para dar um novo destino à <strong>xepa</strong>: os
+          alimentos que sobram no fim da feira e ainda estão ótimos para o consumo. Conectamos
+          feirantes e consumidores para que eles cheguem à mesa, e não ao lixo.
         </p>
 
-        <button type="button" className="botao-sobre" onClick={() => navigate('/Sobrenos')}>
-          Saiba mais
+        <button type="button" className="botao-sobre" onClick={() => navigate('/sobrenos')}>
+          Conheça nossa história
         </button>
       </div>
 

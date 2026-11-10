@@ -1,13 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ClipboardList } from 'lucide-react';
-import { carregarPedidos, formatarDataHora, formatarMoeda } from '@/compartilhado/servicos/pedidos';
+import { Link, useNavigate } from 'react-router-dom';
+import { ClipboardList, QrCode } from 'lucide-react';
+import {
+  carregarPedidos,
+  formatarDataHora,
+  formatarMoeda,
+  RETIRADO,
+} from '@/compartilhado/servicos/pedidos';
+import { abrirConversaDoPedido } from '@/compartilhado/servicos/conversas';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './estilos/HistoricoPedidos.module.css';
 
 function HistoricoPedidos() {
   const [pedidos] = useState(carregarPedidos);
   const [pedidoAberto, setPedidoAberto] = useState(null);
+  const navegar = useNavigate();
+
+  function falarComVendedor(pedido) {
+    const conversa = abrirConversaDoPedido(pedido);
+    navegar('/HistoricoChatUsuario', { state: { conversa } });
+  }
 
   return (
     <main className={base.pagina}>
@@ -29,9 +41,6 @@ function HistoricoPedidos() {
         </section>
       ) : (
         <>
-          <p className={base.aviso}>
-            Os pedidos ficam salvos apenas neste navegador até a integração com o banco de dados.
-          </p>
 
           <div className={base.lista}>
             {pedidos.map((pedido) => {
@@ -67,6 +76,18 @@ function HistoricoPedidos() {
                       ))}
                     </ul>
 
+                    {/* Código para mostrar ao feirante na hora de retirar */}
+                    {pedido.codigo && pedido.status !== RETIRADO && (
+                      <div className={styles.retirada}>
+                        <QrCode size={88} aria-hidden="true" className={styles.qrCode} />
+                        <div>
+                          <span>Código de retirada</span>
+                          <strong className={styles.codigo}>{pedido.codigo}</strong>
+                          <p>Mostre este código ou o QR Code ao feirante para retirar o pedido.</p>
+                        </div>
+                      </div>
+                    )}
+
                     <div className={styles.rodape}>
                       <div className={styles.resumo}>
                         <span className={base.status}>{pedido.status}</span>
@@ -82,9 +103,13 @@ function HistoricoPedidos() {
                         >
                           {aberto ? 'Ocultar detalhes' : 'Ver detalhes'}
                         </button>
-                        <Link to="/HistoricoChatUsuario" className={base.botaoPrincipal}>
+                        <button
+                          type="button"
+                          className={base.botaoPrincipal}
+                          onClick={() => falarComVendedor(pedido)}
+                        >
                           Falar com vendedor
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

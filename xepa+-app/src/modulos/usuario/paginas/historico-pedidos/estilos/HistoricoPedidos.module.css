@@ -60,3 +60,42 @@
   gap: 8px 16px;
   font-size: var(--fonte-titulo-card);
 }
+
+/* Código de retirada */
+.retirada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 20px;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1.5px dashed var(--verde);
+  border-radius: 12px;
+  background: #f5faf6;
+}
+
+.qrCode {
+  flex-shrink: 0;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--branco);
+  color: var(--preto);
+}
+
+.retirada span {
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+}
+
+.codigo {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 8px;
+}
+
+.retirada p {
+  margin: 4px 0 0;
+  color: var(--cinza);
+  font-size: var(--fonte-pequena);
+}
