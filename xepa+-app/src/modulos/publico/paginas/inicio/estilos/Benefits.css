@@ -1,17 +1,23 @@
 .secao-beneficios {
   display: flex;
   flex-direction: column;
-  height: clamp(420px, 42vw, 600px);
-  padding: 40px 5% 0;
+  padding: 40px 5%;
   overflow: hidden;
   background: #fff3ec;
   color: #111;
 }
 
+/* Computadores: todas as seções da Home têm 650px de altura */
+@media (min-width: 1001px) {
+  .secao-beneficios {
+    height: 650px;
+    padding-bottom: 24px;
+  }
+}
+
 .cabecalho-beneficios {
   flex-shrink: 0;
   text-align: center;
-  animation: fadeUp 0.8s ease-out both;
 }
 
 .cabecalho-beneficios h2 {
@@ -33,10 +39,19 @@
   line-height: 1.5;
 }
 
+/* Computadores: a frase de apresentação fica em uma linha só */
+@media (min-width: 1100px) {
+  .cabecalho-beneficios p {
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
 .botao-beneficios {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
   margin-top: 16px;
   padding: 11px 32px;
   border: 0;
@@ -51,7 +66,6 @@
   transition:
     background 0.2s ease,
     transform 0.2s ease;
-  min-height: 44px;
 }
 
 .botao-beneficios:hover {
@@ -59,126 +73,118 @@
   transform: translateY(-1px);
 }
 
+/*
+ * Caixa no centro e as quatro categorias em volta, numa grade:
+ *   c1 | caixa | c2
+ *   c3 | caixa | c4
+ * (no celular, a caixa fica em cima e as categorias numa grade 2 x 2 abaixo)
+ */
 .ilustracao-beneficios {
-  position: relative;
+  display: grid;
   flex: 1;
-  width: min(800px, 100%);
+  grid-template-areas:
+    'c1 caixa c2'
+    'c3 caixa c4';
+  grid-template-columns: 1fr minmax(0, 520px) 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  gap: 16px 32px;
+  width: min(1100px, 100%);
   min-height: 0;
-  margin: 10px auto 0;
+  margin: 16px auto 0;
 }
 
 .cesta-beneficios {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 95%;
+  grid-area: caixa;
+  display: block;
+  width: 100%;
   height: 100%;
+  min-height: 0;
   object-fit: contain;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
-  animation: fadeInScale 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+  filter: drop-shadow(0 18px 28px rgba(24, 85, 47, 0.18));
 }
 
+/* Etiqueta de cada categoria */
 .categoria-beneficio {
-  position: absolute;
-  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #080808;
+  gap: 12px;
+  width: max-content;
+  max-width: 100%;
+  padding: 10px 20px 10px 10px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(24, 85, 47, 0.12);
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(16px, 1.5vw, 20px);
-  font-weight: 600;
-  line-height: 1.1;
-  animation: fadeUp 0.8s ease-out both;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.seta-beneficio {
-  display: block;
-  width: clamp(50px, 6vw, 80px);
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+.categoria-beneficio:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(24, 85, 47, 0.18);
 }
 
-/* Lado Esquerdo (Texto + Seta apontando para a esquerda) */
-.categoria-beneficio--legumes,
-.categoria-beneficio--frutas {
-  flex-direction: row;
+/* Lado esquerdo encosta na caixa pela direita; lado direito, pela esquerda */
+.categoria-beneficio:nth-of-type(odd) {
+  justify-self: end;
 }
 
-/* Lado Direito (Seta apontando para a direita + Texto) */
-.categoria-beneficio--verduras,
-.categoria-beneficio--temperos {
-  flex-direction: row-reverse;
+.categoria-beneficio:nth-of-type(even) {
+  justify-self: start;
 }
 
-.categoria-beneficio--legumes {
-  top: 10%;
-  left: 9%;
-  animation-delay: 0.4s;
+/* Cada etiqueta fica no meio da sua metade da caixa (alta ou baixa) */
+.categoria-beneficio {
+  align-self: center;
 }
 
-.categoria-beneficio--legumes .seta-beneficio {
-  transform: scaleX(-1) rotate(deg);
+.categoria-beneficio__icone {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
 }
 
-.categoria-beneficio--verduras {
-  top: 10%;
-  right: 6%;
-  animation-delay: 0.5s;
+.categoria-beneficio--verde .categoria-beneficio__icone {
+  background: #18552f;
 }
 
-.categoria-beneficio--verduras .seta-beneficio {
-  transform: rotate(-6deg);
+.categoria-beneficio--laranja .categoria-beneficio__icone {
+  background: #f76019;
 }
 
-.categoria-beneficio--frutas {
-  bottom: 12%;
-  left: 6%;
-  animation-delay: 0.6s;
+.categoria-beneficio__nome {
+  color: #18552f;
+  font-size: clamp(15px, 1.4vw, 18px);
+  font-weight: 700;
+  line-height: 1.25;
 }
 
-.categoria-beneficio--frutas .seta-beneficio {
-  transform: scaleX(-1) rotate(10deg);
-}
-
-.categoria-beneficio--temperos {
-  right: 6%;
-  bottom: 14%;
-  animation-delay: 0.7s;
-}
-
-.categoria-beneficio--temperos .seta-beneficio {
-  transform: rotate(150deg);
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+/* Tablets: seção cresce com o conteúdo e a caixa ganha altura fixa */
+@media (max-width: 1000px) {
+  .ilustracao-beneficios {
+    grid-template-columns: 1fr minmax(0, 360px) 1fr;
+    gap: 12px 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .cesta-beneficios {
+    height: clamp(240px, 38vw, 340px);
+  }
+
+  .categoria-beneficio {
+    padding-right: 16px;
   }
 }
 
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
-}
-
+/* Celulares: caixa em cima e as quatro categorias numa grade 2 x 2 */
 @media (max-width: 600px) {
   .secao-beneficios {
-    height: clamp(400px, 95vw, 550px);
-    padding: 24px 5% 0;
+    padding: 28px 16px 32px;
   }
 
   .cabecalho-beneficios h2 {
@@ -186,84 +192,144 @@
   }
 
   .cabecalho-beneficios p {
-    margin-top: 12px;
-    font-size: clamp(12px, 3vw, 14px);
-  }
-
-  .botao-beneficios {
-    margin-top: 16px;
-    padding: 9px 24px;
-    font-size: 13px;
-  }
-
-  .cesta-beneficios {
-    width: 100%;
-  }
-
-  .categoria-beneficio {
-    font-size: clamp(12px, 3.5vw, 16px);
-    gap: 4px;
-  }
-
-  .seta-beneficio {
-    width: clamp(35px, 9vw, 55px);
-  }
-
-  .categoria-beneficio--legumes {
-    top: 14%;
-    left: 0;
-  }
-
-  .categoria-beneficio--verduras {
-    top: 10%;
-    right: 0;
-  }
-
-  .categoria-beneficio--frutas {
-    bottom: 18%;
-    left: 0;
-  }
-
-  .categoria-beneficio--temperos {
-    right: 0;
-    bottom: 14%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cabecalho-beneficios,
-  .cesta-beneficios,
-  .categoria-beneficio {
-    animation: none !important;
-    transform: none !important;
-  }
-  .cesta-beneficios {
-    transform: translateX(-50%) !important;
-  }
-}
-
-/* Celulares: textos e botão legíveis e fáceis de tocar */
-@media (max-width: 600px) {
-  .cabecalho-beneficios p {
     font-size: 14px;
   }
 
-  .botao-beneficios {
-    min-height: 44px;
+  .ilustracao-beneficios {
+    grid-template-areas:
+      'caixa caixa'
+      'c1 c2'
+      'c3 c4';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 10px;
+    margin-top: 20px;
   }
-}
 
-/* Computadores: a frase de apresentação fica em uma linha só */
-@media (min-width: 1100px) {
-  .cabecalho-beneficios p {
+  .cesta-beneficios {
+    height: auto;
+    max-height: 260px;
+    margin-bottom: 8px;
+  }
+
+  .categoria-beneficio,
+  .categoria-beneficio:nth-of-type(n) {
+    justify-self: stretch;
+    align-self: stretch;
     width: auto;
-    white-space: nowrap;
+    gap: 10px;
+    padding: 8px 12px 8px 8px;
+    border-radius: 16px;
+  }
+
+  .categoria-beneficio__icone {
+    width: 36px;
+    height: 36px;
+  }
+
+  .categoria-beneficio__icone svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .categoria-beneficio__nome {
+    font-size: 15px;
   }
 }
 
-/* Computadores: todas as seções da Home têm 650px de altura */
-@media (min-width: 1001px) {
-  .secao-beneficios {
-    height: 650px;
+/*
+ * Animação de entrada (roda uma vez, quando a seção aparece na tela).
+ * --animada: o JS carregou, então os itens começam escondidos.
+ * --visivel: a seção entrou na tela, então a sequência começa:
+ *   1. título, texto e botão sobem   2. a caixa sobe e quica
+ *   3. as etiquetas saem de trás da caixa, uma de cada vez
+ * Usa as propriedades `translate` e `scale` (e não `transform`) para não brigar com o
+ * efeito de hover das etiquetas. Quem pede menos movimento no sistema não recebe estas classes.
+ */
+.secao-beneficios--animada .cabecalho-beneficios > *,
+.secao-beneficios--animada .cesta-beneficios,
+.secao-beneficios--animada .categoria-beneficio {
+  opacity: 0;
+}
+
+.secao-beneficios--visivel .cabecalho-beneficios > * {
+  animation: beneficios-subir 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.secao-beneficios--visivel .cabecalho-beneficios > :nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.secao-beneficios--visivel .cabecalho-beneficios > :nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.secao-beneficios--visivel .cesta-beneficios {
+  animation: beneficios-caixa 1s cubic-bezier(0.34, 1.2, 0.64, 1) 0.3s both;
+}
+
+.secao-beneficios--visivel .categoria-beneficio {
+  animation: beneficios-etiqueta 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+  animation-delay: calc(0.9s + var(--ordem) * 0.15s);
+}
+
+/* As etiquetas da esquerda vêm da direita (de trás da caixa) e vice-versa */
+.categoria-beneficio:nth-of-type(odd) {
+  --vem-de: 40px;
+}
+
+.categoria-beneficio:nth-of-type(even) {
+  --vem-de: -40px;
+}
+
+@media (max-width: 600px) {
+  .categoria-beneficio:nth-of-type(n) {
+    --vem-de: 0px;
+  }
+}
+
+@keyframes beneficios-subir {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes beneficios-caixa {
+  0% {
+    opacity: 0;
+    translate: 0 70px;
+    scale: 0.9;
+  }
+  55% {
+    opacity: 1;
+    translate: 0 -12px;
+    scale: 1.02;
+  }
+  78% {
+    translate: 0 4px;
+    scale: 0.995;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes beneficios-etiqueta {
+  from {
+    opacity: 0;
+    translate: var(--vem-de) 16px;
+    scale: 0.85;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
   }
 }

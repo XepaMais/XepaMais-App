@@ -1,37 +1,57 @@
+import { useEffect, useRef, useState } from 'react';
+import { Apple, Carrot, LeafyGreen, Sprout } from 'lucide-react';
 import '@/modulos/publico/paginas/inicio/estilos/Benefits.css';
 
-import cestaXepa from '@/assets/imagens/pagina-inicial/xepa.png';
-import seta1 from '@/assets/imagens/pagina-inicial/seta1.png';
-import seta2 from '@/assets/imagens/pagina-inicial/seta2.png';
+import caixaXepa from '@/assets/imagens/pagina-inicial/caixa-xepa.png';
 
+// A ordem define a posição: no computador, 1 e 3 ficam à esquerda da caixa e 2 e 4 à direita;
+// no celular, as quatro formam uma grade 2 x 2 abaixo dela.
 const categorias = [
-  {
-    nome: 'Legumes',
-    classe: 'categoria-beneficio--legumes',
-    imagem: seta1,
-  },
-  {
-    nome: 'Verduras',
-    classe: 'categoria-beneficio--verduras',
-    imagem: seta2,
-  },
-  {
-    nome: 'Frutas',
-    classe: 'categoria-beneficio--frutas',
-    imagem: seta2,
-  },
-  {
-    nome: 'Temperos',
-    classe: 'categoria-beneficio--temperos',
-    imagem: seta1,
-  },
+  { nome: 'Legumes', Icone: Carrot, cor: 'laranja' },
+  { nome: 'Verduras', Icone: LeafyGreen, cor: 'verde' },
+  { nome: 'Frutas', Icone: Apple, cor: 'verde' },
+  { nome: 'Temperos', Icone: Sprout, cor: 'laranja' },
 ];
 
 export default function Benefits() {
+  const secaoRef = useRef(null);
+  // 'parado': sem animação (movimento reduzido) | 'aguardando': escondido até a seção aparecer
+  // | 'visivel': anima
+  const [etapa, setEtapa] = useState(() => {
+    const reduzir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return reduzir || !('IntersectionObserver' in window) ? 'parado' : 'aguardando';
+  });
+
+  // A animação roda uma vez só, quando a seção chega à tela
+  useEffect(() => {
+    if (etapa !== 'aguardando') return undefined;
+
+    const observer = new IntersectionObserver(
+      (entradas) => {
+        if (entradas[0].isIntersecting) {
+          setEtapa('visivel');
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(secaoRef.current);
+    return () => observer.disconnect();
+  }, [etapa]);
+
+  const classes = [
+    'secao-beneficios',
+    etapa !== 'parado' ? 'secao-beneficios--animada' : '',
+    etapa === 'visivel' ? 'secao-beneficios--visivel' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <section className="secao-beneficios" id="beneficios">
+    <section className={classes} id="beneficios" ref={secaoRef} aria-labelledby="beneficios-titulo">
       <header className="cabecalho-beneficios">
-        <h2>O que você vai receber</h2>
+        <h2 id="beneficios-titulo">O que você pode comprar</h2>
 
         <p>
           Com o Xepa+, você encontra alimentos frescos, economiza nas compras e ajuda a reduzir o
@@ -44,13 +64,22 @@ export default function Benefits() {
       </header>
 
       <div className="ilustracao-beneficios">
-        <img className="cesta-beneficios" src={cestaXepa} alt="Cesta de alimentos do Xepa+" />
+        <img
+          className="cesta-beneficios"
+          src={caixaXepa}
+          alt="Caixa do Xepa+ com legumes, verduras, frutas e temperos"
+        />
 
-        {categorias.map((categoria) => (
-          <div key={categoria.nome} className={`categoria-beneficio ${categoria.classe}`}>
-            <span>{categoria.nome}</span>
-
-            <img className="seta-beneficio" src={categoria.imagem} alt="" aria-hidden="true" />
+        {categorias.map(({ nome, Icone, cor }, indice) => (
+          <div
+            key={nome}
+            className={`categoria-beneficio categoria-beneficio--${cor}`}
+            style={{ '--ordem': indice, gridArea: `c${indice + 1}` }}
+          >
+            <span className="categoria-beneficio__icone" aria-hidden="true">
+              <Icone size={22} strokeWidth={2.2} />
+            </span>
+            <strong className="categoria-beneficio__nome">{nome}</strong>
           </div>
         ))}
       </div>
