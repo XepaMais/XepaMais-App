@@ -98,21 +98,6 @@
   object-position: center 57%;
 }
 
-.morangosReveal {
-  position: absolute;
-  z-index: -1;
-  top: 14%;
-  left: 20%;
-  width: 38%;
-  pointer-events: none;
-}
-
-.morangos {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .photoCaption {
   position: absolute;
   z-index: 2;
