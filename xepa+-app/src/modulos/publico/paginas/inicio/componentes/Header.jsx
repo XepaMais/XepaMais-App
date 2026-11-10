@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '@/modulos/publico/paginas/inicio/estilos/Header.css';
-import logo from '@/assets/imagens/pagina-inicial/logo-copy.png';
+import logo from '@/assets/imagens/marca/logo.png';
 
 const links = [
   { texto: 'Home', destino: '#inicio' },

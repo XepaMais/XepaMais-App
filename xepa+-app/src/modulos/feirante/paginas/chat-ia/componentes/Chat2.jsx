@@ -1,5 +1,5 @@
 import Styles from '@/modulos/feirante/paginas/chat-ia/estilos/chatIA.module.css';
-import IA from '@/assets/imagens/usuario/ia.png';
+import IA from '@/assets/imagens/marca/ia.png';
 
 function Chat2() {
   return (
