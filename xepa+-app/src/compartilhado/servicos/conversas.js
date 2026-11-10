@@ -1,5 +1,3 @@
-// Conversas entre consumidor e feirante. Cada pedido gera uma conversa.
-// Sem backend, ficam neste navegador: feirante e consumidor precisam usar o mesmo.
 import { carregarPerfil } from '@/compartilhado/servicos/perfil';
 import { atualizarStatusPedido, formatarMoeda } from '@/compartilhado/servicos/pedidos';
 
@@ -17,7 +15,7 @@ function minutosAtras(minutos) {
 }
 
 // Conversas de exemplo para a área do feirante não começar vazia.
-// Não aparecem para o consumidor (demo: true).
+// Não aparecem para o consumidor (demo).
 function conversasDemonstracao() {
   const nomeFeirante = carregarPerfil('feirante').nome;
 
@@ -29,6 +27,7 @@ function conversasDemonstracao() {
     status,
     criadaEm: pedido.data,
     finalizadaEm: status === STATUS_CONVERSA.finalizada ? mensagens.at(-1)?.data : null,
+
     // Murilo começa com mensagem não lida, para a notificação aparecer na Home.
     leituras: {
       feirante: id === 2 ? pedido.data : mensagens.at(-1)?.data,
@@ -160,6 +159,7 @@ export function abrirConversaDoPedido(pedido) {
     status: STATUS_CONVERSA.recente,
     criadaEm: agora,
     finalizadaEm: null,
+    
     // O consumidor acabou de fazer o pedido; o feirante ainda não viu.
     leituras: { feirante: null, consumidor: agora },
     pedido: {

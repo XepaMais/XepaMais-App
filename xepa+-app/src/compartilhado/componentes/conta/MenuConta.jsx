@@ -4,6 +4,7 @@ import { LogOut } from 'lucide-react';
 import styles from './MenuConta.module.css';
 
 // Menu que abre ao clicar no nome, no cabeçalho do usuário e do feirante.
+
 function MenuConta({ nome, itens, className = '', children }) {
   const [aberto, setAberto] = useState(false);
   const menuRef = useRef(null);

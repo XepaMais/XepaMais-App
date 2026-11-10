@@ -14,7 +14,6 @@ body {
   text-align: left;
 }
 
-/* Seções da Home acessadas por âncora (#): não ficam escondidas sob o cabeçalho fixo */
 #inicio,
 #sobre,
 #como-funciona,
