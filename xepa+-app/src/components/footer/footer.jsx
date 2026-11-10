@@ -1,16 +1,68 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Styles from './footer.module.css';
 import logo from '@/assets/imagens/gerais/logo-branca.png';
+
+// html e body têm overflow-x: hidden (globais.css), então quem rola pode ser o <body>.
+function rolarParaOTopo() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+// Espera a seção aparecer (a página pode estar trocando) e rola até ela.
+function rolarParaSecao(id, tentativas = 30) {
+  const secao = document.getElementById(id);
+
+  if (secao) {
+    // Rolagem direta: com o <body> como área de rolagem, o modo "smooth" pode não sair do lugar.
+    secao.scrollIntoView({ block: 'start' });
+    return;
+  }
+
+  if (tentativas > 0) {
+    setTimeout(() => rolarParaSecao(id, tentativas - 1), 50);
+  }
+}
+
+// O Link do React Router não rola a página: sem isso, a nova página abre na
+// mesma altura em que o rodapé estava, e os links com # não chegam à seção.
+function LinkRodape({ to, children, ...props }) {
+  const navigate = useNavigate();
+
+  function aoClicar(evento) {
+    // Ctrl/Cmd/Shift + clique continua abrindo em nova aba normalmente.
+    if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button !== 0) {
+      return;
+    }
+
+    evento.preventDefault();
+    const secao = to.split('#')[1];
+
+    navigate(to);
+
+    if (secao) {
+      rolarParaSecao(secao);
+    } else {
+      setTimeout(rolarParaOTopo, 0);
+    }
+  }
+
+  return (
+    <Link to={to} onClick={aoClicar} {...props}>
+      {children}
+    </Link>
+  );
+}
 
 function Footer() {
   return (
     <footer className={Styles.footer}>
       <div className={Styles.rodapeTopo}>
         <div className={Styles.marca}>
-          <Link className={Styles.logo} to="/" aria-label="Xepa+, página inicial">
+          <LinkRodape className={Styles.logo} to="/" aria-label="Xepa+, página inicial">
             <img src={logo} alt="" />
             <span>Xepa+</span>
-          </Link>
+          </LinkRodape>
 
           <p className={Styles.descricao}>
             Conectando feirantes e consumidores para combater o desperdício de alimentos. Alimentos
@@ -46,10 +98,10 @@ function Footer() {
             <h3>Tecnologias e IA</h3>
             <ul>
               <li>
-                <Link to="/chat-ia">Assistente virtual</Link>
+                <LinkRodape to="/xep-ai">Xep.AI</LinkRodape>
               </li>
               <li>
-                <Link to="/chat-feirante">Contato e suporte</Link>
+                <LinkRodape to="/suporte">Contato e suporte</LinkRodape>
               </li>
             </ul>
           </div>
@@ -58,10 +110,10 @@ function Footer() {
             <h3>Para vender</h3>
             <ul>
               <li>
-                <Link to="/CriarContaF">Seja um feirante parceiro</Link>
+                <LinkRodape to="/seja-parceiro">Seja um feirante parceiro</LinkRodape>
               </li>
               <li>
-                <Link to="/CriarUsuarioF">Cadastrar minha barraca</Link>
+                <LinkRodape to="/CriarUsuarioF">Cadastrar minha barraca</LinkRodape>
               </li>
             </ul>
           </div>
@@ -70,19 +122,25 @@ function Footer() {
             <h3>Home page</h3>
             <ul>
               <li>
-                <Link to="/sobrenos">Quem somos</Link>
+                <LinkRodape to="/">Home</LinkRodape>
               </li>
               <li>
-                <Link to="/#como-funciona">Como funciona</Link>
+                <LinkRodape to="/#sobre">Quem somos</LinkRodape>
               </li>
               <li>
-                <Link to="/#beneficios">O que você vai receber</Link>
-              </li>
-              <li className={Styles.espaco}>
-                <Link to="/#planos-titulo">Planos</Link>
+                <LinkRodape to="/#como-funciona">Como funciona</LinkRodape>
               </li>
               <li>
-                <Link to="/#mapa">Mapas das feiras</Link>
+                <LinkRodape to="/#beneficios">O que você vai receber</LinkRodape>
+              </li>
+              <li>
+                <LinkRodape to="/#divulgacao">Divulgação</LinkRodape>
+              </li>
+              <li>
+                <LinkRodape to="/#planos-titulo">Planos</LinkRodape>
+              </li>
+              <li>
+                <LinkRodape to="/#mapa">Mapas das feiras</LinkRodape>
               </li>
             </ul>
           </div>

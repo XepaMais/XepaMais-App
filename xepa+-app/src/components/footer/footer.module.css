@@ -111,10 +111,6 @@
   text-decoration: underline;
 }
 
-.espaco {
-  margin-top: 22px;
-}
-
 .base {
   display: flex;
   max-width: 1320px;
