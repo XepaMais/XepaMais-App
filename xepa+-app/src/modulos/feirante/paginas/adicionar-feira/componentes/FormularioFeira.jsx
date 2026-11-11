@@ -6,7 +6,6 @@ import base from '@/compartilhado/componentes/modal/Modal.module.css';
 import styles from '../estilos/PopUpAdicionarFeira.module.css';
 import { buscarCep, geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
 
-
 const diasDaSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
 // Deixa o CEP no formato 00000-000 enquanto a pessoa digita.
@@ -34,13 +33,16 @@ function funcionariosIniciais(feira) {
 function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
   const dadosIniciais = feira || {};
   const [nome, setNome] = useState(dadosIniciais.nome || '');
-  const [endereco, setEndereco] = useState(dadosIniciais.endereco || '');
+  // A rua vem do CEP; feiras antigas, salvas antes do campo número, só têm "endereco".
+  const [rua, setRua] = useState(dadosIniciais.rua || dadosIniciais.endereco || '');
+  const [numero, setNumero] = useState(dadosIniciais.numero || '');
   const [cep, setCep] = useState(dadosIniciais.cep || '');
+  const [cidade, setCidade] = useState(dadosIniciais.cidade || '');
+  const [buscandoCep, setBuscandoCep] = useState(false);
   const [dias, setDias] = useState(dadosIniciais.dias || []);
   const [horarioInicio, setHorarioInicio] = useState(dadosIniciais.horarioInicio || '');
   const [erro, setErro] = useState('');
-    const [cidade, setCidade] = useState(dadosIniciais.cidade || '');
-    const [salvando, setSalvando] = useState(false);
+  const [salvando, setSalvando] = useState(false);
   const [horarioFim, setHorarioFim] = useState(dadosIniciais.horarioFim || '');
   const [funcionarios, setFuncionarios] = useState(funcionariosIniciais(feira));
   const estaEditando = modo === 'editar';
@@ -50,37 +52,51 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
   if (horarioInicio && horarioFim) {
     horario = `${horarioInicio} às ${horarioFim}`;
   }
-    // Formata o CEP e, quando ele fica completo, preenche o endereço pelo ViaCEP.
+  // Formata o CEP e, quando ele fica completo, preenche o endereço sozinho pelo ViaCEP.
   async function alterarCep(valor) {
     const cepFormatado = formatarCep(valor);
     setCep(cepFormatado);
     setErro('');
 
+    // Endereço de outro CEP não vale mais.
+    setRua('');
+    setCidade('');
+
     if (cepFormatado.length !== 9) return;
 
+    setBuscandoCep(true);
     try {
       const dados = await buscarCep(cepFormatado);
 
       if (!dados) {
-        setErro('CEP não encontrado. Confira os números ou preencha o endereço manualmente.');
+        setErro('CEP não encontrado. Confira os números.');
         return;
       }
 
-      setEndereco(dados.logradouro);  
-      
-        setCidade(`${dados.cidade} - ${dados.uf}`);
+      // Alguns CEPs (cidades pequenas) não têm rua: aí usamos o bairro ou a cidade.
+      setRua(dados.logradouro || dados.bairro || dados.cidade);
+      setCidade(`${dados.cidade} - ${dados.uf}`);
     } catch {
-      setErro('Não foi possível consultar o CEP agora. Preencha o endereço manualmente.');
+      setErro('Não foi possível consultar o CEP agora. Tente novamente.');
+    } finally {
+      setBuscandoCep(false);
     }
   }
 
-    async function salvar(evento) {
+  async function salvar(evento) {
     evento.preventDefault();
+
+    if (!rua) {
+      setErro('Digite um CEP válido para preencher o endereço.');
+      return;
+    }
+
     setErro('');
     setSalvando(true);
 
-    // Junta rua, cidade e país num texto só, para o geocodificador achar o lugar certo.
-    const enderecoCompleto = [endereco.trim(), cidade, 'Brasil'].filter(Boolean).join(', ');
+    const endereco = `${rua}, ${numero.trim()}`;
+    // Junta rua, número, cidade e país num texto só, para o geocodificador achar o lugar certo.
+    const enderecoCompleto = [endereco, cidade, 'Brasil'].filter(Boolean).join(', ');
 
     try {
       const localizacao = await geocodificarEndereco(enderecoCompleto);
@@ -92,7 +108,9 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
 
       onSalvar({
         nome: nome.trim(),
-        endereco: endereco.trim(),
+        endereco,
+        rua,
+        numero: numero.trim(),
         cep,
         cidade,
         latitude: localizacao.latitude,
@@ -147,29 +165,46 @@ function FormularioFeira({ modo, feira, onFechar, onSalvar }) {
           />
         </div>
 
+        <div className={base.grade}>
+          <div className={base.campo}>
+            <label htmlFor="cepFeira">CEP</label>
+            <input
+              id="cepFeira"
+              name="cep"
+              inputMode="numeric"
+              pattern="[0-9]{5}-[0-9]{3}"
+              title="Digite os 8 números do CEP"
+              value={cep}
+              onChange={(evento) => alterarCep(evento.target.value)}
+              placeholder="00000-000"
+              required
+            />
+          </div>
+
+          <div className={base.campo}>
+            <label htmlFor="numeroFeira">Número</label>
+            <input
+              id="numeroFeira"
+              name="numero"
+              value={numero}
+              onChange={(evento) => setNumero(evento.target.value)}
+              placeholder="123 ou s/n"
+              required
+            />
+          </div>
+        </div>
+
+        {/* Preenchido sozinho pelo CEP: a pessoa não edita. */}
         <div className={base.campo}>
           <label htmlFor="enderecoFeira">Endereço</label>
           <input
             id="enderecoFeira"
             name="endereco"
-            value={endereco}
-            onChange={(evento) => setEndereco(evento.target.value)}
-            placeholder="Rua João 123"
-            required
-          />
-        </div>
-
-        <div className={base.campo}>
-          <label htmlFor="cepFeira">CEP (opcional)</label>
-          <input
-            id="cepFeira"
-            name="cep"
-            inputMode="numeric"
-            pattern="[0-9]{5}-[0-9]{3}"
-            title="Digite os 8 números do CEP"
-            value={cep}
-            onChange={(evento) => alterarCep(evento.target.value)}
-            placeholder="00000-000"
+            value={rua ? [rua, cidade].filter(Boolean).join(', ') : ''}
+            placeholder={buscandoCep ? 'Buscando endereço...' : 'Preenchido pelo CEP'}
+            readOnly
+            tabIndex={-1}
+            className={styles.campoAutomatico}
           />
         </div>
 

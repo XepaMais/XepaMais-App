@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-/* Padrão visual do Xepa+: use estas variáveis nas páginas e componentes */
+/* Padrão visual do Xepa+ */
+
 :root {
   /* Cores */
   --preto: #161414;
@@ -14,8 +15,8 @@
   --branco: #ffffff;
 
   /* Tipografia */
-  --fonte-titulo-pagina: clamp(28px, 3vw, 40px);
-  --fonte-titulo-secao: clamp(20px, 2vw, 26px);
+  --fonte-titulo-pagina: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+  --fonte-titulo-secao: clamp(1.25rem, 1rem + 0.75vw, 1.625rem);
   --fonte-titulo-card: 18px;
   --fonte-texto: 16px;
   --fonte-pequena: 14px;

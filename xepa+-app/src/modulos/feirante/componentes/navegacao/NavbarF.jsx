@@ -7,7 +7,7 @@ import FotoPerfil from '@/compartilhado/componentes/conta/FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import usePlano from '@/modulos/feirante/hooks/usePlano';
 import styles from './navbarF.module.css';
-import logo from '@/assets/imagens/gerais/logo-2.png';
+import logo from '@/assets/imagens/marca/logo.png';
 
 const links = [
   { texto: 'Home', destino: '/homeF' },

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { carregarPerfil, salvarPerfil, EVENTO_PERFIL } from '@/compartilhado/servicos/perfil';
 
-// Mantém o nome do cabeçalho e das saudações igual ao perfil salvo.
 export default function usePerfil(tipo) {
   const [perfil, setPerfil] = useState(() => carregarPerfil(tipo));
 

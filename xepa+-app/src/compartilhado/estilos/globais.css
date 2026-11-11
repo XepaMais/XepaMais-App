@@ -13,3 +13,14 @@ body {
   padding: 0;
   text-align: left;
 }
+
+#inicio,
+#sobre,
+#como-funciona,
+#beneficios,
+#divulgacao,
+#planos-titulo,
+#mapa,
+#perguntas {
+  scroll-margin-top: 80px;
+}

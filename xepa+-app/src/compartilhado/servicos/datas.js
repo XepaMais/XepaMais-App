@@ -23,7 +23,7 @@ export function inicioDaSemana() {
   const inicio = new Date();
   const diaDaSemana = inicio.getDay();
 
-  // No JavaScript, domingo é o dia 0.
+  // domingo é o dia 0.
   if (diaDaSemana === 0) {
     inicio.setDate(inicio.getDate() - 6);
   } else {

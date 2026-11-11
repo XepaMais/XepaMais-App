@@ -1,4 +1,6 @@
 import { dataEmTexto } from '@/compartilhado/servicos/datas';
+import { taxaDoPlano } from './planoFeirante.js';
+import { registrarTaxaDoPedido } from './gastosFeirante.js';
 
 const CHAVE_LANCAMENTOS = 'lancamentosFinanceiros';
 
@@ -21,7 +23,8 @@ export function salvarLancamentosFinanceiros(lancamentos) {
   localStorage.setItem(CHAVE_LANCAMENTOS, JSON.stringify(lancamentos));
 }
 
-// Chamada quando o consumidor confirma o pagamento: a venda entra nos lucros do feirante.
+// Chamada quando o consumidor confirma o pagamento.
+// A comissão do plano vai para Despesas e só o valor líquido entra nos lucros.
 export function registrarVendaNoFinanceiro(pedido) {
   const lancamentos = carregarLancamentosFinanceiros();
 
@@ -29,6 +32,13 @@ export function registrarVendaNoFinanceiro(pedido) {
   if (lancamentos.some((item) => item.pedido === pedido.numero)) return;
 
   const produtos = pedido.itens.map((item) => `${item.quantidade}x ${item.nome}`).join(', ');
+  const valorBruto = Number(pedido.total);
+  const taxa = taxaDoPlano();
+  // Arredonda para centavos para a soma bruto = líquido + taxa fechar certinho.
+  const valorTaxa = Math.round(valorBruto * taxa * 100) / 100;
+  const valorLiquido = Math.round((valorBruto - valorTaxa) * 100) / 100;
+
+  registrarTaxaDoPedido(pedido, valorTaxa, Math.round(taxa * 100));
 
   salvarLancamentosFinanceiros([
     ...lancamentos,
@@ -36,7 +46,9 @@ export function registrarVendaNoFinanceiro(pedido) {
       id: Date.now(),
       tipo: 'renda',
       descricao: `Pedido nº ${pedido.numero} - ${produtos}`,
-      valor: Number(pedido.total),
+      valor: valorLiquido,
+      valorBruto,
+      taxa: valorTaxa,
       data: dataEmTexto(new Date(pedido.data)),
       categoria: 'Venda de xepa pelo Xepa+',
       feira: pedido.itens[0]?.retirada || '',

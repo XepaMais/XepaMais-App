@@ -86,9 +86,6 @@ function Hero() {
 
   return (
     <section className={Style.hero} id="inicio">
-      <div ref={morangosRef} className={Style.morangosReveal} aria-hidden="true">
-        <img className={Style.morangos} src={imagemMorangos} alt="" />
-      </div>
       <div ref={heroCopy} className={Style.heroCopy}>
         <h1>Receitas com o que você levou da <span className={Style.spanhero}>feira</span></h1>
         <p>Uma sacola cheia de possibilidades. Encontre um jeito gostoso de aproveitar cada ingrediente.</p>
