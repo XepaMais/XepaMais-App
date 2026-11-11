@@ -173,7 +173,7 @@ function AddFeira() {
         <PopUpExcluir
           titulo="Excluir feira"
           nome={modal.feira.nome}
-          aviso="será excluída. Xepas, rendas e gastos já registrados continuam com o nome dela."
+          aviso="será excluída. Xepas, rendas e despesas já registrados continuam com o nome dela."
           onFechar={() => setModal(null)}
           onConfirmar={excluirFeira}
         />

@@ -42,7 +42,7 @@ function AddGasto() {
 
   const totais = calcularTotaisDeGastos(gastos);
 
-  // Em "Cadastrar outro gasto", manterAberto é true e o pop-up continua na tela.
+  // Em "Cadastrar outra despesa", manterAberto é true e o pop-up continua na tela.
   function adicionarGasto(dados, manterAberto) {
     const novoGasto = { id: criarId(gastos), data: new Date(), ...dados };
     setGastos([novoGasto, ...gastos]);
@@ -80,19 +80,19 @@ function AddGasto() {
       <main className="conteudo">
         <section className="titulo">
           <div>
-            <h1>Quanto você gastou?</h1>
+            <h1>Suas despesas</h1>
             <p>
-              Cadastre e gerencie o histórico de gastos e tenha maior controle sobre sua receita!
+              Cadastre e gerencie o histórico de despesas e tenha maior controle sobre sua receita!
             </p>
           </div>
           <div className="botoes">
-            <button onClick={() => setModal({ tipo: 'adicionar' })}>+ Adicionar Gasto</button>
+            <button onClick={() => setModal({ tipo: 'adicionar' })}>+ Adicionar Despesa</button>
           </div>
         </section>
 
         <Renda
-          rotulo="Gasto"
-          legendaHoje="Gastos de hoje"
+          rotulo="Despesa"
+          legendaHoje="Despesas de hoje"
           hoje={totais.hoje}
           semana={totais.semana}
           mes={totais.mes}
@@ -107,7 +107,7 @@ function AddGasto() {
         />
 
         <section className={Styles.cartao} aria-labelledby="tituloGraficoGastos">
-          <h2 id="tituloGraficoGastos">Gastos do mês por categoria</h2>
+          <h2 id="tituloGraficoGastos">Despesas do mês por categoria</h2>
           <GraficoBarras itens={gastosDoMesPorCategoria(gastos)} />
         </section>
       </main>
@@ -125,7 +125,7 @@ function AddGasto() {
       />
       {tipoModal === 'excluir' && (
         <PopUpExcluir
-          titulo="Excluir gasto"
+          titulo="Excluir despesa"
           nome={modal.gasto.descricao}
           onFechar={() => setModal(null)}
           onConfirmar={excluirGasto}

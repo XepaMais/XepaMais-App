@@ -57,7 +57,7 @@ const COLUNAS_FEIRANTE = [
     titulo: 'Gestão',
     links: [
       { texto: 'Financeiro', destino: '/financeiro' },
-      { texto: 'Gastos', destino: '/adicionar-gasto' },
+      { texto: 'Despesas', destino: '/adicionar-gasto' },
       { texto: 'Planilhas', destino: '/planilhas' },
       { texto: 'Xep.AI', destino: '/chat-ia' },
     ],

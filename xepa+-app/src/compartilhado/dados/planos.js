@@ -1,4 +1,5 @@
 // Planos do Xepa+, usados na Home pública e na área do feirante.
+// taxa: comissão do Xepa+ descontada de cada venda de xepa feita pelo app.
 
 export const PLANOS = [
   {
@@ -6,6 +7,7 @@ export const PLANOS = [
     nome: 'Grátis',
     preco: 'R$ 0,00',
     periodo: '',
+    taxa: 0.15,
     descricao:
       'Ideal para quem está começando agora e quer dar os primeiros passos sem nenhum investimento inicial.',
     beneficios: [
@@ -19,6 +21,7 @@ export const PLANOS = [
     nome: 'Crescer',
     preco: 'R$ 29,90',
     periodo: '/mês',
+    taxa: 0.08,
     descricao:
       'Perfeito para negócios em expansão que precisam de mais flexibilidade e recursos avançados.',
     beneficios: [
@@ -33,6 +36,7 @@ export const PLANOS = [
     nome: 'Pro',
     preco: 'R$ 59,90',
     periodo: '/mês',
+    taxa: 0.05,
     descricao:
       'A solução completa para feirante que busca alta performance, controle total e máxima produtividade.',
     beneficios: [

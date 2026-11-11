@@ -57,10 +57,10 @@ function FormularioGasto({ modo, gasto, onFechar, onSalvar }) {
   }
 
   return (
-    <Modal titulo={estaEditando ? 'Editar Gasto' : 'Adicionar Gasto'} aoFechar={onFechar}>
+    <Modal titulo={estaEditando ? 'Editar Despesa' : 'Adicionar Despesa'} aoFechar={onFechar}>
       <form className={base.form} ref={formRef} onSubmit={salvar}>
         <div className={base.campo}>
-          <label htmlFor="descricaoGasto">Com oque você gastou?</label>
+          <label htmlFor="descricaoGasto">Qual foi a despesa?</label>
           <input
             id="descricaoGasto"
             name="descricao"
@@ -145,11 +145,11 @@ function FormularioGasto({ modo, gasto, onFechar, onSalvar }) {
           </button>
           {!estaEditando && (
             <button type="button" className={base.secundario} onClick={cadastrarOutro}>
-              Cadastrar outro gasto
+              Cadastrar outra despesa
             </button>
           )}
           <button type="submit" className={base.principal}>
-            {estaEditando ? 'Salvar' : 'Registrar Gasto'}
+            {estaEditando ? 'Salvar' : 'Registrar Despesa'}
           </button>
         </div>
       </form>

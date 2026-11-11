@@ -5,7 +5,7 @@ import Styles from './cabecalhoFinanceiro.module.css';
 
 const ABAS = [
   { texto: 'Lucros', destino: '/financeiro', recurso: 'financeiro' },
-  { texto: 'Gastos', destino: '/adicionar-gasto', recurso: 'financeiro' },
+  { texto: 'Despesas', destino: '/adicionar-gasto', recurso: 'financeiro' },
   { texto: 'Planilhas', destino: '/planilhas', recurso: 'planilhas' },
 ];
 

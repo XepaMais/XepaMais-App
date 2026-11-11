@@ -58,7 +58,7 @@ function Planilhas() {
       <header className={base.cabecalho}>
         <div>
           <h1>Planilhas</h1>
-          <p>Histórico completo das suas rendas, compras e gastos.</p>
+          <p>Histórico completo das suas rendas, compras e despesas.</p>
         </div>
         <button
           type="button"
@@ -93,7 +93,7 @@ function Planilhas() {
           <select id="tipo" name="tipo" value={filtros.tipo} onChange={alterarFiltro}>
             <option value="todos">Todos</option>
             <option value="lucro">Lucros</option>
-            <option value="gasto">Gastos</option>
+            <option value="gasto">Despesas</option>
           </select>
         </div>
 
@@ -144,7 +144,7 @@ function Planilhas() {
           <strong>{formatarMoeda(totais.lucros)}</strong>
         </div>
         <div className={base.indicador}>
-          <span>Total de gastos</span>
+          <span>Total de despesas</span>
           <strong>{formatarMoeda(totais.gastos)}</strong>
         </div>
         <div className={base.indicador}>
@@ -159,7 +159,7 @@ function Planilhas() {
           <h2>Nenhum registro encontrado</h2>
           <p>
             {registros.length === 0
-              ? 'Registre rendas e gastos para vê-los aqui.'
+              ? 'Registre rendas e despesas para vê-los aqui.'
               : 'Altere ou limpe os filtros para ver outros registros.'}
           </p>
         </section>

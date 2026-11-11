@@ -1,3 +1,5 @@
+import { PLANOS } from '@/compartilhado/dados/planos';
+
 // Guarda só a escolha do plano. Nenhuma cobrança é feita.
 const CHAVE_PLANO = 'planoFeirante';
 
@@ -26,4 +28,11 @@ export function planoLiberaRecurso(idPlano, recurso) {
   }
 
   return RECURSOS_DO_PLANO[idPlano].includes(recurso);
+}
+
+// Comissão do Xepa+ (ex.: 0.15 = 15%). Sem plano escolhido, vale a do plano Grátis.
+export function taxaDoPlano(idPlano = carregarPlanoSelecionado()) {
+  const plano = PLANOS.find((item) => item.id === idPlano) || PLANOS[0];
+
+  return plano.taxa;
 }

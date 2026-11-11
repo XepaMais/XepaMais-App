@@ -1,4 +1,4 @@
-// Gastos do feirante. Sem backend, ficam neste navegador.
+// Despesas do feirante. Sem backend, ficam neste navegador.
 import { estaNaSemanaAtual, estaNoMesAtual } from '@/compartilhado/servicos/datas';
 
 const CHAVE_GASTOS = 'gastosFeirante';
@@ -12,8 +12,9 @@ export const CATEGORIAS_GASTO = [
   { valor: 'barraca', rotulo: 'Barraca e equipamentos', cor: '#FF8C00' },
   { valor: 'manutencao', rotulo: 'Manutenção', cor: '#FF5200' },
   { valor: 'taxas', rotulo: 'Taxas e licenças', cor: '#733000' },
+  { valor: 'taxaXepa', rotulo: 'Taxa do Xepa+', cor: '#5C2D91' },
   { valor: 'alimentacao', rotulo: 'Alimentação', cor: '#B84A00' },
-  { valor: 'outros', rotulo: 'Outros gastos', cor: '#161414' },
+  { valor: 'outros', rotulo: 'Outras despesas', cor: '#161414' },
 ];
 
 // Dados de exemplo (Depois vou trocar pelos dados da API, so pra n esquecer)
@@ -42,6 +43,29 @@ export function carregarGastos() {
 
 export function salvarGastos(gastos) {
   localStorage.setItem(CHAVE_GASTOS, JSON.stringify(gastos));
+}
+
+// Lança a comissão do Xepa+ de um pedido como despesa (uma vez por pedido).
+export function registrarTaxaDoPedido(pedido, valorTaxa, percentual) {
+  const gastos = carregarGastos();
+
+  if (gastos.some((gasto) => gasto.pedido === pedido.numero)) return;
+
+  const maiorId = gastos.reduce((maior, gasto) => Math.max(maior, gasto.id), 0);
+
+  salvarGastos([
+    {
+      id: maiorId + 1,
+      descricao: `Taxa Xepa+ (${percentual}%) - Pedido nº ${pedido.numero}`,
+      quantidade: 1,
+      valorUnitario: valorTaxa,
+      categoria: 'taxaXepa',
+      feira: pedido.itens[0]?.retirada || '',
+      data: new Date(pedido.data),
+      pedido: pedido.numero,
+    },
+    ...gastos,
+  ]);
 }
 
 function somarGastos(gastos) {
