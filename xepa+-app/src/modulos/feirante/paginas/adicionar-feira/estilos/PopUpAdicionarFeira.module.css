@@ -99,3 +99,13 @@
   height: 21px;
   object-fit: contain;
 }
+
+/* Endereço preenchido pelo CEP: fica com cara de campo travado. */
+input.campoAutomatico[readonly] {
+  background: #f2f2f2;
+  cursor: default;
+}
+
+input.campoAutomatico[readonly]:focus {
+  outline: none;
+}
