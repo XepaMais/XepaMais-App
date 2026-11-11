@@ -31,12 +31,16 @@
 
 .conteudo-sobre p {
   max-width: 400px;
-  margin: 28px 0 0;
+  margin: 0;
   color: #18552f;
   font-family: 'Poppins', sans-serif;
   font-size: var(--fonte-texto);
   font-weight: 400;
   line-height: 1.6;
+}
+
+.conteudo-sobre .sobre-texto {
+  margin-top: 20px;
   animation: fadeUp 0.7s ease-out 0.3s both;
 }
 
@@ -44,7 +48,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 28px;
   padding: 12px 32px;
   border: 0;
   border-radius: 8px;
@@ -147,10 +151,14 @@
 
   .conteudo-sobre p {
     font-size: clamp(13px, 1.6vw, 15px);
-    margin-top: 20px;
+  }
+
+  .conteudo-sobre .sobre-texto {
+    margin-top: 12px;
   }
 
   .botao-sobre {
+    margin-top: 18px;
     padding: 10px 24px;
     font-size: 14px;
   }
