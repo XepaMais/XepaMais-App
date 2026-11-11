@@ -183,6 +183,46 @@ export function abrirConversaDoPedido(pedido) {
   return id;
 }
 
+// Conversa antes da compra, aberta pelo card "Perfil do feirante" na página da xepa.
+// Não tem pedido: guarda só a xepa sobre a qual o consumidor quer saber.
+export function idConversaDaXepa(xepa) {
+  return `xepa-${xepa.id}`;
+}
+
+export function abrirConversaDaXepa(xepa) {
+  const id = idConversaDaXepa(xepa);
+  const conversas = carregarConversas();
+  const existente = conversas.find((conversa) => conversa.id === id);
+
+  if (existente && existente.status !== STATUS_CONVERSA.finalizada) return id;
+
+  const agora = new Date().toISOString();
+  const novaConversa = {
+    id,
+    consumidor: carregarPerfil('usuario').nome,
+    feirante: xepa.feirante || carregarPerfil('feirante').nome,
+    status: STATUS_CONVERSA.recente,
+    criadaEm: agora,
+    finalizadaEm: null,
+    leituras: { feirante: null, consumidor: agora },
+    pedido: null,
+    xepa: { id: xepa.id, nome: xepa.nome, preco: xepa.preco, feira: xepa.feira || '' },
+    mensagens: [
+      { id: 1, autor: 'sistema', texto: `Conversa sobre a ${xepa.nome}.`, data: agora },
+    ],
+  };
+
+  salvarConversas([novaConversa, ...conversas.filter((conversa) => conversa.id !== id)]);
+  return id;
+}
+
+// Texto curto que identifica a conversa: o pedido ou a xepa perguntada.
+export function assuntoDaConversa(conversa) {
+  if (conversa.pedido) return `Pedido nº ${conversa.pedido.numero}`;
+
+  return `Dúvida: ${conversa.xepa?.nome || 'xepa'}`;
+}
+
 // autor: 'consumidor' ou 'feirante'. Conversas finalizadas não aceitam mensagens.
 export function enviarMensagem(id, autor, texto) {
   return alterarConversa(id, (conversa) => {
@@ -207,7 +247,7 @@ export function finalizarConversa(id) {
     finalizadaEm: new Date().toISOString(),
   }));
 
-  if (conversa && !conversa.demo) {
+  if (conversa && !conversa.demo && conversa.pedido) {
     atualizarStatusPedido(conversa.pedido.numero, 'Retirado');
   }
 
