@@ -59,6 +59,7 @@ const COLUNAS_FEIRANTE = [
       { texto: 'Financeiro', destino: '/financeiro' },
       { texto: 'Despesas', destino: '/adicionar-gasto' },
       { texto: 'Planilhas', destino: '/planilhas' },
+      { texto: 'Sacar', destino: '/sacar' },
       { texto: 'Xep.AI', destino: '/chat-ia' },
     ],
   },

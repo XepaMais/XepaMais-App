@@ -15,6 +15,7 @@ import HistoricoProdutos from '@/modulos/feirante/paginas/historico-produtos/His
 import DispositivosFeirante from '@/modulos/feirante/paginas/dispositivos/DispositivosFeirante';
 import Planos from '@/modulos/feirante/paginas/planos/Planos';
 import Planilhas from '@/modulos/feirante/paginas/planilhas/Planilhas';
+import Sacar from '@/modulos/feirante/paginas/sacar/Sacar';
 
 export const rotasFeirante = [
   <Route key="demo-feirante" path="/demo/feirante" element={<HomeFeirante />} />,
@@ -70,6 +71,15 @@ export const rotasFeirante = [
     element={
       <RecursoPlano recurso="planilhas">
         <Planilhas />
+      </RecursoPlano>
+    }
+  />,
+  <Route
+    key="sacar"
+    path="/sacar"
+    element={
+      <RecursoPlano recurso="financeiro">
+        <Sacar />
       </RecursoPlano>
     }
   />,
