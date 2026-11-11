@@ -4,6 +4,7 @@ import { CheckCircle2, MessageCircle, PackageCheck } from 'lucide-react';
 import Styles from '@/modulos/feirante/paginas/historico-chat/estilos/ChatHist.module.css';
 import useConversas from '@/compartilhado/hooks/useConversas';
 import {
+  assuntoDaConversa,
   enviarMensagem,
   finalizarConversa,
   marcarComoLida,
@@ -61,7 +62,7 @@ function ChatHist({ perfil = 'feirante' }) {
   const conversasDaAba = conversas.filter(({ status }) => status === aba);
   const contatosFiltrados = conversasDaAba.filter((conversa) => {
     const termo = busca.trim().toLowerCase();
-    const textoBusca = `${nomeDoContato(conversa)} ${conversa.pedido.numero}`.toLowerCase();
+    const textoBusca = `${nomeDoContato(conversa)} ${assuntoDaConversa(conversa)}`.toLowerCase();
     return textoBusca.includes(termo);
   });
 
@@ -208,10 +209,10 @@ function ChatHist({ perfil = 'feirante' }) {
               <AvatarConversa nome={nomeDoContato(conversa)} className={Styles.avatarAtivo} />
               <div className={Styles.tituloConversa}>
                 <h2 className={Styles.nomeAtivo}>{nomeDoContato(conversa)}</h2>
-                <span>Pedido nº {conversa.pedido.numero}</span>
+                <span>{assuntoDaConversa(conversa)}</span>
               </div>
 
-              {ehFeirante && !finalizada && (
+              {ehFeirante && !finalizada && conversa.pedido && (
                 <div className={Styles.acaoRetirada}>
                   {confirmandoRetirada ? (
                     <>
@@ -242,6 +243,7 @@ function ChatHist({ perfil = 'feirante' }) {
             </header>
 
             <div className={Styles.areaMensagens} aria-live="polite" ref={areaMensagens}>
+              {conversa.pedido ? (
               <article className={Styles.resumoPedido} aria-label="Resumo do pedido">
                 <header>
                   <strong>Pedido nº {conversa.pedido.numero}</strong>
@@ -276,6 +278,28 @@ function ChatHist({ perfil = 'feirante' }) {
                   ))}
                 </ul>
               </article>
+              ) : (
+                conversa.xepa && (
+                  <article className={Styles.resumoPedido} aria-label="Xepa da conversa">
+                    <header>
+                      <strong>{conversa.xepa.nome}</strong>
+                      <span className={Styles.statusAguardando}>Antes da compra</span>
+                    </header>
+                    <dl>
+                      <div>
+                        <dt>Preço</dt>
+                        <dd>{formatarMoeda(Number(conversa.xepa.preco) || 0)}</dd>
+                      </div>
+                      {conversa.xepa.feira && (
+                        <div>
+                          <dt>Feira</dt>
+                          <dd>{conversa.xepa.feira}</dd>
+                        </div>
+                      )}
+                    </dl>
+                  </article>
+                )
+              )}
 
               {conversa.mensagens.map((msg) => (msg.autor === 'sistema' ? (
                 <p className={Styles.avisoSistema} key={msg.id}>
@@ -295,7 +319,7 @@ function ChatHist({ perfil = 'feirante' }) {
 
               {finalizada && (
                 <p className={Styles.avisoSistema}>
-                  Pedido retirado em {formatarDataHora(conversa.finalizadaEm)}. Conversa finalizada.
+                  {conversa.pedido ? 'Pedido retirado' : 'Encerrada'} em {formatarDataHora(conversa.finalizadaEm)}. Conversa finalizada.
                 </p>
               )}
             </div>
