@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowUpRight, BellOff, Lock } from 'lucide-react';
+import { ArrowUpRight, BellOff, Lock, PackageCheck } from 'lucide-react';
 import Styles from '@/modulos/feirante/paginas/inicio/componentes/estilos/HomeFeirante.module.css';
 import Notif from '@/modulos/feirante/paginas/inicio/componentes/notificacoes.module.css';
 import Grafico from '@/modulos/feirante/paginas/inicio/componentes/graficoGastos.module.css';
@@ -10,7 +11,14 @@ import useConversas from '@/compartilhado/hooks/useConversas';
 import { mensagensNaoLidas, STATUS_CONVERSA } from '@/compartilhado/servicos/conversas';
 import ItemConversa from '@/modulos/feirante/paginas/historico-chat/componentes/ItemConversa';
 import { dataDeHoje } from '@/compartilhado/servicos/datas';
-import { formatarMoeda } from '@/compartilhado/servicos/pedidos';
+import {
+  atualizarStatusPedido,
+  carregarPedidos,
+  formatarDataHora,
+  formatarMoeda,
+  PENDENTE_RETIRADA,
+  RETIRADO,
+} from '@/compartilhado/servicos/pedidos';
 import useFinanceiro from '@/modulos/feirante/hooks/useFinanceiro';
 import usePlano from '@/modulos/feirante/hooks/usePlano';
 import RecursoPlano from '@/modulos/feirante/componentes/RecursoPlano';
@@ -71,6 +79,15 @@ function HomeFeirante() {
   const { plano, temAcesso } = usePlano();
   const dadosDoPlano = PLANOS.find((item) => item.id === plano);
   const ultimaXepa = carregarProdutos()[0];
+  const [pedidos, setPedidos] = useState(carregarPedidos);
+  const pedidosPendentes = pedidos.filter((pedido) => pedido.status === PENDENTE_RETIRADA);
+  const pedidosRetirados = pedidos.length - pedidosPendentes.length;
+
+  // O feirante confirma a entrega direto da home, sem abrir o histórico.
+  function confirmarEntrega(numero) {
+    atualizarStatusPedido(numero, RETIRADO);
+    setPedidos(carregarPedidos());
+  }
   const { lancamentos, doMes, total } = useFinanceiro();
   // Só conversas recentes (pedidos ainda não retirados), as mais novas primeiro.
   // As que têm pedido novo ou mensagem não lida aparecem no topo.
@@ -157,6 +174,89 @@ function HomeFeirante() {
         </section>
 
         <div className={Styles.grid}>
+          <section className={Styles.card_pedidos} aria-labelledby="pedidos-titulo">
+            <div className={Styles.card_header}>
+              <h2 id="pedidos-titulo">
+                Pedidos
+                {pedidosPendentes.length > 0 && (
+                  <span
+                    className={Styles.pedidos_contador}
+                    aria-label={`${pedidosPendentes.length} para retirar`}
+                  >
+                    {pedidosPendentes.length}
+                  </span>
+                )}
+              </h2>
+              <button
+                type="button"
+                className={Styles.botao_contorno_pequeno}
+                onClick={() => navigate('/historico-vendas')}
+              >
+                Ver histórico <span aria-hidden="true">→</span>
+              </button>
+            </div>
+
+            <div className={Styles.pedidos_resumo}>
+              <div>
+                <span>Para retirar</span>
+                <strong>{pedidosPendentes.length}</strong>
+              </div>
+              <div>
+                <span>Retirados</span>
+                <strong>{pedidosRetirados}</strong>
+              </div>
+              <div>
+                <span>Total de pedidos</span>
+                <strong>{pedidos.length}</strong>
+              </div>
+            </div>
+
+            {pedidosPendentes.length === 0 ? (
+              <div className={Styles.pedidos_vazio}>
+                <PackageCheck size={32} aria-hidden="true" />
+                <strong>Nenhum pedido aguardando retirada</strong>
+                <span>Quando um cliente comprar sua Xepa, o pedido aparece aqui.</span>
+              </div>
+            ) : (
+              <ul className={Styles.pedidos_lista}>
+                {pedidosPendentes.slice(0, 4).map((pedido) => (
+                  <li key={pedido.numero} className={Styles.pedido}>
+                    <div className={Styles.pedido_info}>
+                      <strong>Pedido Nº {pedido.numero}</strong>
+                      <span>{formatarDataHora(pedido.data)}</span>
+                      <span className={Styles.pedido_itens}>
+                        {pedido.itens
+                          .map((item) => `${item.quantidade}x ${item.nome}`)
+                          .join(', ')}
+                      </span>
+                    </div>
+                    <div className={Styles.pedido_valores}>
+                      <strong>{formatarMoeda(pedido.total)}</strong>
+                      <span>Código: {pedido.codigo || '-'}</span>
+                    </div>
+                    <button
+                      type="button"
+                      className={Styles.botao_verde}
+                      onClick={() => confirmarEntrega(pedido.numero)}
+                    >
+                      Confirmar entrega
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {pedidosPendentes.length > 4 && (
+              <button
+                type="button"
+                className={Styles.pedidos_mais}
+                onClick={() => navigate('/historico-vendas')}
+              >
+                Ver todos os {pedidosPendentes.length} pedidos para retirar
+              </button>
+            )}
+          </section>
+
           <section className={Styles.card_destaque}>
             <div className={Styles.card_header}>
               <h2>Xepa em destaque</h2>

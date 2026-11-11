@@ -1,6 +1,77 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Styles from './footer.module.css';
 import logo from '@/assets/imagens/gerais/logo-branca.png';
+import { CAMINHOS_FEIRANTE } from '@/modulos/feirante/componentes/navegacao/caminhosFeirante';
+import { carregarPedidos, PENDENTE_RETIRADA } from '@/compartilhado/servicos/pedidos';
+
+// Colunas do rodapé do site público.
+const COLUNAS_PUBLICAS = [
+  {
+    titulo: 'Tecnologias e IA',
+    links: [
+      { texto: 'Xep.AI', destino: '/xep-ai' },
+      { texto: 'Contato e suporte', destino: '/suporte' },
+    ],
+  },
+  {
+    titulo: 'Para vender',
+    links: [
+      { texto: 'Seja um feirante parceiro', destino: '/seja-parceiro' },
+      { texto: 'Cadastrar minha barraca', destino: '/CriarUsuarioF' },
+    ],
+  },
+  {
+    titulo: 'Home page',
+    links: [
+      { texto: 'Home', destino: '/' },
+      { texto: 'Quem somos', destino: '/#sobre' },
+      { texto: 'Como funciona', destino: '/#como-funciona' },
+      { texto: 'O que você vai receber', destino: '/#beneficios' },
+      { texto: 'Divulgação', destino: '/#divulgacao' },
+      { texto: 'Planos', destino: '/#planos-titulo' },
+      { texto: 'Mapas das feiras', destino: '/#mapa' },
+    ],
+  },
+];
+
+// Colunas do rodapé da área do feirante: pedidos e histórico ficam logo na primeira coluna.
+const COLUNAS_FEIRANTE = [
+  {
+    titulo: 'Pedidos',
+    links: [
+      { texto: 'Pedidos para retirar', destino: '/historico-vendas', contador: 'pendentes' },
+      { texto: 'Histórico de vendas', destino: '/historico-vendas' },
+      { texto: 'Conversas com clientes', destino: '/HistoricoChat' },
+    ],
+  },
+  {
+    titulo: 'Minha banca',
+    links: [
+      { texto: 'Início', destino: '/homeF' },
+      { texto: 'Cadastrar Xepa', destino: '/adicionar-produto' },
+      { texto: 'Histórico de produtos', destino: '/historico-produtos' },
+      { texto: 'Minhas feiras', destino: '/adicionar-feira' },
+    ],
+  },
+  {
+    titulo: 'Gestão',
+    links: [
+      { texto: 'Financeiro', destino: '/financeiro' },
+      { texto: 'Gastos', destino: '/adicionar-gasto' },
+      { texto: 'Planilhas', destino: '/planilhas' },
+      { texto: 'Xep.AI', destino: '/chat-ia' },
+    ],
+  },
+  {
+    titulo: 'Minha conta',
+    links: [
+      { texto: 'Meus dados', destino: '/perfil-feirante' },
+      { texto: 'Planos', destino: '/planos' },
+      { texto: 'Segurança', destino: '/dispositivos-feirante' },
+      { texto: 'Contato e suporte', destino: '/suporte' },
+    ],
+  },
+];
 
 // html e body têm overflow-x: hidden (globais.css), então quem rola pode ser o <body>.
 function rolarParaOTopo() {
@@ -55,18 +126,30 @@ function LinkRodape({ to, children, ...props }) {
 }
 
 function Footer() {
+  const { pathname } = useLocation();
+  const areaFeirante = CAMINHOS_FEIRANTE.includes(pathname);
+  const colunas = areaFeirante ? COLUNAS_FEIRANTE : COLUNAS_PUBLICAS;
+  const pendentes = areaFeirante
+    ? carregarPedidos().filter((pedido) => pedido.status === PENDENTE_RETIRADA).length
+    : 0;
+
   return (
     <footer className={Styles.footer}>
       <div className={Styles.rodapeTopo}>
         <div className={Styles.marca}>
-          <LinkRodape className={Styles.logo} to="/" aria-label="Xepa+, página inicial">
+          <LinkRodape
+            className={Styles.logo}
+            to={areaFeirante ? '/homeF' : '/'}
+            aria-label="Xepa+, página inicial"
+          >
             <img src={logo} alt="" />
             <span>Xepa+</span>
           </LinkRodape>
 
           <p className={Styles.descricao}>
-            Conectando feirantes e consumidores para combater o desperdício de alimentos. Alimentos
-            frescos, sustentabilidade e economia para a sua rotina.
+            {areaFeirante
+              ? 'Gerencie seus pedidos, suas Xepas e o financeiro da sua banca em um só lugar.'
+              : 'Conectando feirantes e consumidores para combater o desperdício de alimentos. Alimentos frescos, sustentabilidade e economia para a sua rotina.'}
           </p>
 
           <div className={Styles.redes} aria-label="Redes sociais">
@@ -93,57 +176,32 @@ function Footer() {
           </div>
         </div>
 
-        <nav className={Styles.colunas} aria-label="Links do rodapé">
-          <div className={Styles.coluna}>
-            <h3>Tecnologias e IA</h3>
-            <ul>
-              <li>
-                <LinkRodape to="/xep-ai">Xep.AI</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/suporte">Contato e suporte</LinkRodape>
-              </li>
-            </ul>
-          </div>
-
-          <div className={Styles.coluna}>
-            <h3>Para vender</h3>
-            <ul>
-              <li>
-                <LinkRodape to="/seja-parceiro">Seja um feirante parceiro</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/CriarUsuarioF">Cadastrar minha barraca</LinkRodape>
-              </li>
-            </ul>
-          </div>
-
-          <div className={Styles.coluna}>
-            <h3>Home page</h3>
-            <ul>
-              <li>
-                <LinkRodape to="/">Home</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#sobre">Quem somos</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#como-funciona">Como funciona</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#beneficios">O que você vai receber</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#divulgacao">Divulgação</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#planos-titulo">Planos</LinkRodape>
-              </li>
-              <li>
-                <LinkRodape to="/#mapa">Mapas das feiras</LinkRodape>
-              </li>
-            </ul>
-          </div>
+        <nav
+          className={`${Styles.colunas} ${areaFeirante ? Styles.colunasFeirante : ''}`}
+          aria-label="Links do rodapé"
+        >
+          {colunas.map((coluna) => (
+            <div className={Styles.coluna} key={coluna.titulo}>
+              <h3>{coluna.titulo}</h3>
+              <ul>
+                {coluna.links.map((link) => (
+                  <li key={link.texto}>
+                    <LinkRodape to={link.destino}>
+                      {link.texto}
+                      {link.contador === 'pendentes' && pendentes > 0 && (
+                        <span
+                          className={Styles.contador}
+                          aria-label={`${pendentes} ${pendentes === 1 ? 'pedido' : 'pedidos'} para retirar`}
+                        >
+                          {pendentes}
+                        </span>
+                      )}
+                    </LinkRodape>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </nav>
       </div>
 
