@@ -49,6 +49,20 @@ const SECOES = [
     ],
   },
   {
+    id: 'pedidos-retirada',
+    titulo: 'Pedidos, retirada e cancelamento',
+    paragrafos: [
+      'O pedido passa pelas situações: aguardando pagamento, pago, pronto para retirada, retirado ou cancelado.',
+      'O consumidor retira na barraca, na janela definida pelo feirante, apresentando o código de retirada.',
+      'Se o produto não estiver disponível ou não corresponder ao anunciado, o pedido é cancelado com estorno integral.',
+      'Pedidos não retirados: o consumidor tem uma tolerância de 30 minutos após o fim da janela de retirada e recebe um lembrete pelo chat.',
+      'Se o consumidor avisar pelo chat antes do fim da janela, o feirante pode combinar um novo horário no mesmo dia, enquanto estiver na feira.',
+      'Encerrada a tolerância, o pedido é cancelado por não retirada e o feirante fica livre para vender os produtos na banca.',
+      'Como os alimentos ficaram reservados e são perecíveis, o pedido não retirado não tem estorno; o feirante recebe o valor da venda, descontada a comissão do plano.',
+      'Após três pedidos não retirados em 30 dias, a conta do consumidor fica impedida de fazer novos pedidos por 7 dias.',
+    ],
+  },
+  {
     id: 'planos',
     titulo: 'Planos, pagamentos e comissões',
     paragrafos: [
@@ -109,11 +123,10 @@ function TermosDeUso() {
   return (
     <LayoutFooter
       estilos={Styles}
-      etiqueta="Informações legais"
       titulo="Termos de uso"
       descricao="As regras para usar o Xepa+ com segurança e transparência, seja você consumidor ou feirante."
     >
-      <DocumentoLegal atualizadoEm="10 de novembro de 2026" secoes={SECOES} estilos={Styles} />
+      <DocumentoLegal atualizadoEm="11 de novembro de 2026" secoes={SECOES} estilos={Styles} />
     </LayoutFooter>
   );
 }

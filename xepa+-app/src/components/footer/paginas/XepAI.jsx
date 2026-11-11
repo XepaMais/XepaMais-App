@@ -32,7 +32,6 @@ function XepAI() {
   return (
     <LayoutFooter
       estilos={Styles}
-      etiqueta="Tecnologia e IA"
       titulo="Conheça a Xep.AI"
       descricao="A assistente virtual do Xepa+ que ajuda o feirante a cuidar da barraca, das finanças e a reduzir o desperdício de alimentos."
     >

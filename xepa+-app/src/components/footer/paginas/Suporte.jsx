@@ -58,7 +58,6 @@ function Suporte() {
   return (
     <LayoutFooter
       estilos={Styles}
-      etiqueta="Contato e suporte"
       titulo="Como podemos ajudar?"
       descricao="Encontre respostas rápidas ou fale com a equipe do Xepa+. Estamos aqui para feirantes e consumidores."
     >
