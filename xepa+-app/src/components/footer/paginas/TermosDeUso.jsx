@@ -123,7 +123,6 @@ function TermosDeUso() {
   return (
     <LayoutFooter
       estilos={Styles}
-      etiqueta="Informações legais"
       titulo="Termos de uso"
       descricao="As regras para usar o Xepa+ com segurança e transparência, seja você consumidor ou feirante."
     >

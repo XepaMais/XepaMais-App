@@ -112,7 +112,6 @@ function DiretrizesPrivacidade() {
   return (
     <LayoutFooter
       estilos={Styles}
-      etiqueta="Informações legais"
       titulo="Diretrizes de Privacidade"
       descricao="Como o Xepa+ coleta, usa e protege os seus dados pessoais."
     >
