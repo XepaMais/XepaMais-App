@@ -144,7 +144,7 @@ function HomeFeirante() {
                 Cadastrar Xepa
               </button>
               <button type="button" onClick={() => navigate('/adicionar-gasto')}>
-                Registrar gasto
+                Registrar despesa
                 {!temAcesso('financeiro') && (
                   <Lock
                     size={14}
@@ -348,11 +348,11 @@ function HomeFeirante() {
           <RecursoPlano recurso="financeiro" compacto>
             <section className={Styles.card_gastos}>
               <div className={Styles.card_header}>
-                <h2>Gastos do mês</h2>
+                <h2>Despesas do mês</h2>
                 <button
                   type="button"
                   className={Styles.botao_seta}
-                  aria-label="Ver gastos"
+                  aria-label="Ver despesas"
                   onClick={() => navigate('/adicionar-gasto')}
                 >
                   <ArrowUpRight size={20} aria-hidden="true" />
@@ -368,7 +368,7 @@ function HomeFeirante() {
                 />
 
                 {fatiasGastos.length === 0 ? (
-                  <p className={Styles.semGastos}>Nenhum gasto registrado neste mês.</p>
+                  <p className={Styles.semGastos}>Nenhuma despesa registrada neste mês.</p>
                 ) : (
                   <>
                     <strong className={Styles.totalGastos}>

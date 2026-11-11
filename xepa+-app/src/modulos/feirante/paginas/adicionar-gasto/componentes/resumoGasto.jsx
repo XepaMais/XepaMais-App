@@ -46,19 +46,19 @@ function HistoricoGastos({ gastos, filtros, onEditar, onExcluir, onFiltrar }) {
   const temFiltroAtivo = termo !== '' || filtros.categoria !== '';
 
   return (
-    <section className={Styles.containerHistorico} aria-label="Histórico de gastos">
+    <section className={Styles.containerHistorico} aria-label="Histórico de despesas">
       <form className={Styles.busca} role="search" onSubmit={(event) => event.preventDefault()}>
         <div className={Styles.grupoBusca}>
           <button type="submit" className={Styles.botaoBusca}>
             Busca
           </button>
           <label className={Styles.campoBusca}>
-            <span className={Styles.visualmenteOculto}>Buscar gasto</span>
+            <span className={Styles.visualmenteOculto}>Buscar despesa</span>
             <input
               type="search"
               value={busca}
               onChange={(event) => setBusca(event.target.value)}
-              placeholder="Buscar gasto"
+              placeholder="Buscar despesa"
             />
             <IconeFiltro className={Styles.iconeFiltro} />
           </label>
@@ -128,8 +128,8 @@ function HistoricoGastos({ gastos, filtros, onEditar, onExcluir, onFiltrar }) {
         {gastosFiltrados.length === 0 && (
           <p className={Styles.semResultados}>
             {temFiltroAtivo
-              ? 'Nenhum gasto encontrado com esses filtros.'
-              : 'Nenhum gasto neste período.'}
+              ? 'Nenhuma despesa encontrada com esses filtros.'
+              : 'Nenhuma despesa neste período.'}
           </p>
         )}
       </div>
