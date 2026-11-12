@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import logoXepa from '@/assets/imagens/gerais/logo-colorida.png';
 import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
 import { buscarCep, geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
-import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps';
 import '@/modulos/publico/paginas/inicio/estilos/MapaFeiras.css';
 import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
@@ -29,11 +26,8 @@ function formatarBusca(valor) {
 }
 
 function MapaFeiras() {
-  const { isLoaded } = useJsApiLoader(GOOGLE_MAPS_LOADER);
-
   const [busca, setBusca] = useState('');
   const [centro, setCentro] = useState(CENTRO_PADRAO);
-  const [minhaPosicao, setMinhaPosicao] = useState(null);
   const [buscando, setBuscando] = useState(false);
   const [mensagem, setMensagem] = useState(
     'Digite seu CEP para ver as feiras cadastradas perto de você.',
@@ -81,7 +75,6 @@ function MapaFeiras() {
 
       const posicao = { lat: local.latitude, lng: local.longitude };
       setCentro(posicao);
-      setMinhaPosicao(posicao);
 
       const maisProxima = feiras
         .map((feira) => ({
@@ -131,8 +124,8 @@ function MapaFeiras() {
 
         <div className="mapa-visual" data-revelar="zoom" style={{ '--atraso': '0.2s' }}>
           <iframe
-            title={`Mapa de ${localizacao}`}
-            src={`https://maps.google.com/maps?q=${encodeURIComponent(localizacao)}&output=embed`}
+            title={`Mapa próximo de ${centro.lat}, ${centro.lng}`}
+            src={`https://maps.google.com/maps?q=${centro.lat},${centro.lng}&output=embed`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
