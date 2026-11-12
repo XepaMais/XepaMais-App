@@ -25,7 +25,7 @@ function MiniMapaFeiras({ feiras }) {
 
   return (
     <section className={styles.secaoMiniMapa}>
-      <h2 className={styles.tituloLista}>Suas Feiras no Mapa:</h2>
+      <h2 className={`${styles.tituloLista} titulo-cartao`}>Suas Feiras no Mapa:</h2>
 
       <div className={styles.miniMapa}>
         <GoogleMap

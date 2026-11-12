@@ -87,7 +87,7 @@ img {
 }
 
 /* ===================== Visual novo da área financeira =====================
-   Lucros, Despesas e Planilhas usam a classe "pagina-financeiro".
+   Lucros, Despesas, Planilhas, Feiras e Produtos usam a classe "pagina-financeiro".
    Detalhes em laranja: botões principais, abas e títulos. */
 
 .pagina-financeiro {
@@ -113,7 +113,15 @@ img {
   }
 }
 
-.pagina-financeiro .botoes button {
+/* links no lugar de botão (ex.: "Ver histórico") com o mesmo visual */
+.pagina-financeiro .botoes a {
+  border-radius: 8px;
+  color: var(--branco);
+  text-decoration: none;
+}
+
+.pagina-financeiro .botoes button,
+.pagina-financeiro .botoes a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -129,12 +137,14 @@ img {
     transform 0.2s ease;
 }
 
-.pagina-financeiro .botoes button:hover {
+.pagina-financeiro .botoes button:hover,
+.pagina-financeiro .botoes a:hover {
   background: var(--laranja-escuro);
   transform: translateY(-1px);
 }
 
-.pagina-financeiro .botoes button:focus-visible {
+.pagina-financeiro .botoes button:focus-visible,
+.pagina-financeiro .botoes a:focus-visible {
   outline: 2px solid var(--verde);
   outline-offset: 3px;
 }
@@ -146,28 +156,13 @@ img {
   cursor: not-allowed;
 }
 
-/* Título dos cartões com um tracinho laranja na frente */
-.titulo-cartao {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.titulo-cartao::before {
-  content: '';
-  flex-shrink: 0;
-  width: 4px;
-  height: 18px;
-  border-radius: 4px;
-  background: var(--laranja);
-}
-
 @media (max-width: 600px) {
   .pagina-financeiro .titulo {
     align-items: stretch;
   }
 
-  .pagina-financeiro .botoes button {
+  .pagina-financeiro .botoes button,
+  .pagina-financeiro .botoes a {
     width: 100%;
   }
 }

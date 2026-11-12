@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CalendarDays, Clock, MapPin, Store } from 'lucide-react';
+import { CalendarDays, Clock, History, MapPin, Plus, Store } from 'lucide-react';
+import '@/modulos/feirante/paginas/financeiro/financeiro.css';
 import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
 import PopUpAdicionarProduto from '@/modulos/feirante/paginas/adicionar-produto/componentes/PopUpAdicionarProduto.jsx';
 import base from '@/compartilhado/estilos/conta.module.css';
@@ -17,76 +18,82 @@ function AddProduto() {
   }
 
   return (
-    <main className={base.pagina}>
-      <header className={base.cabecalho}>
-        <div>
-          <h1>Produtos</h1>
-          <p>Escolha a feira em que o produto será vendido.</p>
-        </div>
-        <Link to="/historico-produtos" className={base.botaoSecundario}>
-          Ver histórico
-        </Link>
-      </header>
-
-      {feiraDoUltimoProduto && (
-        <p className={base.sucesso} role="status">
-          Produto cadastrado na feira {feiraDoUltimoProduto.nome}.
-        </p>
-      )}
-
-      {feiras.length === 0 ? (
-        <section className={base.vazio}>
-          <Store size={44} aria-hidden="true" />
-          <h2>Nenhuma feira cadastrada</h2>
-          <p>Cadastre uma feira para poder adicionar produtos a ela.</p>
-          <Link to="/adicionar-feira" className={base.botaoPrincipal}>
-            Cadastrar feira
-          </Link>
+    <div className="pagina pagina-financeiro">
+      <main className="conteudo">
+        <section className="titulo">
+          <div>
+            <h1>Produtos</h1>
+            <p className={styles.descricaoUmaLinha}>Escolha a feira em que o produto será vendido.</p>
+          </div>
+          <div className="botoes">
+            <Link to="/historico-produtos">
+              <History size={18} aria-hidden="true" />
+              Ver histórico
+            </Link>
+          </div>
         </section>
-      ) : (
-        <div className={styles.feiras}>
-          {feiras.map((feira) => (
-            <article className={styles.cartaoFeira} key={feira.id}>
-              <h2>{feira.nome}</h2>
 
-              <p>
-                <MapPin size={18} aria-hidden="true" />
-                {feira.endereco}
-                {feira.cep && ` · CEP ${feira.cep}`}
-              </p>
+        {feiraDoUltimoProduto && (
+          <p className={base.sucesso} role="status">
+            Produto cadastrado na feira {feiraDoUltimoProduto.nome}.
+          </p>
+        )}
 
-              <p>
-                <CalendarDays size={18} aria-hidden="true" />
-                {feira.dias.length > 0 ? feira.dias.join(' e ') : 'Dias não informados'}
-              </p>
+        {feiras.length === 0 ? (
+          <section className={base.vazio}>
+            <Store size={44} aria-hidden="true" />
+            <h2>Nenhuma feira cadastrada</h2>
+            <p>Cadastre uma feira para poder adicionar produtos a ela.</p>
+            <Link to="/adicionar-feira" className={base.botaoPrincipal}>
+              Cadastrar feira
+            </Link>
+          </section>
+        ) : (
+          <div className={styles.feiras}>
+            {feiras.map((feira) => (
+              <article className={styles.cartaoFeira} key={feira.id}>
+                <h2 className="titulo-cartao">{feira.nome}</h2>
 
-              {feira.horario && (
                 <p>
-                  <Clock size={18} aria-hidden="true" />
-                  {feira.horario}
+                  <MapPin size={18} aria-hidden="true" />
+                  {feira.endereco}
+                  {feira.cep && ` · CEP ${feira.cep}`}
                 </p>
-              )}
 
-              <button
-                type="button"
-                className={base.botaoPrincipal}
-                onClick={() => setFeiraSelecionada(feira)}
-              >
-                + Adicionar produto
-              </button>
-            </article>
-          ))}
-        </div>
-      )}
+                <p>
+                  <CalendarDays size={18} aria-hidden="true" />
+                  {feira.dias.length > 0 ? feira.dias.join(' e ') : 'Dias não informados'}
+                </p>
 
-      {feiraSelecionada && (
-        <PopUpAdicionarProduto
-          feira={feiraSelecionada}
-          onFechar={() => setFeiraSelecionada(null)}
-          onSalvo={aoSalvarProduto}
-        />
-      )}
-    </main>
+                {feira.horario && (
+                  <p>
+                    <Clock size={18} aria-hidden="true" />
+                    {feira.horario}
+                  </p>
+                )}
+
+                <button
+                  type="button"
+                  className={styles.botaoAdicionar}
+                  onClick={() => setFeiraSelecionada(feira)}
+                >
+                  <Plus size={18} aria-hidden="true" />
+                  Adicionar produto
+                </button>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {feiraSelecionada && (
+          <PopUpAdicionarProduto
+            feira={feiraSelecionada}
+            onFechar={() => setFeiraSelecionada(null)}
+            onSalvo={aoSalvarProduto}
+          />
+        )}
+      </main>
+    </div>
   );
 }
 
