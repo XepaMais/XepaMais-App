@@ -7,7 +7,7 @@ import styles from './RecursoPlano.module.css';
 const MENSAGENS = {
   financeiro: {
     titulo: 'Gestão financeira não incluída no seu plano',
-    texto: 'Faça upgrade para o plano Crescer ou Pro para acompanhar lucros e gastos.',
+    texto: 'Faça upgrade para o plano Crescer ou Pro para acompanhar lucros e despesas.',
   },
   planilhas: {
     titulo: 'Planilhas não incluídas no seu plano',

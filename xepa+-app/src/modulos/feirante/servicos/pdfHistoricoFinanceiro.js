@@ -54,7 +54,7 @@ export function montarPdfHistorico({ nomeFeirante, periodo, registros, totais })
 
   const linhas = [
     { rotulo: 'Total de lucros', valor: totais.lucros, estilo: 'normal' },
-    { rotulo: 'Total de gastos', valor: totais.gastos, estilo: 'normal' },
+    { rotulo: 'Total de despesas', valor: totais.gastos, estilo: 'normal' },
     { rotulo: 'Saldo do período', valor: totais.saldo, estilo: 'bold' },
   ];
 

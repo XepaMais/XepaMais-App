@@ -39,7 +39,7 @@ export default function PlanosFeirante({ onComprar }) {
                 </ul>
 
                 <button type="button" className="plano-botao" onClick={onComprar}>
-                  Comprar Plano
+                  {plano.id === 'gratis' ? 'Começar grátis' : 'Assinar plano'}
                 </button>
               </div>
             </article>

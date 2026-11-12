@@ -11,12 +11,12 @@ export const FILTROS_VAZIOS = {
   busca: '',
 };
 
-export const ROTULOS_TIPO = { lucro: 'Lucro', gasto: 'Gasto' };
+export const ROTULOS_TIPO = { lucro: 'Lucro', gasto: 'Despesa' };
 
 function rotuloCategoriaGasto(valor) {
   const categoria = CATEGORIAS_GASTO.find((item) => item.valor === valor);
 
-  return categoria ? categoria.rotulo : 'Outros gastos';
+  return categoria ? categoria.rotulo : 'Outras despesas';
 }
 
 function categoriaDoLancamento(item) {

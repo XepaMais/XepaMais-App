@@ -1,4 +1,3 @@
-// Ainda não existe backend de contas: os dados ficam salvos neste navegador.
 const CHAVES = {
   usuario: 'perfilUsuario',
   feirante: 'perfilFeirante',
@@ -6,6 +5,7 @@ const CHAVES = {
 
 // Nomes que o projeto já usava nas áreas de demonstração.
 // Os campos seguem o cadastro. A foto fica vazia até a pessoa escolher uma.
+
 const DADOS_PESSOAIS = { cpf: '', telefone: '', nascimento: '', email: '', foto: '' };
 
 const PERFIS_INICIAIS = {

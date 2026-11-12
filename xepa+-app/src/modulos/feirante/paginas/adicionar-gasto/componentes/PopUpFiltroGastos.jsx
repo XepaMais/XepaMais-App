@@ -54,7 +54,7 @@ function FormularioFiltro({ filtros, onFechar, onAplicar }) {
   }
 
   return (
-    <Modal titulo="Filtro dos gastos" aoFechar={onFechar}>
+    <Modal titulo="Filtro das despesas" aoFechar={onFechar}>
       <form className={styles.form} onSubmit={aplicar}>
         <h3 className={styles.subtitulo}>Ordenar por</h3>
 

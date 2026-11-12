@@ -1,0 +1,15 @@
+.secaoMiniMapa {
+  margin-top: 2rem;
+}
+
+.miniMapa {
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #1b5e20;
+  cursor: pointer;
+}
+
+.botaoMapa {
+  margin-top: 0.75rem;
+}

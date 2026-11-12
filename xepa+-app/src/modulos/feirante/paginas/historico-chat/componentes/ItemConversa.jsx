@@ -1,6 +1,6 @@
 // Card de conversa usado na lista do chat e no quadro de notificações da Home do feirante.
 import Styles from '@/modulos/feirante/paginas/historico-chat/estilos/ChatHist.module.css';
-import { mensagensNaoLidas } from '@/compartilhado/servicos/conversas';
+import { assuntoDaConversa, mensagensNaoLidas } from '@/compartilhado/servicos/conversas';
 import { formatarMoeda } from '@/compartilhado/servicos/pedidos';
 
 const CORES_AVATAR = ['avatarVerde', 'avatarLaranja', 'avatarAmarelo'];
@@ -64,7 +64,7 @@ function ItemConversa({ conversa, perfil, nome, ativo = false, onClick }) {
       className={`${Styles.itemContato} ${ativo ? Styles.contatoAtivo : ''} ${naoLidas ? Styles.contatoNaoLido : ''}`}
       onClick={onClick}
       aria-pressed={ativo}
-      aria-label={`Conversa com ${nome}, pedido nº ${conversa.pedido.numero}`}
+      aria-label={`Conversa com ${nome}, ${assuntoDaConversa(conversa)}`}
     >
       <AvatarConversa nome={nome} />
       <span className={Styles.infoContato}>
@@ -75,7 +75,8 @@ function ItemConversa({ conversa, perfil, nome, ativo = false, onClick }) {
           </time>
         </span>
         <span className={Styles.pedidoContato}>
-          Pedido nº {conversa.pedido.numero} • {formatarMoeda(conversa.pedido.total)}
+          {assuntoDaConversa(conversa)}
+          {conversa.pedido && ` • ${formatarMoeda(conversa.pedido.total)}`}
         </span>
         <span className={Styles.linhaContato}>
           <span className={Styles.msgContato}>

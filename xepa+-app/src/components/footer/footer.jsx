@@ -1,20 +1,156 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Styles from './footer.module.css';
 import logo from '@/assets/imagens/gerais/logo-branca.png';
+import { CAMINHOS_FEIRANTE } from '@/modulos/feirante/componentes/navegacao/caminhosFeirante';
+import { carregarPedidos, PENDENTE_RETIRADA } from '@/compartilhado/servicos/pedidos';
+
+// Colunas do rodapé do site público.
+const COLUNAS_PUBLICAS = [
+  {
+    titulo: 'Tecnologias e IA',
+    links: [
+      { texto: 'Xep.AI', destino: '/xep-ai' },
+      { texto: 'Contato e suporte', destino: '/suporte' },
+    ],
+  },
+  {
+    titulo: 'Para vender',
+    links: [
+      { texto: 'Seja um feirante parceiro', destino: '/seja-parceiro' },
+      { texto: 'Cadastrar minha barraca', destino: '/CriarUsuarioF' },
+    ],
+  },
+  {
+    titulo: 'Home page',
+    links: [
+      { texto: 'Home', destino: '/' },
+      { texto: 'Quem somos', destino: '/#sobre' },
+      { texto: 'Como funciona', destino: '/#como-funciona' },
+      { texto: 'O que você vai receber', destino: '/#beneficios' },
+      { texto: 'Divulgação', destino: '/#divulgacao' },
+      { texto: 'Planos', destino: '/#planos-titulo' },
+      { texto: 'Mapas das feiras', destino: '/#mapa' },
+    ],
+  },
+];
+
+// Colunas do rodapé da área do feirante: pedidos e histórico ficam logo na primeira coluna.
+const COLUNAS_FEIRANTE = [
+  {
+    titulo: 'Pedidos',
+    links: [
+      { texto: 'Pedidos para retirar', destino: '/historico-vendas', contador: 'pendentes' },
+      { texto: 'Histórico de vendas', destino: '/historico-vendas' },
+      { texto: 'Conversas com clientes', destino: '/HistoricoChat' },
+    ],
+  },
+  {
+    titulo: 'Minha banca',
+    links: [
+      { texto: 'Início', destino: '/homeF' },
+      { texto: 'Cadastrar Xepa', destino: '/adicionar-produto' },
+      { texto: 'Histórico de produtos', destino: '/historico-produtos' },
+      { texto: 'Minhas feiras', destino: '/adicionar-feira' },
+    ],
+  },
+  {
+    titulo: 'Gestão',
+    links: [
+      { texto: 'Financeiro', destino: '/financeiro' },
+      { texto: 'Despesas', destino: '/adicionar-gasto' },
+      { texto: 'Planilhas', destino: '/planilhas' },
+      { texto: 'Sacar', destino: '/sacar' },
+      { texto: 'Xep.AI', destino: '/chat-ia' },
+    ],
+  },
+  {
+    titulo: 'Minha conta',
+    links: [
+      { texto: 'Meus dados', destino: '/perfil-feirante' },
+      { texto: 'Planos', destino: '/planos' },
+      { texto: 'Segurança', destino: '/dispositivos-feirante' },
+      { texto: 'Contato e suporte', destino: '/suporte' },
+    ],
+  },
+];
+
+// html e body têm overflow-x: hidden (globais.css), então quem rola pode ser o <body>.
+function rolarParaOTopo() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+// Espera a seção aparecer (a página pode estar trocando) e rola até ela.
+function rolarParaSecao(id, tentativas = 30) {
+  const secao = document.getElementById(id);
+
+  if (secao) {
+    // Rolagem direta: com o <body> como área de rolagem, o modo "smooth" pode não sair do lugar.
+    secao.scrollIntoView({ block: 'start' });
+    return;
+  }
+
+  if (tentativas > 0) {
+    setTimeout(() => rolarParaSecao(id, tentativas - 1), 50);
+  }
+}
+
+// O Link do React Router não rola a página: sem isso, a nova página abre na
+// mesma altura em que o rodapé estava, e os links com # não chegam à seção.
+function LinkRodape({ to, children, ...props }) {
+  const navigate = useNavigate();
+
+  function aoClicar(evento) {
+    // Ctrl/Cmd/Shift + clique continua abrindo em nova aba normalmente.
+    if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.button !== 0) {
+      return;
+    }
+
+    evento.preventDefault();
+    const secao = to.split('#')[1];
+
+    navigate(to);
+
+    if (secao) {
+      rolarParaSecao(secao);
+    } else {
+      setTimeout(rolarParaOTopo, 0);
+    }
+  }
+
+  return (
+    <Link to={to} onClick={aoClicar} {...props}>
+      {children}
+    </Link>
+  );
+}
 
 function Footer() {
+  const { pathname } = useLocation();
+  const areaFeirante = CAMINHOS_FEIRANTE.includes(pathname);
+  const colunas = areaFeirante ? COLUNAS_FEIRANTE : COLUNAS_PUBLICAS;
+  const pendentes = areaFeirante
+    ? carregarPedidos().filter((pedido) => pedido.status === PENDENTE_RETIRADA).length
+    : 0;
+
   return (
     <footer className={Styles.footer}>
       <div className={Styles.rodapeTopo}>
         <div className={Styles.marca}>
-          <Link className={Styles.logo} to="/" aria-label="Xepa+, página inicial">
+          <LinkRodape
+            className={Styles.logo}
+            to={areaFeirante ? '/homeF' : '/'}
+            aria-label="Xepa+, página inicial"
+          >
             <img src={logo} alt="" />
             <span>Xepa+</span>
-          </Link>
+          </LinkRodape>
 
           <p className={Styles.descricao}>
-            Conectando feirantes e consumidores para combater o desperdício de alimentos. Alimentos
-            frescos, sustentabilidade e economia para a sua rotina.
+            {areaFeirante
+              ? 'Gerencie seus pedidos, suas Xepas e o financeiro da sua banca em um só lugar.'
+              : 'Conectando feirantes e consumidores para combater o desperdício de alimentos. Alimentos frescos, sustentabilidade e economia para a sua rotina.'}
           </p>
 
           <div className={Styles.redes} aria-label="Redes sociais">
@@ -41,59 +177,40 @@ function Footer() {
           </div>
         </div>
 
-        <nav className={Styles.colunas} aria-label="Links do rodapé">
-          <div className={Styles.coluna}>
-            <h3>Tecnologias e IA</h3>
-            <ul>
-              <li>
-                <Link to="/chat-ia">Assistente virtual</Link>
-              </li>
-              <li>
-                <Link to="/chat-feirante">Contato e suporte</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className={Styles.coluna}>
-            <h3>Para vender</h3>
-            <ul>
-              <li>
-                <Link to="/CriarContaF">Seja um feirante parceiro</Link>
-              </li>
-              <li>
-                <Link to="/CriarUsuarioF">Cadastrar minha barraca</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className={Styles.coluna}>
-            <h3>Home page</h3>
-            <ul>
-              <li>
-                <Link to="/sobrenos">Quem somos</Link>
-              </li>
-              <li>
-                <Link to="/#como-funciona">Como funciona</Link>
-              </li>
-              <li>
-                <Link to="/#beneficios">O que você vai receber</Link>
-              </li>
-              <li className={Styles.espaco}>
-                <Link to="/#planos-titulo">Planos</Link>
-              </li>
-              <li>
-                <Link to="/#mapa">Mapas das feiras</Link>
-              </li>
-            </ul>
-          </div>
+        <nav
+          className={`${Styles.colunas} ${areaFeirante ? Styles.colunasFeirante : ''}`}
+          aria-label="Links do rodapé"
+        >
+          {colunas.map((coluna) => (
+            <div className={Styles.coluna} key={coluna.titulo}>
+              <h3>{coluna.titulo}</h3>
+              <ul>
+                {coluna.links.map((link) => (
+                  <li key={link.texto}>
+                    <LinkRodape to={link.destino}>
+                      {link.texto}
+                      {link.contador === 'pendentes' && pendentes > 0 && (
+                        <span
+                          className={Styles.contador}
+                          aria-label={`${pendentes} ${pendentes === 1 ? 'pedido' : 'pedidos'} para retirar`}
+                        >
+                          {pendentes}
+                        </span>
+                      )}
+                    </LinkRodape>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </nav>
       </div>
 
       <div className={Styles.base}>
         <span>© 2026 Xepa+ Todos os direitos reservados.</span>
         <div className={Styles.legal}>
-          <a href="#">Termos de uso</a>
-          <a href="#">Diretrizes de Privacidade</a>
+          <LinkRodape to="/termos-de-uso">Termos de uso</LinkRodape>
+          <LinkRodape to="/privacidade">Diretrizes de Privacidade</LinkRodape>
         </div>
       </div>
     </footer>

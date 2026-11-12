@@ -17,7 +17,7 @@ function encontrarMaiorValor(itens) {
 // Gráfico único da área financeira: itens = [{ rotulo, valor }]
 function GraficoBarras({ itens }) {
   if (itens.length === 0) {
-    return <p className={Styles.semDados}>Nenhum gasto registrado neste mês.</p>;
+    return <p className={Styles.semDados}>Nenhuma despesa registrada neste mês.</p>;
   }
 
   const maior = encontrarMaiorValor(itens);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import xepa from '@/assets/imagens/pagina-inicial/xepa.png';
-import logoImpacto from '@/assets/imagens/pagina-inicial/logo-copy.png';
+import logoImpacto from '@/assets/imagens/marca/logo.png';
 import styles from '@/modulos/usuario/paginas/impacto/estilos/Impacto.module.css';
 import chartStyles from '@/modulos/usuario/paginas/impacto/estilos/GraficoImpacto.module.css';
 import { calcularImpacto, formatarKg } from '@/compartilhado/servicos/impacto';

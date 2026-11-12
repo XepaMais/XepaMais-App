@@ -49,7 +49,6 @@ function identificarDispositivoAtual() {
   return { id: 'atual', nome: sistema, navegador, tipo };
 }
 
-// Quando houver sessões no backend, a lista virá da API e cada desconexão fará a chamada real.
 function DispositivosConectados() {
   const navigate = useNavigate();
   const dispositivos = [identificarDispositivoAtual()];
