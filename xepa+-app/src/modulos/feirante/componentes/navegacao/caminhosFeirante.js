@@ -13,6 +13,7 @@ export const CAMINHOS_FEIRANTE = [
   '/perfil-feirante',
   '/historico-vendas',
   '/historico-produtos',
+  '/sacar',
   '/dispositivos-feirante',
   '/planos',
 ];

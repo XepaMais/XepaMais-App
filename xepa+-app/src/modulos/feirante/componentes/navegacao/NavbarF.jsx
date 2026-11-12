@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { CAMINHOS_FINANCEIRO } from './caminhosFinanceiro';
-import { BadgeCheck, Lock, Package, Receipt, ShieldCheck, UserRound } from 'lucide-react';
+import { BadgeCheck, Lock, Package, Receipt, ShieldCheck, UserRound, Wallet } from 'lucide-react';
 import MenuConta from '@/compartilhado/componentes/conta/MenuConta';
 import FotoPerfil from '@/compartilhado/componentes/conta/FotoPerfil';
 import usePerfil from '@/compartilhado/hooks/usePerfil';
@@ -22,6 +22,7 @@ const itensConta = [
   { texto: 'Meus Dados', destino: '/perfil-feirante', Icone: UserRound },
   { texto: 'Histórico de vendas', destino: '/historico-vendas', Icone: Receipt },
   { texto: 'Histórico de produtos', destino: '/historico-produtos', Icone: Package },
+  { texto: 'Sacar', destino: '/sacar', Icone: Wallet },
   { texto: 'Planos', destino: '/planos', Icone: BadgeCheck },
   { texto: 'Segurança', destino: '/dispositivos-feirante', Icone: ShieldCheck },
 ];
