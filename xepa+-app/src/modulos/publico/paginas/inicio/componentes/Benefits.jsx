@@ -4,8 +4,6 @@ import { Apple, Carrot, LeafyGreen, Sprout } from 'lucide-react';
 import '@/modulos/publico/paginas/inicio/estilos/Benefits.css';
 
 import cestaXepa from '@/assets/imagens/pagina-inicial/xepa.png';
-import seta1 from '@/assets/imagens/pagina-inicial/seta1.png';
-import seta2 from '@/assets/imagens/pagina-inicial/seta2.png';
 import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
 // A ordem define a posição: no computador, 1 e 3 ficam à esquerda da caixa e 2 e 4 à direita;
@@ -53,7 +51,7 @@ export default function Benefits() {
     .join(' ');
 
   return (
-    <section className="secao-beneficios" id="beneficios">
+    <section ref={secaoRef} className={classes} id="beneficios">
       <header className="cabecalho-beneficios" data-revelar>
         <h2>
           O que você vai <Rabisco>receber</Rabisco>
@@ -71,10 +69,6 @@ export default function Benefits() {
 
       <div className="ilustracao-beneficios" data-revelar="zoom" style={{ '--atraso': '0.15s' }}>
         <img className="cesta-beneficios" src={cestaXepa} alt="Cesta de alimentos do Xepa+" />
-
-        {categorias.map((categoria) => (
-          <div key={categoria.nome} className={`categoria-beneficio ${categoria.classe}`}>
-            <span>{categoria.nome}</span>
 
         {categorias.map(({ nome, Icone, cor }, indice) => (
           <div
