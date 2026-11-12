@@ -1,6 +1,7 @@
 import usePerfil from '@/compartilhado/hooks/usePerfil';
 import { CATEGORIAS_XEPA } from '@/compartilhado/servicos/xepas';
 import styles from '@/modulos/usuario/paginas/inicio/estilos/Home.module.css';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 
 export function Saudacao() {
   const { perfil } = usePerfil('usuario');
@@ -15,13 +16,11 @@ export function Saudacao() {
 export function SecaoUm({ xepas, categoria, aoEscolherCategoria, busca, aoBuscar }) {
   return (
     <section className={styles.secaoBoasVindas}>
-      <input
-        type="search"
+      <BarraPesquisa
+        valor={busca}
+        aoMudar={aoBuscar}
         placeholder="O que você procura hoje?"
-        aria-label="Buscar xepa"
-        className={styles.barraPesquisa}
-        value={busca}
-        onChange={(evento) => aoBuscar(evento.target.value)}
+        rotulo="Buscar xepa"
       />
 
       <div className={styles.categorias}>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 import IconeFiltro from '@/modulos/feirante/paginas/adicionar-gasto/componentes/IconeFiltro.jsx';
 import PopUpFiltroRendas from '@/modulos/feirante/paginas/financeiro/componentes/PopUpFiltroRendas.jsx';
 import { FILTROS_RENDA_VAZIOS } from '@/modulos/feirante/servicos/lancamentosFinanceiros';
@@ -45,27 +46,23 @@ function HistoricoRendas({ lancamentos, onEditar, onExcluir }) {
 
   return (
     <section className={Styles.containerHistorico} aria-label="Histórico de rendas">
-      <form className={Styles.busca} role="search" onSubmit={(event) => event.preventDefault()}>
-        <div className={Styles.grupoBusca}>
-          <button type="submit" className={Styles.botaoBusca}>
-            Busca
-          </button>
-          <label className={Styles.campoBusca}>
-            <span className={Styles.visualmenteOculto}>Buscar renda</span>
-            <input
-              type="search"
-              value={busca}
-              onChange={(event) => setBusca(event.target.value)}
-              placeholder="Buscar renda"
-            />
-            <IconeFiltro className={Styles.iconeFiltro} />
-          </label>
-        </div>
-
-        <button type="button" className={Styles.botaoFiltrar} onClick={() => setFiltroAberto(true)}>
-          Filtrar
+      <BarraPesquisa
+        className={Styles.busca}
+        valor={busca}
+        aoMudar={setBusca}
+        placeholder="Buscar renda"
+        rotulo="Buscar renda"
+      >
+        <button
+          type="button"
+          className={Styles.botaoFiltrar}
+          aria-label="Filtrar"
+          onClick={() => setFiltroAberto(true)}
+        >
+          <IconeFiltro className={Styles.iconeFiltro} />
+          <span className={Styles.textoFiltrar}>Filtrar</span>
         </button>
-      </form>
+      </BarraPesquisa>
 
       <div className={Styles.filtros}>
         {PERIODOS.map((opcao) => (

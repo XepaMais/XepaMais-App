@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 import IconeFiltro from './IconeFiltro.jsx';
 import { formatarMoeda } from '@/compartilhado/servicos/pedidos';
 import { estaNoPeriodo, PERIODOS } from '@/modulos/feirante/servicos/periodos';
@@ -47,27 +48,23 @@ function HistoricoGastos({ gastos, filtros, onEditar, onExcluir, onFiltrar }) {
 
   return (
     <section className={Styles.containerHistorico} aria-label="Histórico de despesas">
-      <form className={Styles.busca} role="search" onSubmit={(event) => event.preventDefault()}>
-        <div className={Styles.grupoBusca}>
-          <button type="submit" className={Styles.botaoBusca}>
-            Busca
-          </button>
-          <label className={Styles.campoBusca}>
-            <span className={Styles.visualmenteOculto}>Buscar despesa</span>
-            <input
-              type="search"
-              value={busca}
-              onChange={(event) => setBusca(event.target.value)}
-              placeholder="Buscar despesa"
-            />
-            <IconeFiltro className={Styles.iconeFiltro} />
-          </label>
-        </div>
-
-        <button type="button" className={Styles.botaoFiltrar} onClick={onFiltrar}>
-          Filtrar
+      <BarraPesquisa
+        className={Styles.busca}
+        valor={busca}
+        aoMudar={setBusca}
+        placeholder="Buscar despesa"
+        rotulo="Buscar despesa"
+      >
+        <button
+          type="button"
+          className={Styles.botaoFiltrar}
+          aria-label="Filtrar"
+          onClick={onFiltrar}
+        >
+          <IconeFiltro className={Styles.iconeFiltro} />
+          <span className={Styles.textoFiltrar}>Filtrar</span>
         </button>
-      </form>
+      </BarraPesquisa>
 
       <div className={Styles.filtros}>
         {PERIODOS.map((opcao) => (

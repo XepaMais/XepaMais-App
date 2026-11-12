@@ -1,3 +1,5 @@
+/* Cards do topo (Hoje / Semana / Mês) — visual parecido com o original */
+
 .rendas {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -6,31 +8,37 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  padding: 20px;
+  padding: 20px 22px;
   border: 1.5px solid var(--verde);
   border-radius: 16px;
+  background: var(--branco);
   color: var(--verde);
 }
 
 .card h2 {
   margin: 0;
+  color: var(--verde);
   font-size: var(--fonte-texto);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .card p {
-  margin: 2px 0 8px;
+  margin: 2px 0 10px;
   color: var(--cinza);
   font-size: var(--fonte-legenda);
 }
 
 .card strong {
+  margin-top: auto;
   font-size: var(--fonte-titulo-secao);
-  font-weight: 700;
+  font-weight: 800;
   word-break: break-word;
 }
 
+/* card do mês: verde liso */
 .destaque {
   background: var(--verde);
   color: var(--branco);
@@ -41,7 +49,7 @@
 }
 
 .destaque p {
-  color: var(--branco);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 700px) {

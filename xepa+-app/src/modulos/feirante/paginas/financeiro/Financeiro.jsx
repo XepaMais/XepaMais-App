@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Plus } from 'lucide-react';
 import '@/modulos/feirante/paginas/financeiro/financeiro.css';
 import useFinanceiro from '@/modulos/feirante/hooks/useFinanceiro';
 import Renda from '@/modulos/feirante/paginas/financeiro/componentes/Renda.jsx';
@@ -30,7 +31,7 @@ function Financeiro() {
   }
 
   return (
-    <div className="pagina">
+    <div className="pagina pagina-financeiro">
       <main className="conteudo">
         <section className="titulo">
           <div>
@@ -38,7 +39,10 @@ function Financeiro() {
             <p>Acompanhe suas rendas, custos e resultados.</p>
           </div>
           <div className="botoes">
-            <button onClick={() => setModal({})}>+ Adicionar renda</button>
+            <button type="button" onClick={() => setModal({})}>
+              <Plus size={18} aria-hidden="true" />
+              Adicionar renda
+            </button>
           </div>
         </section>
 

@@ -12,83 +12,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Barra de busca: [Busca | campo ........ ícone]  [Filtrar] */
+/* Barra de busca padrão com o botão "Filtrar" ao lado */
 .busca {
-  display: flex;
-  align-items: center;
-  gap: 1.35em;
   margin-bottom: 20px;
 }
 
-.grupoBusca {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  height: 2.5em;
-}
-
-.botaoBusca {
-  min-width: 5.6em;
-  padding: 0 1em;
-  background-color: #9bc000;
-  color: #18552f;
-  border: 0;
-  border-radius: 8px 0 0 8px;
-  font-family: inherit;
-  font-size: 0.95em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.botaoBusca:hover {
-  background-color: #7f9e00;
-}
-
-.campoBusca {
-  position: relative;
-  display: flex;
-  flex: 1;
-  min-width: 0;
-}
-
-.campoBusca input {
-  width: 100%;
-  padding: 0 4.2em 0 1.2em;
-  background-color: #fff;
-  color: #222;
-  border: 1px solid #aaa;
-  border-radius: 0 0.4em 0.4em 0;
-  font-family: inherit;
-  font-size: 0.95em;
-  font-weight: 600;
-}
-
-.campoBusca input::placeholder {
-  color: #9a9a9a;
-  font-weight: 400;
-}
-
-.campoBusca input:focus-visible {
-  outline: 2px solid #9bc000;
-  outline-offset: -2px;
-}
-
-.iconeFiltro {
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  width: 2.2em;
-  height: 1.5em;
-  color: #9bc000;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
 .botaoFiltrar {
-  min-width: 5.8em;
-  height: 2.5em;
-  padding: 0 1.4em;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 20px;
   background-color: #18552f;
   color: #fff;
   border: 0;
@@ -98,60 +33,61 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+
+.iconeFiltro {
+  width: 18px;
+  height: 14px;
 }
 
 .botaoFiltrar:hover {
   background-color: #123620;
 }
 
-.visualmenteOculto {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
-/* Abas: Diário / Semanal / Mensal */
+/* Período: Diário / Semanal / Mensal em um seletor único, ativo em laranja */
 .filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: inline-flex;
+  gap: 4px;
   margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 14px;
+  background: #eef2ef;
 }
 
 .filtro,
 .filtroAtivo {
-  min-width: 5.6em;
-  padding: 0.5em 1.4em;
-  border: 1px solid #18552f;
-  border-radius: 8px;
+  min-width: 7em;
+  min-height: 46px;
+  padding: 0.6em 1.5em;
+  border: 0;
+  border-radius: 10px;
   font-family: inherit;
-  font-size: 1em;
-  font-weight: 600;
+  font-size: var(--fonte-texto);
+  font-weight: 700;
   line-height: 1.2;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .filtro {
-  background-color: #18552f;
-  color: #fff;
+  background-color: transparent;
+  color: #18552f;
 }
 
 .filtro:hover {
-  background-color: #123620;
+  background-color: #e0e7e2;
 }
 
 .filtroAtivo {
-  background-color: #cfe38a;
-  color: #18552f;
+  background-color: var(--laranja);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(247, 96, 25, 0.3);
 }
 
 .filtro:focus-visible,
 .filtroAtivo:focus-visible,
-.botaoBusca:focus-visible,
 .botaoFiltrar:focus-visible,
 .botaoEditar:focus-visible,
 .botaoExcluir:focus-visible {
@@ -170,10 +106,19 @@
   display: grid;
   grid-template-columns: 1.7fr 1fr 1.2fr 1.2fr auto;
   align-items: center;
-  padding: 0.9em 1.6em 0.9em 0.6em;
+  padding: 0.9em 1.4em 0.9em 0.6em;
   background-color: #fff;
-  border: 1.5px solid #18552f;
+  border: var(--fin-borda, 1px solid #e3e9e5);
   border-radius: 16px;
+  box-shadow: var(--fin-sombra, none);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cartaoGasto:hover {
+  border-color: #fbc4a6;
+  transform: translateY(-1px);
 }
 
 /* Cada coluna, com divisória cinza à esquerda (menos a primeira) */
@@ -188,9 +133,9 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 2px;
-  height: 4em;
-  background-color: #707070;
+  width: 1px;
+  height: 2.8em;
+  background-color: #e3e9e5;
   transform: translateY(-50%);
 }
 
@@ -200,19 +145,27 @@
 }
 
 .dado h3 {
-  margin: 0 0 0.25em;
-  color: #18552f;
-  font-size: var(--fonte-pequena);
+  margin: 0 0 0.35em;
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
   font-weight: 600;
+  letter-spacing: 0.04em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .dado p {
   margin: 0;
-  color: #000;
+  color: #18552f;
   font-size: var(--fonte-texto);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+}
+
+/* último valor do cartão (valor/total) em laranja */
+.dado:nth-last-child(2) p {
+  color: var(--laranja-escuro, #de520f);
+  font-weight: 800;
 }
 
 /* Botão de editar (quadrado verde com lápis) */
@@ -284,23 +237,18 @@
     padding: 0 0 var(--espaco-secao);
   }
 
-  /* Campo de busca em cima, "Filtrar" embaixo ocupando a largura toda */
-  .busca {
-    flex-wrap: wrap;
-    gap: 0.8em;
-  }
-
-  .grupoBusca {
-    flex-basis: 100%;
-  }
-
   .botaoFiltrar {
-    width: 100%;
-    height: 2.6em;
+    padding: 0 14px;
   }
 
   .filtros {
-    gap: 0.8em;
+    display: flex;
+  }
+
+  .filtro,
+  .filtroAtivo {
+    flex: 1;
+    min-width: 0;
   }
 
   .cartaoGasto {
@@ -331,5 +279,16 @@
   .botaoExcluir {
     width: 44px;
     height: 44px;
+  }
+}
+
+/* Celular pequeno: "Filtrar" só com o ícone, para sobrar espaço no campo */
+@media (max-width: 480px) {
+  .botaoFiltrar {
+    padding: 0 14px;
+  }
+
+  .textoFiltrar {
+    display: none;
   }
 }

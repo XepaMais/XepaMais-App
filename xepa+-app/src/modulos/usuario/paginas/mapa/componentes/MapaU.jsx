@@ -4,6 +4,7 @@ import Styles from '../estilos/MapU.module.css'
 import Modal from '@/compartilhado/componentes/modal/Modal'
 import logoXepa from '@/assets/imagens/gerais/logo-colorida.png'
 import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps'
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 
 // Simulação das feiras cadastradas no sistema
 const FEIRAS_CADASTRADAS = [
@@ -67,8 +68,7 @@ function MapPage() {
   }, []);
 
   // Busca por CEP caso o usuário queira pesquisar outra região
-  const buscarRegiaoPorCep = (e) => {
-    e.preventDefault();
+  const buscarRegiaoPorCep = () => {
     if (!cep.trim()) return;
 
     const geocoder = new window.google.maps.Geocoder();
@@ -94,18 +94,15 @@ function MapPage() {
   return (
     <div className={Styles.pageContainer}>
       
-      <form onSubmit={buscarRegiaoPorCep} className={Styles.searchForm}>
-        <input
-          type="text"
-          placeholder="Digite um CEP para buscar outra região..."
-          value={cep}
-          onChange={(e) => setCep(e.target.value)}
-          className={Styles.searchInput}
-        />
-        <button type="submit" className={Styles.searchButton}>
-          Buscar
-        </button>
-      </form>
+      <BarraPesquisa
+        className={Styles.searchForm}
+        valor={cep}
+        aoMudar={setCep}
+        aoBuscar={buscarRegiaoPorCep}
+        tipo="text"
+        placeholder="Digite um CEP para buscar outra região..."
+        rotulo="CEP para buscar outra região"
+      />
 
       {aviso && <Modal titulo="Aviso" descricao={aviso} aoFechar={() => setAviso('')} />}
 

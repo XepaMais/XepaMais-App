@@ -1,7 +1,7 @@
 import { formatarMoeda } from '@/compartilhado/servicos/pedidos';
 import Styles from '@/modulos/feirante/paginas/financeiro/componentes/estilos/semanal.module.css';
 
-// A barra mais alta representa o maior valor da lista.
+// A barra mais alta representa o maior valor da lista (e fica em laranja).
 function encontrarMaiorValor(itens) {
   let maior = 1;
 
@@ -24,13 +24,13 @@ function GraficoBarras({ itens }) {
 
   return (
     <div className={Styles.dias}>
-      {itens.map((item, indice) => (
+      {itens.map((item) => (
         <div className={Styles.dia} key={item.rotulo}>
           <span className={Styles.nomeDia}>{item.rotulo}</span>
 
           <div className={Styles.areaBarra}>
             <div
-              className={`${Styles.barra} ${indice % 2 === 0 ? Styles.barraLimao : ''}`}
+              className={`${Styles.barra} ${item.valor === maior ? Styles.barraDestaque : ''}`}
               style={{ height: `${(item.valor / maior) * 100}%` }}
             />
           </div>

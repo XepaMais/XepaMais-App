@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { carregarFeiras, salvarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
-import { Pencil, Search, Trash2 } from 'lucide-react';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
+import '@/modulos/feirante/paginas/financeiro/financeiro.css';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 import PopUpExcluir from '@/modulos/feirante/componentes/PopUpExcluir.jsx';
-import base from '@/compartilhado/estilos/conta.module.css';
 import PopUpAdicionarFeira from '@/modulos/feirante/paginas/adicionar-feira/componentes/PopUpAdicionarFeira.jsx';
 import PopUpEditarFeira from '@/modulos/feirante/paginas/adicionar-feira/componentes/PopUpEditarFeira.jsx';
 import styles from '@/modulos/feirante/paginas/adicionar-feira/estilos/AddFeira.module.css';
@@ -69,41 +70,33 @@ function AddFeira() {
   const tipoModal = modal ? modal.tipo : null;
 
   return (
-    <div className={styles.pagina}>
+    <div className={`${styles.pagina} pagina-financeiro`}>
       <main className={styles.conteudo}>
-        <header className={base.cabecalho}>
+        <section className="titulo">
           <div>
             <h1>Onde Você Trabalha?</h1>
-            <p>
+            <p className={styles.descricaoUmaLinha}>
               Cadastre as feiras onde você trabalha para que os consumidores encontrem sua barraca.
             </p>
           </div>
-          <button
-            type="button"
-            className={base.botaoPrincipal}
-            onClick={() => setModal({ tipo: 'adicionar' })}
-          >
-            + Adicionar Feira
-          </button>
-        </header>
+          <div className="botoes">
+            <button type="button" onClick={() => setModal({ tipo: 'adicionar' })}>
+              <Plus size={18} aria-hidden="true" />
+              Adicionar feira
+            </button>
+          </div>
+        </section>
 
         <section aria-labelledby="tituloFeiras">
-          <form className={styles.busca} onSubmit={(event) => event.preventDefault()}>
-            <button type="submit">Busca</button>
-            <label className={styles.campoBusca}>
-              <span className={styles.visualmenteOculto}>Buscar feira ou endereço</span>
-              <Search className={styles.iconeBusca} aria-hidden="true" />
-              <input
-                id="busca"
-                type="search"
-                value={busca}
-                onChange={(event) => setBusca(event.target.value)}
-                placeholder="Buscar Feira ou endereço (ex: Rua Henrique morador de Poa)"
-              />
-            </label>
-          </form>
+          <BarraPesquisa
+            className={styles.busca}
+            valor={busca}
+            aoMudar={setBusca}
+            placeholder="Buscar feira ou endereço"
+            rotulo="Buscar feira ou endereço"
+          />
 
-          <h2 id="tituloFeiras" className={styles.tituloLista}>
+          <h2 id="tituloFeiras" className={`${styles.tituloLista} titulo-cartao`}>
             Minhas Feiras Cadastradas:
           </h2>
           <div className={styles.lista}>

@@ -1,16 +1,23 @@
+/* Filtros em um cartão branco, com o mesmo visual da área financeira */
 .filtros {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: end;
   gap: 16px;
   margin-bottom: var(--espaco-secao);
-  padding: 20px;
-  border: var(--borda-card);
+  padding: 22px 24px;
+  border: var(--fin-borda, 1px solid #e3e9e5);
   border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: var(--fin-sombra, none);
 }
 
-.indicadores {
-  margin-bottom: var(--espaco-secao);
+/* campos com foco laranja, igual à barra de pesquisa */
+.filtros input:focus,
+.filtros select:focus {
+  border-color: var(--laranja);
+  box-shadow: 0 0 0 3px rgba(247, 96, 25, 0.15);
+  outline: none;
 }
 
 .campoBusca {
@@ -20,8 +27,10 @@
 /* Só a tabela rola na horizontal, nunca a página */
 .tabelaBorda {
   overflow-x: auto;
-  border: var(--borda-card);
+  border: var(--fin-borda, 1px solid #e3e9e5);
   border-radius: var(--raio-card);
+  background: var(--branco);
+  box-shadow: var(--fin-sombra, none);
 }
 
 .tabela {
@@ -32,21 +41,32 @@
 }
 
 .tabela th {
-  padding: 12px 16px;
-  background: var(--verde-suave);
+  padding: 14px 16px;
+  border-bottom: 2px solid var(--laranja);
+  background: var(--verde);
+  color: var(--branco);
   font-weight: 600;
   text-align: left;
   white-space: nowrap;
 }
 
 .tabela td {
-  padding: 12px 16px;
-  border-top: 1px solid var(--cinza-claro);
+  padding: 13px 16px;
+  border-top: 1px solid #eef2ef;
+  color: var(--verde);
   vertical-align: middle;
 }
 
+.tabela tbody tr:nth-child(even) td {
+  background: #fafbfa;
+}
+
+.tabela tbody tr:hover td {
+  background: var(--laranja-suave, #fff3ec);
+}
+
 .tabela .valor {
-  font-weight: 600;
+  font-weight: 700;
   text-align: right;
   white-space: nowrap;
 }
@@ -54,19 +74,19 @@
 .lucro,
 .gasto {
   display: inline-block;
-  padding: 2px 12px;
+  padding: 3px 12px;
   border-radius: 999px;
   font-size: var(--fonte-legenda);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .lucro {
-  background: #eef5d6;
-  color: #3d5a00;
+  background: #e8f3dd;
+  color: #2f5d12;
 }
 
 .gasto {
-  background: #ffeee5;
+  background: #ffe8db;
   color: #b53807;
 }
 

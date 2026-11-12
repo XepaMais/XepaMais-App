@@ -13,56 +13,17 @@
 
 /* Barra de pesquisa elegante posicionada no topo */
 .searchForm {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  box-sizing: border-box;
   padding: 16px 24px;
   background-color: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   z-index: 10;
 }
 
-/* Campo de entrada de texto para o CEP */
-.searchInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 12px 16px;
-  font-size: 15px;
-  color: #333333;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  outline: none;
-  transition: all 0.2s ease-in-out;
-}
-
-/* Efeito de foco quando o usuário clica para digitar no input */
-.searchInput:focus {
-  border-color: #4caf50; /* Verde institucional Xepa */
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
-}
-
-/* Botão de busca */
-.searchButton {
-  padding: 12px 24px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #4caf50; /* Verde institucional Xepa */
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-/* Efeito de passar o mouse no botão */
-.searchButton:hover {
-  background-color: #45a049;
-}
-
-/* Efeito de clique no botão */
-.searchButton:active {
-  background-color: #3e8e41;
+/* campo + botão centralizados, sem esticar a tela toda */
+.searchForm > div {
+  max-width: 540px;
 }
 
 /* Componente do mapa que ocupa todo o espaço restante abaixo do formulário */

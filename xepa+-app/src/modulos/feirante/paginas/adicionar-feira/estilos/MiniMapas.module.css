@@ -4,12 +4,22 @@
 
 .miniMapa {
   height: 240px;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #1b5e20;
+  border: 1px solid #e3e9e5;
+  box-shadow: 0 4px 18px rgba(24, 85, 47, 0.06);
   cursor: pointer;
 }
 
 .botaoMapa {
   margin-top: 0.75rem;
+}
+
+/* "Suas Feiras no Mapa:" igual a "Minhas Feiras Cadastradas:" */
+.tituloLista {
+  margin: 0 0 16px;
+  color: var(--verde);
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 800;
 }
