@@ -1,77 +1,116 @@
-/* Missão, Visão e Valores: painel colorido + foto até a borda, sem espaço entre eles */
+
+
 .sn-painel {
+  --painel-fundo: #18552f;
+  --painel-titulo: #fff;
+  --painel-texto: rgba(255, 255, 255, 0.88);
+  --painel-destaque: #fff;
+  --painel-forte: #e4f04a;
+  --painel-bolinha: #9bc000;
+
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  /* cada bloco ocupa boa parte da tela, proporcional à altura da janela */
-  min-height: clamp(440px, 80svh, 760px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  width: 100%;
+  min-height: clamp(460px, 40vw, 600px);
+
+  background: var(--painel-fundo);
+  font-family: 'Poppins', sans-serif;
 }
 
-.sn-painel--lima .sn-painel__texto {
-  background: var(--sn-lima-claro, #eef4d9);
+.sn-painel--verde {
+  --painel-fundo: #18552f;
 }
 
-.sn-painel--laranja .sn-painel__texto {
-  background: var(--sn-laranja-claro, #fff0e6);
+.sn-painel--laranja {
+  --painel-fundo: #f76019;
+  --painel-texto: #fff;
+  --painel-destaque: #fff;
+  --painel-forte: #fff;
+  --painel-bolinha: #18552f;
 }
 
-.sn-painel--amarelo .sn-painel__texto {
-  background: var(--sn-amarelo-claro, #fff6d9);
+.sn-painel--creme {
+  --painel-fundo: #fff3ec;
+  --painel-titulo: #18552f;
+  --painel-texto: #3c5a44;
+  --painel-destaque: #18552f;
+  --painel-forte: #f76019;
+  --painel-bolinha: #9bc000;
 }
 
-.sn-painel__texto {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(40px, 5vw, 72px) clamp(24px, 5vw, 72px);
-}
-
-.sn-painel--invertido .sn-painel__texto {
+/* vídeo à direita */
+.sn-painel--invertido .sn-painel__midia {
   order: 2;
 }
 
-/* Caixa de texto larga, centralizada na metade colorida */
-.sn-painel__conteudo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  max-width: 560px;
-}
-
-.sn-painel__conteudo .sn-texto {
-  max-width: none;
-}
-
-/* Palavras principais maiores nos blocos de Missão, Visão e Valores */
-.sobre .sn-painel .sn-titulo {
-  font-size: clamp(32px, 3.6vw, 52px);
-}
+/* ---------- Vídeo ---------- */
 
 .sn-painel__midia {
   position: relative;
-  min-height: 280px;
   overflow: hidden;
+  background: #0f3b20;
 }
 
-.sn-painel__midia > video {
+.sn-painel__midia video {
   position: absolute;
   inset: 0;
+
   display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
   object-fit: cover;
-  background: var(--verde, #18552f);
 }
 
-/* ---------- Valores: texto simples ---------- */
+/* ---------- Texto ---------- */
 
+.sn-painel__texto {
+  align-self: center;
+  max-width: 600px;
+  padding: clamp(48px, 6vw, 88px) clamp(24px, 5vw, 80px);
+}
+
+.sn-painel__titulo {
+  margin: 0;
+
+  color: var(--painel-titulo);
+  font-family: 'Cal Sans', 'Poppins', sans-serif;
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+}
+
+
+.sn-painel__destaque {
+  padding-top: 30px;
+
+  color: var(--painel-destaque);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 600;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.sn-painel__corpo {
+  margin-top: 16px;
+}
+
+.sn-painel__corpo .sn-p {
+  max-width: 500px;
+  color: var(--painel-texto);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.sn-painel__corpo .sn-p strong {
+  color: var(--painel-forte);
+}
+
+/* lista de valores com bolinhas no lugar de ícones */
 .sn-valores {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  gap: 16px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -79,43 +118,40 @@
 
 .sn-valores li {
   position: relative;
-  padding-left: 20px;
+  padding-left: 24px;
 }
 
 .sn-valores li::before {
   content: '';
   position: absolute;
-  top: 0.62em;
+  top: 0.65em;
   left: 0;
-  width: 8px;
-  height: 8px;
+
+  width: 10px;
+  height: 10px;
+
   border-radius: 50%;
-  background: var(--laranja, #f76019);
+  background: var(--painel-bolinha);
 }
 
-/* Tablets e celulares: foto em cima, texto embaixo */
-@media (max-width: 800px) {
+/* ---------- Tablets e celulares: vídeo em cima, texto embaixo ---------- */
+
+@media (max-width: 860px) {
   .sn-painel {
     grid-template-columns: minmax(0, 1fr);
     min-height: 0;
   }
 
-  .sn-painel__midia {
-    order: -1;
-    aspect-ratio: 16 / 10;
-    min-height: 0;
-  }
-
-  .sn-painel--invertido .sn-painel__texto {
+  .sn-painel--invertido .sn-painel__midia {
     order: 0;
   }
 
-  .sn-painel__texto {
-    justify-content: flex-start;
-    padding: 40px var(--margem-lateral, 20px) 48px;
+  .sn-painel__midia {
+    aspect-ratio: 4 / 3;
   }
 
-  .sn-painel__conteudo {
-    max-width: 640px;
+  .sn-painel__texto {
+    max-width: none;
+    padding: 40px var(--margem-lateral, 20px) 48px;
   }
 }

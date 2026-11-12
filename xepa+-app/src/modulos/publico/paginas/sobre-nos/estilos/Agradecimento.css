@@ -1,10 +1,56 @@
-.agradecimentos {
-  display: block;
-  width: min(100%, 760px);
+/* ---------- Agradecimentos: fecha a página em bege ---------- */
+
+.sn-agradecimento {
+  width: 100%;
+  padding: clamp(64px, 8vw, 104px) var(--margem-lateral, 24px);
+  background: #fffefb;
+}
+
+.sn-agradecimento__grade {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(36px, 5vw, 72px);
+
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+.sn-agradecimento__texto {
+  display: grid;
+  gap: 24px;
+  max-width: 480px;
+}
+
+.sn-agradecimento .sn-h2 {
+  color: #18552f;
+}
+
+.sn-agradecimento .sn-p {
+  color: #18552f;
+  font-size: clamp(16px, 1.3vw, 18px);
+}
+
+/* foto grande na coluna mais larga; o corte em 4:3 mantém os rostos (que ficam embaixo) */
+.sn-agradecimento__foto {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  /* a foto é vertical: mostra a parte de baixo, onde estão os rostos */
   object-position: center 62%;
-  border-radius: var(--raio-card, 16px);
+  border-radius: 12px;
+}
+
+/* ---------- Celulares: texto em cima, foto embaixo ---------- */
+
+@media (max-width: 760px) {
+  .sn-agradecimento__grade {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .sn-agradecimento__foto {
+    max-width: 560px;
+  }
 }

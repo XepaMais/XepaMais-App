@@ -2,16 +2,17 @@ import { useEffect, useRef } from 'react';
 import '@/modulos/publico/paginas/sobre-nos/estilos/Bloco.css';
 
 /*
- * Bloco de duas metades: painel colorido com texto + vídeo até a borda.
- * cor: 'lima' | 'laranja' | 'amarelo'   invertido: vídeo à esquerda
- * corRotulo: cor do subtítulo (ex.: '#FF5200')
+ * Seção de largura total, igual à propaganda do feirante na Home:
+ * metade com vídeo (até a borda) e metade com texto.
+ * cor: 'verde' | 'laranja' | 'creme'   invertido: vídeo à direita
+ * titulo: pode ter <Rabisco> na palavra de destaque
+ * destaque: frase curta logo abaixo do título
  * Prefixo "sn-" para não herdar estilos de outras páginas (ex.: .painel do financeiro).
  */
 export default function Painel({
   id,
-  rotulo,
-  corRotulo,
   titulo,
+  destaque,
   cor,
   video,
   poster,
@@ -53,18 +54,6 @@ export default function Painel({
 
   return (
     <section className={classes} aria-labelledby={id}>
-      <div className="sn-painel__texto">
-        <div className="sn-painel__conteudo">
-          <p className="sn-eyebrow" style={corRotulo ? { color: corRotulo } : undefined}>
-            {rotulo}
-          </p>
-          <h2 id={id} className="sn-titulo">
-            {titulo}
-          </h2>
-          {children}
-        </div>
-      </div>
-
       <div className="sn-painel__midia">
         <video
           ref={videoRef}
@@ -76,6 +65,23 @@ export default function Painel({
           preload="metadata"
           aria-label={descricaoVideo}
         />
+      </div>
+
+      {/* o bloco de texto entra inteiro, de uma vez: nada passa por cima de nada */}
+      <div className="sn-painel__texto" data-revelar>
+        <h2 id={id} className="sn-painel__titulo">
+          {titulo}
+        </h2>
+
+        {destaque && (
+          <p className="sn-painel__destaque">
+            {destaque}
+          </p>
+        )}
+
+        <div className="sn-painel__corpo">
+          {children}
+        </div>
       </div>
     </section>
   );

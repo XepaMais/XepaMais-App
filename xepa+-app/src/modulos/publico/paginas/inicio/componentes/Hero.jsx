@@ -1,19 +1,7 @@
 import '@/modulos/publico/paginas/inicio/estilos/Hero.css';
-import mamao from '@/assets/imagens/pagina-inicial/mamao-home.png';
-import abacaxi from '@/assets/imagens/pagina-inicial/abacaxi-home.png';
-import melancia from '@/assets/imagens/pagina-inicial/melancia-home.png';
-import kiwi from '@/assets/imagens/pagina-inicial/kiwi-home.png';
-import goiaba from '@/assets/imagens/pagina-inicial/goiaba-home.png';
-import uva from '@/assets/imagens/pagina-inicial/uva-home.png';
-
-const frutas = [
-  { classe: 'fruta-inicio--mamao', imagem: mamao },
-  { classe: 'fruta-inicio--abacaxi', imagem: abacaxi },
-  { classe: 'fruta-inicio--melancia', imagem: melancia },
-  { classe: 'fruta-inicio--kiwi', imagem: kiwi },
-  { classe: 'fruta-inicio--goiaba', imagem: goiaba },
-  { classe: 'fruta-inicio--uva', imagem: uva },
-];
+import FaixaXepa from '@/modulos/publico/paginas/inicio/componentes/FaixaXepa.jsx';
+// Vídeo de fundo da apresentação (Pexels 15645011)
+import videoFeira from '@/assets/videos/feira-hero.mp4';
 
 // Palavras que passam na faixa. Adicione ou remova quantas quiser.
 const palavras = [
@@ -26,58 +14,50 @@ const palavras = [
   'Mais futuro',
 ];
 
-// Cada grupo repete a lista para a faixa nunca ficar com buraco em telas largas.
-const palavrasDoGrupo = palavras.concat(palavras);
 
 export default function Hero() {
   return (
     <>
       <section className="secao-inicio" id="inicio">
-        <div className="frutas-inicio" aria-hidden="true">
-          {frutas.map((fruta) => (
-            <img
-              key={fruta.classe}
-              className={`fruta-inicio ${fruta.classe}`}
-              src={fruta.imagem}
-              alt=""
-            />
-          ))}
-        </div>
+        {/* Vídeo de fundo: mudo e em loop, como pano de fundo da apresentação */}
+        <video
+          className="video-inicio"
+          src={videoFeira}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        <div className="video-inicio__sombra" aria-hidden="true" />
 
         <div className="conteudo-inicio">
+          {/* Cada linha ganha sua própria faixa de fundo, como um letreiro */}
           <h1 className="titulo-inicio">
-            Menos desperdício,
-            <br />
-            mais alimento, mais futuro
+            <span className="titulo-inicio__linha">Menos</span>
+            <span className="titulo-inicio__linha">desperdício,</span>
+            <span className="titulo-inicio__linha">mais alimento,</span>
+            <span className="titulo-inicio__linha">mais futuro!</span>
           </h1>
 
           <p className="lead-inicio">
             O Xepa+ conecta feirantes e consumidores para que o alimento fresquinho chegue à mesa
             das pessoas, e não ao lixo.
           </p>
+
+          <a className="botao-inicio" href="#como-funciona">
+            Veja como funciona
+          </a>
         </div>
+
+        <p className="selo-inicio" aria-hidden="true">
+          Feira fresquinha com preço justo, direto da xepa pra sua mesa.
+        </p>
       </section>
 
-      {/* Faixa em carrossel: o 2º grupo é uma cópia só para o loop ficar contínuo */}
-      <div className="faixa-xepa">
-        <div className="faixa-xepa__trilha">
-          <ul className="faixa-xepa__grupo">
-            {palavrasDoGrupo.map((palavra, indice) => (
-              <li key={indice} className="faixa-xepa__item">
-                {palavra}
-              </li>
-            ))}
-          </ul>
-
-          <ul className="faixa-xepa__grupo" aria-hidden="true">
-            {palavrasDoGrupo.map((palavra, indice) => (
-              <li key={indice} className="faixa-xepa__item">
-                {palavra}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      {/* Faixa em carrossel embaixo do vídeo */}
+      <FaixaXepa palavras={palavras} />
     </>
   );
 }

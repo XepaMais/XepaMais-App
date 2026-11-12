@@ -5,6 +5,7 @@ import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
 import { buscarCep, geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
 import { GOOGLE_MAPS_LOADER } from '@/compartilhado/servicos/googleMaps';
 import '@/modulos/publico/paginas/inicio/estilos/MapaFeiras.css';
+import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
 const CENTRO_PADRAO = { lat: -23.4669, lng: -46.6869 }; // Brasilândia, São Paulo
 
@@ -104,15 +105,16 @@ function MapaFeiras() {
   return (
     <section className="mapa-feiras" id="mapa">
       <div className="mapa-conteudo">
-        <div className="mapa-texto">
-          <span className="mapa-etiqueta">ENCONTRE PERTO DE VOCÊ</span>
-          <h2>Mapa de feiras</h2>
+        <div className="mapa-texto" data-revelar>
+          <h2>
+            Mapa de <Rabisco cor="#e4f04a">feiras</Rabisco>
+          </h2>
           <p>
             Descubra feiras próximas, encontre novos produtos e conheça os feirantes da sua região.
           </p>
         </div>
 
-        <form className="mapa-busca" onSubmit={pesquisarFeiras}>
+        <form className="mapa-busca" onSubmit={pesquisarFeiras} data-revelar style={{ '--atraso': '0.1s' }}>
           <input
             type="search"
             inputMode="search"
@@ -127,30 +129,14 @@ function MapaFeiras() {
           </button>
         </form>
 
-        <div className="mapa-visual">
-          {isLoaded ? (
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={centro}
-              zoom={14}
-            >
-              {minhaPosicao && <Marker position={minhaPosicao} title="Você está aqui" />}
-
-              {feiras.map((feira) => (
-                <Marker
-                  key={feira.id}
-                  position={{ lat: feira.latitude, lng: feira.longitude }}
-                  title={feira.nome}
-                  icon={{
-                    url: logoXepa,
-                    scaledSize: new window.google.maps.Size(40, 40),
-                  }}
-                />
-              ))}
-            </GoogleMap>
-          ) : (
-            <p>Carregando mapa...</p>
-          )}
+        <div className="mapa-visual" data-revelar="zoom" style={{ '--atraso': '0.2s' }}>
+          <iframe
+            title={`Mapa de ${localizacao}`}
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(localizacao)}&output=embed`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
         </div>
 
         <p className="mapa-observacao" aria-live="polite">

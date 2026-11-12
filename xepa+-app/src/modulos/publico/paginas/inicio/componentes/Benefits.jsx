@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { Apple, Carrot, LeafyGreen, Sprout } from 'lucide-react';
 import '@/modulos/publico/paginas/inicio/estilos/Benefits.css';
 
-import caixaXepa from '@/assets/imagens/pagina-inicial/caixa-xepa.png';
+import cestaXepa from '@/assets/imagens/pagina-inicial/xepa.png';
+import seta1 from '@/assets/imagens/pagina-inicial/seta1.png';
+import seta2 from '@/assets/imagens/pagina-inicial/seta2.png';
+import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
 // A ordem define a posição: no computador, 1 e 3 ficam à esquerda da caixa e 2 e 4 à direita;
 // no celular, as quatro formam uma grade 2 x 2 abaixo dela.
@@ -50,9 +53,11 @@ export default function Benefits() {
     .join(' ');
 
   return (
-    <section className={classes} id="beneficios" ref={secaoRef} aria-labelledby="beneficios-titulo">
-      <header className="cabecalho-beneficios">
-        <h2 id="beneficios-titulo">O que você pode comprar</h2>
+    <section className="secao-beneficios" id="beneficios">
+      <header className="cabecalho-beneficios" data-revelar>
+        <h2>
+          O que você vai <Rabisco>receber</Rabisco>
+        </h2>
 
         <p>
           Com o Xepa+, você encontra alimentos frescos, economiza nas compras e ajuda a reduzir o
@@ -64,12 +69,12 @@ export default function Benefits() {
         </Link>
       </header>
 
-      <div className="ilustracao-beneficios">
-        <img
-          className="cesta-beneficios"
-          src={caixaXepa}
-          alt="Caixa do Xepa+ com legumes, verduras, frutas e temperos"
-        />
+      <div className="ilustracao-beneficios" data-revelar="zoom" style={{ '--atraso': '0.15s' }}>
+        <img className="cesta-beneficios" src={cestaXepa} alt="Cesta de alimentos do Xepa+" />
+
+        {categorias.map((categoria) => (
+          <div key={categoria.nome} className={`categoria-beneficio ${categoria.classe}`}>
+            <span>{categoria.nome}</span>
 
         {categorias.map(({ nome, Icone, cor }, indice) => (
           <div

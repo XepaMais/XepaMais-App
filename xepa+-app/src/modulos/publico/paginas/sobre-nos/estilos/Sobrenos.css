@@ -140,3 +140,77 @@
     transition: none;
   }
 }
+
+/* =========================================================
+ * Novo visual (igual à Home). Usado em todas as seções,
+ * menos na área do Time, que continua com as classes acima.
+ * ========================================================= */
+
+.sn-h2 {
+  margin: 0;
+
+  color: #18552f;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.sn-p {
+  margin: 0;
+
+  color: #3c5a44;
+  font-size: clamp(15px, 1.2vw, 16px);
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.sn-p strong {
+  color: #f76019;
+  font-weight: 700;
+}
+
+/* título + texto centralizados no topo de uma seção */
+.sn-topo {
+  display: grid;
+  gap: 16px;
+  max-width: 640px;
+  margin: 0 auto clamp(36px, 4.5vw, 56px);
+  text-align: center;
+}
+
+/* mesmo formato do botão de Login do cabeçalho */
+.sn-botao-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 28px;
+
+  border: 0;
+  border-radius: 4px;
+  background: #18552f;
+  color: #fff;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sn-botao-login:hover {
+  background: #f76019;
+  transform: translateY(-2px);
+}
+
+.sn-botao-login:focus-visible {
+  outline: 2px solid #18552f;
+  outline-offset: 3px;
+}
