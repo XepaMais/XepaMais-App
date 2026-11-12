@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import '@/modulos/publico/paginas/sobre-nos/estilos/Feiradeperto.css';
+import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 import videoFeira from '@/assets/videos/sobre-nos/feiramadru.mp4';
 
 function FeiraDePerto() {
@@ -12,19 +13,18 @@ function FeiraDePerto() {
   }
 
   return (
-    <section className="secao" aria-labelledby="sn-feira">
-      <div className="sn-cabecalho">
-        <p className="sn-eyebrow">Na prática</p>
-        <h2 id="sn-feira" className="sn-titulo">
-          Conheça a feira de perto
+    <section className="sn-feira" aria-labelledby="sn-feira">
+      <header className="sn-topo">
+        <h2 id="sn-feira" className="sn-h2" data-revelar>
+          Conheça a feira de <Rabisco cor="#f76019">perto</Rabisco>
         </h2>
-        <p className="sn-texto">
+        <p className="sn-p" data-revelar style={{ '--atraso': '0.08s' }}>
           É no fim da feira que a xepa acontece. Dê o play e veja de perto o dia a dia que inspira o
           Xepa+.
         </p>
-      </div>
+      </header>
 
-      <div className="video">
+      <div className="sn-feira__video" data-revelar="zoom" style={{ '--atraso': '0.15s' }}>
         <video
           ref={videoRef}
           src={`${videoFeira}#t=0.1`}
@@ -35,7 +35,7 @@ function FeiraDePerto() {
         {!tocando && (
           <button
             type="button"
-            className="video__play"
+            className="sn-feira__play"
             aria-label="Reproduzir vídeo"
             onClick={reproduzir}
           >

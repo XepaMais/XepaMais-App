@@ -6,6 +6,7 @@ import estrela2 from '@/assets/imagens/pagina-inicial/estrela-2.png';
 import estrela3 from '@/assets/imagens/pagina-inicial/estrela-3.png';
 import mamao from '@/assets/imagens/pagina-inicial/mamao-funciona.png';
 import pessego from '@/assets/imagens/pagina-inicial/pessego-funciona.png';
+import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
 const etapas = [
   {
@@ -94,7 +95,9 @@ export default function HowItWorks() {
       />
 
       <div className="conteudo-funcionamento">
-        <h2>Mas como isso funciona?</h2>
+        <h2 data-revelar>
+          Mas como isso <Rabisco>funciona</Rabisco>?
+        </h2>
 
         <div className="lista-etapas">
           {etapas.map((etapa) => (

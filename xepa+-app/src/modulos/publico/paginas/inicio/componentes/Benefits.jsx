@@ -3,6 +3,7 @@ import '@/modulos/publico/paginas/inicio/estilos/Benefits.css';
 import cestaXepa from '@/assets/imagens/pagina-inicial/xepa.png';
 import seta1 from '@/assets/imagens/pagina-inicial/seta1.png';
 import seta2 from '@/assets/imagens/pagina-inicial/seta2.png';
+import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
 
 const categorias = [
   {
@@ -30,8 +31,10 @@ const categorias = [
 export default function Benefits() {
   return (
     <section className="secao-beneficios" id="beneficios">
-      <header className="cabecalho-beneficios">
-        <h2>O que você vai receber</h2>
+      <header className="cabecalho-beneficios" data-revelar>
+        <h2>
+          O que você vai <Rabisco>receber</Rabisco>
+        </h2>
 
         <p>
           Com o Xepa+, você encontra alimentos frescos, economiza nas compras e ajuda a reduzir o
@@ -43,7 +46,7 @@ export default function Benefits() {
         </a>
       </header>
 
-      <div className="ilustracao-beneficios">
+      <div className="ilustracao-beneficios" data-revelar="zoom" style={{ '--atraso': '0.15s' }}>
         <img className="cesta-beneficios" src={cestaXepa} alt="Cesta de alimentos do Xepa+" />
 
         {categorias.map((categoria) => (

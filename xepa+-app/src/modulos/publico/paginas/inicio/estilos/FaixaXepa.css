@@ -1,0 +1,90 @@
+/* ---------- Faixa em carrossel ---------- */
+
+.faixa-xepa {
+  --faixa-fundo: #9bc000;
+  --faixa-texto: #28451c;
+  --faixa-bolinha: #18552f;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: clamp(44px, 4vw, 56px);
+  overflow: hidden;
+
+  background: var(--faixa-fundo);
+  color: var(--faixa-texto);
+  white-space: nowrap;
+}
+
+.faixa-xepa--laranja {
+  --faixa-fundo: #f76019;
+  --faixa-texto: #fff;
+  --faixa-bolinha: #18552f;
+}
+
+
+.faixa-xepa__trilha {
+  display: flex;
+  width: max-content;
+  animation: faixa-corre 45s linear infinite;
+}
+
+/* a faixa laranja corre no sentido contrário, para variar */
+.faixa-xepa--laranja .faixa-xepa__trilha {
+  animation-direction: reverse;
+}
+
+.faixa-xepa:hover .faixa-xepa__trilha {
+  animation-play-state: paused;
+}
+
+.faixa-xepa__grupo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+
+  /* garante que um grupo sozinho sempre cobre a tela inteira */
+  min-width: 100vw;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.faixa-xepa__item {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  padding-left: 3vw;
+
+  font-family: 'Cal Sans', 'Poppins', sans-serif;
+  font-size: clamp(12px, 1.1vw, 16px);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+/* bolinha separando as palavras */
+.faixa-xepa__item::after {
+  content: '';
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: var(--faixa-bolinha);
+}
+
+@keyframes faixa-corre {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faixa-xepa__trilha {
+    animation: none;
+  }
+}

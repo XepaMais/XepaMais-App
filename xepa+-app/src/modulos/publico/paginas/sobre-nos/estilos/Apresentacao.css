@@ -6,7 +6,7 @@
 
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #fffaf7 0%, #f6f8ee 100%);
+  background: #fff3ec;
 }
 
 .sn-hero__conteudo {
@@ -18,26 +18,48 @@
   gap: 16px;
   max-width: 720px;
   margin: 0 auto;
-  /* embaixo sobra espaço para a fileira de frutas */
-  /* seção mais comprida: mais respiro em cima e entre o texto e as frutas */
+
   padding: clamp(80px, 11vw, 160px) var(--margem-lateral, 24px)
     calc(20cqw * var(--escala) + clamp(56px, 7vw, 112px));
   text-align: center;
 }
 
 .sn-hero__titulo {
-  color: var(--verde, #18552f);
-  font-size: clamp(40px, 5.5vw, 72px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  animation: sn-sobe 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.06em;
+
+  font-family: 'Cal Sans', 'Poppins', sans-serif;
+  font-size: clamp(44px, 6vw, 84px);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
 }
 
-.sobre .sn-hero__texto {
+/* faixa verde com letras amarelo-limão, igual ao título da Home */
+.sn-hero__linha {
+  padding: 0.04em 0.18em 0.02em;
+  background: #18552f;
+  color: #e4f04a;
+  animation: sn-sobe 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sn-hero__linha:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.sn-hero__texto {
   max-width: 44ch;
+  margin-top: 10px;
+
+  color: #18552f;
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 500;
+  line-height: 1.6;
   text-wrap: balance;
-  animation: sn-sobe 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  animation: sn-sobe 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
 
 /* ---------- Frutas ---------- */
@@ -105,8 +127,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .sn-fruta,
-  .sn-hero__titulo,
-  .sobre .sn-hero__texto {
+  .sn-hero__linha,
+  .sn-hero__texto {
     animation: none;
   }
 }

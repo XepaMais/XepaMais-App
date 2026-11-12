@@ -9,12 +9,7 @@ import abacaxi from '@/assets/imagens/pagina-inicial/abacaxi-home.png';
 import pessego from '@/assets/imagens/pagina-inicial/pessego-funciona.png';
 import laranja from '@/assets/imagens/pagina-inicial/laranja-funciona.png';
 
-/*
- * Fileira de frutas espelhada no pé da seção, sem espaço entre elas.
- * x = centro da fruta (% da largura) | t = tamanho (% da largura)
- * b = distância do fundo (% da largura, negativo = corta a fruta) | r = giro
- * As frutas são maiores que a distância entre os centros, por isso sempre se encostam.
- */
+
 const FILEIRA_DE_TRAS = [
   { img: kiwi, x: 7.1, t: 15.5, b: 4, r: 0 },
   { img: abacaxi, x: 21.4, t: 15.5, b: 5, r: -12 },
@@ -58,10 +53,12 @@ export default function Apresentacao() {
   return (
     <section className="sn-hero" aria-labelledby="sn-hero-titulo">
       <div className="sn-hero__conteudo">
+        {/* cada palavra ganha uma faixa verde, como no título da Home */}
         <h1 id="sn-hero-titulo" className="sn-hero__titulo">
-          Sobre nós
+          <span className="sn-hero__linha">Sobre</span>
+          <span className="sn-hero__linha">nós</span>
         </h1>
-        <p className="sn-texto sn-hero__texto">
+        <p className="sn-hero__texto">
           Conectamos feirantes e consumidores para que o alimento da feira chegue à mesa, e não ao
           lixo.
         </p>
