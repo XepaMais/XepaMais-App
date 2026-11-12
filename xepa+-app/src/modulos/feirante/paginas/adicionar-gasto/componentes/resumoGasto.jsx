@@ -55,9 +55,14 @@ function HistoricoGastos({ gastos, filtros, onEditar, onExcluir, onFiltrar }) {
         placeholder="Buscar despesa"
         rotulo="Buscar despesa"
       >
-        <button type="button" className={Styles.botaoFiltrar} onClick={onFiltrar}>
+        <button
+          type="button"
+          className={Styles.botaoFiltrar}
+          aria-label="Filtrar"
+          onClick={onFiltrar}
+        >
           <IconeFiltro className={Styles.iconeFiltro} />
-          Filtrar
+          <span className={Styles.textoFiltrar}>Filtrar</span>
         </button>
       </BarraPesquisa>
 

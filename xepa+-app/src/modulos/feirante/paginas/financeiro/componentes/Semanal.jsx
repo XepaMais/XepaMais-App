@@ -27,7 +27,7 @@ function Semanal({ lancamentos }) {
 
   return (
     <section className={Styles.grafico}>
-      <h2>Renda da Semana</h2>
+      <h2 className="titulo-cartao">Renda da Semana</h2>
       <GraficoBarras itens={itens} />
     </section>
   );

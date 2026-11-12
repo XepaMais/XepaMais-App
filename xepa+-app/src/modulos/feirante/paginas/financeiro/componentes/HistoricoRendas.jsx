@@ -53,9 +53,14 @@ function HistoricoRendas({ lancamentos, onEditar, onExcluir }) {
         placeholder="Buscar renda"
         rotulo="Buscar renda"
       >
-        <button type="button" className={Styles.botaoFiltrar} onClick={() => setFiltroAberto(true)}>
+        <button
+          type="button"
+          className={Styles.botaoFiltrar}
+          aria-label="Filtrar"
+          onClick={() => setFiltroAberto(true)}
+        >
           <IconeFiltro className={Styles.iconeFiltro} />
-          Filtrar
+          <span className={Styles.textoFiltrar}>Filtrar</span>
         </button>
       </BarraPesquisa>
 

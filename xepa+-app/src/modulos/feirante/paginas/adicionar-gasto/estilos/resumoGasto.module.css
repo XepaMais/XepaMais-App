@@ -44,40 +44,46 @@
   background-color: #123620;
 }
 
-/* Abas: Diário / Semanal / Mensal */
+/* Período: Diário / Semanal / Mensal em um seletor único, ativo em laranja */
 .filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  display: inline-flex;
+  gap: 4px;
   margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 14px;
+  background: #eef2ef;
 }
 
 .filtro,
 .filtroAtivo {
-  min-width: 5.6em;
-  padding: 0.5em 1.4em;
-  border: 1px solid #18552f;
-  border-radius: 8px;
+  min-width: 7em;
+  min-height: 46px;
+  padding: 0.6em 1.5em;
+  border: 0;
+  border-radius: 10px;
   font-family: inherit;
-  font-size: 1em;
-  font-weight: 600;
+  font-size: var(--fonte-texto);
+  font-weight: 700;
   line-height: 1.2;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .filtro {
-  background-color: #18552f;
-  color: #fff;
+  background-color: transparent;
+  color: #18552f;
 }
 
 .filtro:hover {
-  background-color: #123620;
+  background-color: #e0e7e2;
 }
 
 .filtroAtivo {
-  background-color: #cfe38a;
-  color: #18552f;
+  background-color: var(--laranja);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(247, 96, 25, 0.3);
 }
 
 .filtro:focus-visible,
@@ -100,10 +106,19 @@
   display: grid;
   grid-template-columns: 1.7fr 1fr 1.2fr 1.2fr auto;
   align-items: center;
-  padding: 0.9em 1.6em 0.9em 0.6em;
+  padding: 0.9em 1.4em 0.9em 0.6em;
   background-color: #fff;
-  border: 1.5px solid #18552f;
+  border: var(--fin-borda, 1px solid #e3e9e5);
   border-radius: 16px;
+  box-shadow: var(--fin-sombra, none);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cartaoGasto:hover {
+  border-color: #fbc4a6;
+  transform: translateY(-1px);
 }
 
 /* Cada coluna, com divisória cinza à esquerda (menos a primeira) */
@@ -118,9 +133,9 @@
   position: absolute;
   left: 0;
   top: 50%;
-  width: 2px;
-  height: 4em;
-  background-color: #707070;
+  width: 1px;
+  height: 2.8em;
+  background-color: #e3e9e5;
   transform: translateY(-50%);
 }
 
@@ -130,19 +145,27 @@
 }
 
 .dado h3 {
-  margin: 0 0 0.25em;
-  color: #18552f;
-  font-size: var(--fonte-pequena);
+  margin: 0 0 0.35em;
+  color: var(--cinza);
+  font-size: var(--fonte-legenda);
   font-weight: 600;
+  letter-spacing: 0.04em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .dado p {
   margin: 0;
-  color: #000;
+  color: #18552f;
   font-size: var(--fonte-texto);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+}
+
+/* último valor do cartão (valor/total) em laranja */
+.dado:nth-last-child(2) p {
+  color: var(--laranja-escuro, #de520f);
+  font-weight: 800;
 }
 
 /* Botão de editar (quadrado verde com lápis) */
@@ -219,7 +242,13 @@
   }
 
   .filtros {
-    gap: 0.8em;
+    display: flex;
+  }
+
+  .filtro,
+  .filtroAtivo {
+    flex: 1;
+    min-width: 0;
   }
 
   .cartaoGasto {
@@ -250,5 +279,16 @@
   .botaoExcluir {
     width: 44px;
     height: 44px;
+  }
+}
+
+/* Celular pequeno: "Filtrar" só com o ícone, para sobrar espaço no campo */
+@media (max-width: 480px) {
+  .botaoFiltrar {
+    padding: 0 14px;
+  }
+
+  .textoFiltrar {
+    display: none;
   }
 }

@@ -6,7 +6,7 @@ function Resumo({ receita, custos }) {
 
   return (
     <section className={Styles.resumo}>
-      <h2>Resumo da Semana</h2>
+      <h2 className="titulo-cartao">Resumo da Semana</h2>
 
       <div className={Styles.linha}>
         <span>Receita Bruta</span>

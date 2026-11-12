@@ -7,7 +7,7 @@ function Capital({ receita }) {
 
   return (
     <section className={Styles.capital}>
-      <h2>Capital de Giro</h2>
+      <h2 className="titulo-cartao">Capital de Giro</h2>
       <p className={Styles.aviso}>Simulação · não é conselho financeiro</p>
 
       <div className={Styles.valores}>

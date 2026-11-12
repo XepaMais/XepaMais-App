@@ -1,52 +1,73 @@
+/* Abas da área financeira: texto com sublinhado laranja na aba ativa */
+
 .faixa {
   width: 100%;
-  border-bottom: 1px solid var(--cinza-claro);
+  border-bottom: 1px solid #e3e9e5;
   background: var(--branco);
 }
 
 .abas {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
   max-width: var(--largura-pagina);
   margin: 0 auto;
-  padding: 12px var(--margem-lateral);
+  padding: 0 var(--margem-lateral);
+  overflow-x: auto;
 }
 
 .aba,
 .abaAtiva {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 110px;
-  min-height: 44px;
-  padding: 8px 20px;
-  border: 1.5px solid var(--verde);
-  border-radius: 8px;
-  font-size: var(--fonte-pequena);
+  min-height: 62px;
+  padding: 0 22px;
+  color: var(--cinza);
+  font-size: var(--fonte-texto);
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+/* sublinhado que aparece embaixo da aba */
+.aba::after,
+.abaAtiva::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  left: 12px;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
   transition: background-color 0.2s ease;
 }
 
-.aba {
-  background: var(--branco);
+.aba:hover {
   color: var(--verde);
 }
 
-.aba:hover {
-  background: #eaf2ec;
+.aba:hover::after {
+  background: #fbc4a6;
 }
 
 .abaAtiva {
-  background: var(--verde);
-  color: var(--branco);
+  color: var(--verde);
+  font-weight: 700;
+}
+
+.abaAtiva::after {
+  background: var(--laranja);
 }
 
 .aba:focus-visible,
 .abaAtiva:focus-visible {
-  outline: 2px solid var(--limao);
-  outline-offset: 2px;
+  outline: 2px solid var(--laranja);
+  outline-offset: -6px;
+  border-radius: 10px;
 }
 
 .iconeBloqueio {
@@ -55,10 +76,13 @@
 }
 
 @media (max-width: 480px) {
+  .abas {
+    gap: 0;
+  }
+
   .aba,
   .abaAtiva {
-    min-width: 0;
     flex: 1;
-    padding: 8px;
+    padding: 0 8px;
   }
 }

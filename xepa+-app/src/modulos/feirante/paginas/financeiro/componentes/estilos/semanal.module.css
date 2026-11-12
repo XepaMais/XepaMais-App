@@ -1,13 +1,15 @@
 .grafico {
   min-width: 0;
   height: 100%;
-  padding: 20px;
-  border: 1.5px solid var(--verde);
+  padding: 22px 24px;
+  border: var(--fin-borda, 1px solid #e3e9e5);
   border-radius: 16px;
+  background: var(--branco);
+  box-shadow: var(--fin-sombra, none);
 }
 
 .grafico h2 {
-  margin: 0 0 16px;
+  margin: 0 0 20px;
   color: var(--verde);
   font-size: var(--fonte-titulo-card);
   font-weight: 700;
@@ -50,20 +52,22 @@
   justify-content: center;
   width: 100%;
   height: 140px;
-  border-bottom: 2px solid var(--cinza-claro);
+  border-bottom: 2px solid #e3e9e5;
   margin-top: auto;
 }
 
 .barra {
   width: 70%;
-  max-width: 50px;
+  max-width: 44px;
   min-height: 2px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
   background: var(--verde);
+  transition: height 0.4s ease;
 }
 
-.barraLimao {
-  background: var(--limao);
+/* maior valor do gráfico em laranja */
+.barraDestaque {
+  background: var(--laranja);
 }
 
 .dia strong {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Plus } from 'lucide-react';
 import '@/modulos/feirante/paginas/financeiro/financeiro.css';
 import Renda from '@/modulos/feirante/paginas/financeiro/componentes/Renda.jsx';
 import GraficoBarras from '@/modulos/feirante/paginas/financeiro/componentes/GraficoBarras.jsx';
@@ -76,7 +77,7 @@ function AddGasto() {
   }
 
   return (
-    <div className="pagina">
+    <div className="pagina pagina-financeiro">
       <main className="conteudo">
         <section className="titulo">
           <div>
@@ -86,7 +87,10 @@ function AddGasto() {
             </p>
           </div>
           <div className="botoes">
-            <button onClick={() => setModal({ tipo: 'adicionar' })}>+ Adicionar Despesa</button>
+            <button type="button" onClick={() => setModal({ tipo: 'adicionar' })}>
+              <Plus size={18} aria-hidden="true" />
+              Adicionar despesa
+            </button>
           </div>
         </section>
 
@@ -107,7 +111,7 @@ function AddGasto() {
         />
 
         <section className={Styles.cartao} aria-labelledby="tituloGraficoGastos">
-          <h2 id="tituloGraficoGastos">Despesas do mês por categoria</h2>
+          <h2 id="tituloGraficoGastos" className="titulo-cartao">Despesas do mês por categoria</h2>
           <GraficoBarras itens={gastosDoMesPorCategoria(gastos)} />
         </section>
       </main>

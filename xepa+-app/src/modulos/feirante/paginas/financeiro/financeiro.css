@@ -85,3 +85,89 @@ img {
     width: 100%;
   }
 }
+
+/* ===================== Visual novo da área financeira =====================
+   Lucros, Despesas e Planilhas usam a classe "pagina-financeiro".
+   Detalhes em laranja: botões principais, abas e títulos. */
+
+.pagina-financeiro {
+  --fin-borda: 1px solid #e3e9e5;
+  --fin-sombra: 0 4px 18px rgba(24, 85, 47, 0.06);
+  --laranja-suave: #fff3ec;
+  --laranja-escuro: #de520f;
+
+  background: #fafbfa;
+}
+
+.pagina-financeiro .titulo {
+  align-items: flex-end;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: var(--fin-borda);
+}
+
+/* descrição em uma linha só no computador */
+@media (min-width: 1100px) {
+  .pagina-financeiro .titulo p {
+    white-space: nowrap;
+  }
+}
+
+.pagina-financeiro .botoes button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 24px;
+  background: var(--laranja);
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(247, 96, 25, 0.25);
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pagina-financeiro .botoes button:hover {
+  background: var(--laranja-escuro);
+  transform: translateY(-1px);
+}
+
+.pagina-financeiro .botoes button:focus-visible {
+  outline: 2px solid var(--verde);
+  outline-offset: 3px;
+}
+
+.pagina-financeiro .botoes button:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* Título dos cartões com um tracinho laranja na frente */
+.titulo-cartao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-cartao::before {
+  content: '';
+  flex-shrink: 0;
+  width: 4px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--laranja);
+}
+
+@media (max-width: 600px) {
+  .pagina-financeiro .titulo {
+    align-items: stretch;
+  }
+
+  .pagina-financeiro .botoes button {
+    width: 100%;
+  }
+}
