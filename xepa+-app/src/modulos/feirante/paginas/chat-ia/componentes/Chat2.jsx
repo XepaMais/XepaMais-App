@@ -81,11 +81,13 @@ function Chat2() {
   ]);
   const [inputTexto, setInputTexto] = useState('');
   const [carregando, setCarregando] = useState(false);
-  const chatBottomRef = useRef(null);
+  const areaMensagensRef = useRef(null);
 
-  // Rola até a última mensagem sempre que chega uma nova
+  // Rola só a caixa de mensagens até a última mensagem.
+  // (scrollIntoView rolava a página inteira e abria o Xep.AI no meio da tela)
   useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const area = areaMensagensRef.current;
+    if (area) area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
   }, [mensagens, carregando]);
 
   const handleEnviarMensagem = async (e) => {
@@ -157,7 +159,7 @@ function Chat2() {
         <h2 className={Styles.profileName}>Xepinha</h2>
       </div>
 
-      <div className={Styles.chatMessages}>
+      <div className={Styles.chatMessages} ref={areaMensagensRef}>
         {mensagens.map((msg) => (
           <div
             key={msg.id}
@@ -173,7 +175,6 @@ function Chat2() {
           </div>
         )}
 
-        <div ref={chatBottomRef} />
       </div>
 
       <form className={Styles.chatInputForm} onSubmit={handleEnviarMensagem}>

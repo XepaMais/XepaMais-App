@@ -12,83 +12,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Barra de busca: [Busca | campo ........ ícone]  [Filtrar] */
+/* Barra de busca padrão com o botão "Filtrar" ao lado */
 .busca {
-  display: flex;
-  align-items: center;
-  gap: 1.35em;
   margin-bottom: 20px;
 }
 
-.grupoBusca {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  height: 2.5em;
-}
-
-.botaoBusca {
-  min-width: 5.6em;
-  padding: 0 1em;
-  background-color: #9bc000;
-  color: #18552f;
-  border: 0;
-  border-radius: 8px 0 0 8px;
-  font-family: inherit;
-  font-size: 0.95em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.botaoBusca:hover {
-  background-color: #7f9e00;
-}
-
-.campoBusca {
-  position: relative;
-  display: flex;
-  flex: 1;
-  min-width: 0;
-}
-
-.campoBusca input {
-  width: 100%;
-  padding: 0 4.2em 0 1.2em;
-  background-color: #fff;
-  color: #222;
-  border: 1px solid #aaa;
-  border-radius: 0 0.4em 0.4em 0;
-  font-family: inherit;
-  font-size: 0.95em;
-  font-weight: 600;
-}
-
-.campoBusca input::placeholder {
-  color: #9a9a9a;
-  font-weight: 400;
-}
-
-.campoBusca input:focus-visible {
-  outline: 2px solid #9bc000;
-  outline-offset: -2px;
-}
-
-.iconeFiltro {
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  width: 2.2em;
-  height: 1.5em;
-  color: #9bc000;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
 .botaoFiltrar {
-  min-width: 5.8em;
-  height: 2.5em;
-  padding: 0 1.4em;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 20px;
   background-color: #18552f;
   color: #fff;
   border: 0;
@@ -100,17 +35,13 @@
   transition: background-color 0.2s ease;
 }
 
-.botaoFiltrar:hover {
-  background-color: #123620;
+.iconeFiltro {
+  width: 18px;
+  height: 14px;
 }
 
-.visualmenteOculto {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+.botaoFiltrar:hover {
+  background-color: #123620;
 }
 
 /* Abas: Diário / Semanal / Mensal */
@@ -151,7 +82,6 @@
 
 .filtro:focus-visible,
 .filtroAtivo:focus-visible,
-.botaoBusca:focus-visible,
 .botaoFiltrar:focus-visible,
 .botaoEditar:focus-visible,
 .botaoExcluir:focus-visible {
@@ -284,19 +214,8 @@
     padding: 0 0 var(--espaco-secao);
   }
 
-  /* Campo de busca em cima, "Filtrar" embaixo ocupando a largura toda */
-  .busca {
-    flex-wrap: wrap;
-    gap: 0.8em;
-  }
-
-  .grupoBusca {
-    flex-basis: 100%;
-  }
-
   .botaoFiltrar {
-    width: 100%;
-    height: 2.6em;
+    padding: 0 14px;
   }
 
   .filtros {

@@ -54,42 +54,8 @@
 }
 
 .containerBusca {
-  display: flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 9px;
+  width: auto;
   margin: 0 14px 12px;
-  padding: 0 12px;
-  border: 1.5px solid var(--cinza-claro);
-  border-radius: var(--raio-botao);
-  background: var(--branco);
-  color: var(--cinza);
-}
-
-.containerBusca:focus-within {
-  border-color: var(--verde);
-  box-shadow: 0 0 0 3px rgba(24, 85, 47, .1);
-}
-
-.containerBusca svg {
-  width: 17px;
-  height: 17px;
-  flex-shrink: 0;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-}
-
-.containerBusca input {
-  width: 100%;
-  min-width: 0;
-  padding: 10px 0;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--preto);
-  font: inherit;
-  font-size: var(--fonte-pequena);
 }
 
 .listaContatos {

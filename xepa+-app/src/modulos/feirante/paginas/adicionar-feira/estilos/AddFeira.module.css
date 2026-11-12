@@ -23,63 +23,16 @@
 }
 
 .busca {
-  display: flex;
-  height: 48px;
   margin: 0 0 26px;
-}
-
-.busca > button {
-  min-width: 120px;
-  border: 0;
-  border-radius: 6px 0 0 6px;
-  background: var(--lima);
-  color: var(--verde);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.campoBusca {
-  position: relative;
-  display: flex;
-  flex: 1;
-  min-width: 0;
-}
-
-.campoBusca input {
-  width: 100%;
-  padding: 0 16px;
-  border: 1px solid #aaa;
-  border-radius: 0 6px 6px 0;
-  color: #222;
-  font: inherit;
-}
-
-.campoBusca input:focus {
-  outline: 2px solid var(--lima);
-  outline-offset: -2px;
-}
-
-.iconeBusca {
-  display: none;
-}
-
-.visualmenteOculto {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
 
 .tituloLista {
   margin: 0 0 10px 4px;
   color: var(--verde);
+  /* mesma fonte do título "Onde Você Trabalha?" */
+  font-family: 'Poppins', sans-serif;
   font-size: var(--fonte-titulo-secao);
+  font-weight: 800;
 }
 
 .lista {
@@ -211,8 +164,4 @@
   }
 }
 
-@media (max-width: 480px) {
-  .busca > button {
-    min-width: 82px;
-  }
-}
+

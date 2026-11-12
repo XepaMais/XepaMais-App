@@ -3,6 +3,7 @@ import { carregarFeiras } from '@/modulos/feirante/servicos/feirasFeirante';
 import { buscarCep, geocodificarEndereco } from '@/compartilhado/servicos/localizacao';
 import '@/modulos/publico/paginas/inicio/estilos/MapaFeiras.css';
 import Rabisco from '@/modulos/publico/paginas/inicio/componentes/Rabisco.jsx';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 
 const CENTRO_PADRAO = { lat: -23.4669, lng: -46.6869 }; // Brasilândia, São Paulo
 
@@ -34,8 +35,7 @@ function MapaFeiras() {
   );
   const [feiras] = useState(() => carregarFeiras().filter((feira) => feira.latitude != null));
 
-  async function pesquisarFeiras(evento) {
-    evento.preventDefault();
+  async function pesquisarFeiras() {
     const termo = busca.trim();
     if (!termo) return;
 
@@ -107,20 +107,18 @@ function MapaFeiras() {
           </p>
         </div>
 
-        <form className="mapa-busca" onSubmit={pesquisarFeiras} data-revelar style={{ '--atraso': '0.1s' }}>
-          <input
-            type="search"
-            inputMode="search"
+        <div className="mapa-busca" data-revelar style={{ '--atraso': '0.1s' }}>
+          <BarraPesquisa
+            valor={busca}
+            aoMudar={(texto) => setBusca(formatarBusca(texto))}
+            aoBuscar={pesquisarFeiras}
             placeholder="Digite seu CEP ou endereço"
-            value={busca}
-            onChange={(evento) => setBusca(formatarBusca(evento.target.value))}
-            aria-label="CEP ou endereço"
+            rotulo="CEP ou endereço"
+            inputMode="search"
+            desabilitado={buscando}
+            textoBotao={buscando ? 'Buscando...' : 'Buscar'}
           />
-
-          <button type="submit" disabled={buscando}>
-            {buscando ? 'Buscando...' : 'Buscar'}
-          </button>
-        </form>
+        </div>
 
         <div className="mapa-visual" data-revelar="zoom" style={{ '--atraso': '0.2s' }}>
           <iframe

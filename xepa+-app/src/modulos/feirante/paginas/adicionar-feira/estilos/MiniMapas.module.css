@@ -13,3 +13,12 @@
 .botaoMapa {
   margin-top: 0.75rem;
 }
+
+/* "Suas Feiras no Mapa:" igual a "Minhas Feiras Cadastradas:" */
+.tituloLista {
+  margin: 0 0 10px 4px;
+  color: var(--verde);
+  font-family: 'Poppins', sans-serif;
+  font-size: var(--fonte-titulo-secao);
+  font-weight: 800;
+}

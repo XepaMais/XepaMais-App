@@ -11,6 +11,7 @@ import {
   descreverPeriodo,
   filtrarHistorico,
 } from '@/modulos/feirante/servicos/historicoFinanceiro';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 import base from '@/compartilhado/estilos/conta.module.css';
 import styles from './estilos/Planilhas.module.css';
 
@@ -114,17 +115,15 @@ function Planilhas() {
           </select>
         </div>
 
-        <div className={`${base.campo} ${styles.campoBusca}`}>
-          <label htmlFor="busca">Pesquisar descrição</label>
-          <input
-            id="busca"
-            name="busca"
-            type="search"
-            placeholder="Ex.: alface"
-            value={filtros.busca}
-            onChange={alterarFiltro}
-          />
-        </div>
+        <BarraPesquisa
+          semFormulario
+          className={styles.campoBusca}
+          valor={filtros.busca}
+          aoMudar={(texto) => setFiltros({ ...filtros, busca: texto })}
+          placeholder="Ex.: alface"
+          rotulo="Pesquisar descrição"
+          mostrarRotulo
+        />
 
         <button
           type="button"

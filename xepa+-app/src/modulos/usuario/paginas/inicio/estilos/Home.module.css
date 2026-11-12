@@ -26,25 +26,6 @@
   padding: 0 var(--margem-lateral) 32px;
 }
 
-.barraPesquisa {
-  width: 100%;
-  height: 48px;
-  padding: 0 16px;
-  border: var(--borda-card);
-  border-radius: var(--raio-botao);
-  background: var(--branco);
-  font-size: var(--fonte-texto);
-}
-
-.barraPesquisa::placeholder {
-  color: var(--cinza);
-}
-
-.barraPesquisa:focus {
-  outline: 2px solid var(--limao);
-  outline-offset: 1px;
-}
-
 /* Cards de categoria */
 .categorias {
   display: grid;

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CheckCircle2, MessageCircle, PackageCheck } from 'lucide-react';
 import Styles from '@/modulos/feirante/paginas/historico-chat/estilos/ChatHist.module.css';
+import BarraPesquisa from '@/compartilhado/componentes/barra-pesquisa/BarraPesquisa';
 import useConversas from '@/compartilhado/hooks/useConversas';
 import {
   assuntoDaConversa,
@@ -151,19 +152,13 @@ function ChatHist({ perfil = 'feirante' }) {
             ))}
           </div>
 
-          <label className={Styles.containerBusca} htmlFor="busca-contatos">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="11" cy="11" r="7" />
-              <path d="m16 16 4 4" />
-            </svg>
-            <input
-              id="busca-contatos"
-              type="search"
-              value={busca}
-              onChange={(event) => setBusca(event.target.value)}
-              placeholder="Buscar por nome ou nº do pedido..."
-            />
-          </label>
+          <BarraPesquisa
+            className={Styles.containerBusca}
+            valor={busca}
+            aoMudar={setBusca}
+            placeholder="Nome ou nº do pedido..."
+            rotulo="Buscar conversa por nome ou número do pedido"
+          />
 
           <div className={Styles.listaContatos}>
             {contatosFiltrados.map((item) => (

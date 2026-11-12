@@ -1,0 +1,91 @@
+.barra {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.rotulo {
+  color: #18552f;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.campo {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo::placeholder {
+  color: #888;
+}
+
+.campo:focus {
+  border-color: #f76019;
+  box-shadow: 0 0 0 3px rgba(247, 96, 25, 0.15);
+}
+
+.botao {
+  flex-shrink: 0;
+  height: 48px;
+  padding: 0 24px;
+
+  background: #f76019;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.botao:hover {
+  background: #de520f;
+}
+
+.botao:active {
+  background: #c4470b;
+}
+
+.botao:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.botao:focus-visible {
+  outline: 2px solid #f76019;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .botao {
+    padding: 0 16px;
+  }
+}
